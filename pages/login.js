@@ -35,7 +35,6 @@ export default function LoginPage() {
 						onSubmit={(values, { setSubmitting }) => {
 							Login(values.email, values.password)
 								.then(response => {
-									console.log(response)
 									router.push('/dashboard')
 								})
 
