@@ -1,13 +1,11 @@
 import LoginPage from './login'
 
-export async function getServerSideProps(context) {
-	
-
-	return {
-		props: {}
-	}
-}
+import { useAuth } from '../src/contexts/AuthContext'
 
 export default function Home() {
+	const {getUser} = useAuth()
+
+	getUser()
+
 	return (<LoginPage />)
 }

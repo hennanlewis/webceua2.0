@@ -1,21 +1,19 @@
 import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { useAuth } from "../src/contexts/AuthContext"
 
-export default function Dashboard() {
+export default function Settings() {
 	const { signOut, currentUser } = useAuth()
 	const [showMenu, setShowMenu] = useState(false)
 	const [showMobileMenu, setShowMobileMenu] = useState(false)
 	const router = useRouter()
 
-	useEffect(() => {
-		if (!currentUser) {
-			router.push("/login")
-		}
-	}, [currentUser])
+	if (!currentUser) {
+		router.push("/login")
+	}
 
 	const handleLogout = () => {
 		signOut()
@@ -30,7 +28,7 @@ export default function Dashboard() {
 	return (
 		<>
 			<Head>
-				<title>Dashboard</title>
+				<title>Configurações</title>
 			</Head>
 
 			<div className="h-[100vh] w-[100vw]">
@@ -41,14 +39,10 @@ export default function Dashboard() {
 								<div className="hidden md:block">
 									<div className="ml-10 flex items-baseline space-x-4">
 										<Link href="/dashboard">
-											<a className="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">
-												Dashboard
-											</a>
+											<a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</a>
 										</Link>
 										<Link href="/projects">
-											<a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-												Projetos
-											</a>
+											<a className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Projetos</a>
 										</Link>
 									</div>
 								</div>
@@ -114,14 +108,10 @@ export default function Dashboard() {
 					<div className={`${!showMobileMenu && 'hidden'} md:hidden`} id="mobile-menu">
 						<div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
 							<Link href="/dashboard">
-								<a className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">
-									Dashboard
-								</a>
+								<a className="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Dashboard</a>
 							</Link>
 							<Link href="/projects">
-								<a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-									Projetos
-								</a>
+								<a className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Team</a>
 							</Link>
 						</div>
 						<div className="pt-4 pb-3 border-t border-gray-700">
@@ -153,7 +143,7 @@ export default function Dashboard() {
 				<header className="bg-blue-800 shadow">
 					<div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
 						<h1 className="text-3xl font-bold text-white">
-							Dashboard
+							Configurações
 						</h1>
 					</div>
 				</header>

@@ -4,12 +4,13 @@ import { useRouter } from 'next/router'
 import { Formik } from 'formik'
 
 import { useAuth } from '../src/contexts/AuthContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-export default function LoginPage() {
+export default function ResetPassword() {
+	const [messageResponse, setMessageResponse] = useState('')
 	const router = useRouter()
 
-	const { currentUser, login } = useAuth()
+	const { currentUser, resetPassword } = useAuth()
 
 	useEffect(() => {
 		if (currentUser) {
@@ -24,15 +25,22 @@ export default function LoginPage() {
 			</Head>
 			<div className="w-[100vw] h-[100vh] bg-blue-800 p-5">
 				<div className="min-h-full sm-w-96 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg">
-					<div className="max-w-xs w-full space-y-8">
-						<div>
-							<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-								Entre com sua conta
-							</h2>
-						</div>
+				<div className="max-w-xs w-full space-y-2">
+					<div>
+						<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+							Redefinir senha
+						</h2>
+					</div>
+					{!!messageResponse.message &&
+						<span>{messageResponse.message}</span>
+					}
+					{messageResponse.errorMessage &&
+						<span>Desculpe, mas ocorreu um erro na solicitação.</span>
+					}
+					{!messageResponse &&
 
 						<Formik
-							initialValues={{ email: '', password: '' }}
+							initialValues={{ email: '' }}
 							validate={values => {
 								const errors = {}
 								if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
@@ -41,8 +49,9 @@ export default function LoginPage() {
 
 								return errors
 							}}
-							onSubmit={(values, { setSubmitting, resetForm }) => {
-								login(values.email, values.password)
+							onSubmit={async (values, { setSubmitting }) => {
+								const message = await resetPassword(values.email)
+								setMessageResponse(message)
 
 								setSubmitting(false)
 							}}
@@ -65,53 +74,24 @@ export default function LoginPage() {
 												value={values.email}
 											/>
 										</div>
-										<div>
-											<label htmlFor="password" className="sr-only">Senha</label>
-											<input
-												id="password"
-												name="password"
-												onChange={handleChange}
-												type="password"
-												autoComplete="current-password"
-												required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-[indigo-500] focus:border-[indigo-500] focus:z-10 sm:text-sm"
-												placeholder="Senha"
-												value={values.password}
-											/>
-										</div>
-									</div>
-
-									<div className="flex items-center justify-between">
-										<div className="flex items-center">
-											<input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-blue-800 focus:ring-[indigo-500] border-gray-300 rounded" />
-											<label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
-												Lembrar-me
-											</label>
-										</div>
-
-										<div className="text-sm">
-											<Link href="/reset-password">
-												<a className="font-medium text-blue-800 hover:text-[indigo-500]">
-													Esqueceu sua senha?
-												</a>
-											</Link>
-										</div>
 									</div>
 
 									<div className="flex flex-col gap-2">
 										<button type="submit" disabled={isSubmitting} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500]">
-											Entrar
+											Enviar
 										</button>
-										<Link href="/signup">
-											<a className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500] cursor-pointer">
-												Não possui cadastro?
-											</a>
-										</Link>
 									</div>
 								</form>
 							)}
 						</Formik>
-					</div>
+					}
+					<Link href="/login">
+						<a className="relative w-full flex justify-center -mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500] cursor-pointer">
+							Voltar para Login
+						</a>
+					</Link>
 				</div>
+			</div>
 			</div>
 		</>
 	)
