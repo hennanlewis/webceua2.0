@@ -9,7 +9,7 @@ import { useAuth } from '../src/contexts/AuthContext'
 
 export default function Home() {
 	const router = useRouter()
-	const { currentUser } = useAuth()
+	const { currentUser, cadastro } = useAuth()
 
 	const [errorMessage, setErrorMessage] = useState('')
 
@@ -52,14 +52,7 @@ export default function Home() {
 								}
 								else setErrorMessage('')
 
-								Cadastro(values)
-									.then(response => {
-										console.log(response)
-										resetForm()
-									})
-									.error(error => {
-										console.log(error)
-									})
+								cadastro(values)
 
 								setTimeout(() => {
 									setSubmitting(false)

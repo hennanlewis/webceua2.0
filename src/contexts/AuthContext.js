@@ -1,4 +1,5 @@
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth'
+import { addDoc, collection } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { auth, db } from '../../services/firebase'
@@ -6,7 +7,7 @@ import { auth, db } from '../../services/firebase'
 const AuthContext = createContext()
 
 export default function AuthProvider({ children }) {
-	const [currentUser, setCurrentUser] = useState()
+	const [currentUser, setCurrentUser] = useState('')
 	const [loading, setLoading] = useState(true)
 
 	const cadastro = (values) => {
@@ -16,11 +17,12 @@ export default function AuthProvider({ children }) {
 	const login = (email, password) => {
 		const info = signInWithEmailAndPassword(auth, email, password)
 			.then(response => {
-
+				
 			})
 			.catch(error => {
 				return error.code, error.message
 			})
+		return info
 	}
 
 	const signOut = () => {
@@ -50,6 +52,7 @@ export default function AuthProvider({ children }) {
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(user => {
 			setCurrentUser(user)
+			console.log(user)
 			setLoading(false)
 		})
 
@@ -62,7 +65,8 @@ export default function AuthProvider({ children }) {
 		signOut,
 		signUp,
 		getUser,
-		resetPassword
+		resetPassword,
+		cadastro
 	}
 
 	return (
@@ -82,7 +86,8 @@ export function useAuth() {
 		signOut,
 		signUp,
 		getUser,
-		resetPassword
+		resetPassword,
+		cadastro
 	} = context
 
 	return {
@@ -91,6 +96,7 @@ export function useAuth() {
 		signOut,
 		signUp,
 		getUser,
-		resetPassword
+		resetPassword,
+		cadastro
 	}
 }

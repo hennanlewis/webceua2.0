@@ -1,12 +1,16 @@
 import Head from "next/head"
 import Router from "next/router"
 import { useEffect, useState } from "react"
-import { MenuNav } from "../src/components/MenuNav"
 
+import { Header } from "../src/components/Header"
+import { MenuNav } from "../src/components/MenuNav"
 import { useAuth } from "../src/contexts/AuthContext"
 
 export default function Dashboard() {
 	const { currentUser } = useAuth()
+	const [openMenu, setOpenMenu] = useState(
+		{ menuMD: false }
+	)
 
 	useEffect(() => {
 		if (!currentUser) {
@@ -14,30 +18,29 @@ export default function Dashboard() {
 		}
 	}, [currentUser])
 
+	const handleOpenMenuMD = (key) => {
+		setOpenMenu({ ...openMenu, [key]: !openMenu[key] })
+	}
+
 	return (
 		<>
 			<Head>
 				<title>Dashboard</title>
 			</Head>
 
-			<div className="h-[100vh] w-[100vw]">
+			<div className="min-h-[100vh] w-[100vw] flex flex-col">
+				<Header currentUser={currentUser} openMenuMDFunction={handleOpenMenuMD} openMenuState={openMenu} />
 
-				<header className="bg-blue-800 shadow">
-					<div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-						<h1 className="text-3xl font-bold text-white">
-							Dashboard
-						</h1>
-					</div>
-					<MenuNav />
-				</header>
-				<main>
-					<div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 bg-white">
-						<div className="px-4 py-6 sm:px-0">
+				<div className="grow flex flex-col md:flex-row">
+					<MenuNav openMenuState={openMenu} currentURL="/dashboard" />
+
+					<main className="grow">
+						<div className="mx-auto p-4">
 							<div className="border-4 border-dashed border-gray-400 rounded-lg p-2 h-96">
 							</div>
 						</div>
-					</div>
-				</main>
+					</main>
+				</div>
 			</div>
 		</>
 	)

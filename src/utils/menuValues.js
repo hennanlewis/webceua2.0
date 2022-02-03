@@ -1,12 +1,12 @@
 const menuValues = [
 	{
-		pathName: "/dashboard",
+		path: "/dashboard",
 		name: "Dashboard"
 	},
 	{
-		pathName: "/projects",
+		path: "/projects",
 		name: "Projetos"
-	}
+	},
 ]
 
 export default menuValues

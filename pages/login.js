@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Router from 'next/router'
+import { useRoute, useRouter } from 'next/router'
 
 import { useAuth } from '../src/contexts/AuthContext'
 import { useEffect } from 'react'
@@ -7,10 +7,11 @@ import { LoginForm } from '../src/components/LoginForm'
 
 export default function LoginPage() {
 	const { currentUser } = useAuth()
+	const router = useRouter()
 
 	useEffect(() => {
 		if (currentUser) {
-			Router.push("/dashboard")
+			router.push("/dashboard")
 		}
 	}, [currentUser])
 
