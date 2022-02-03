@@ -4,8 +4,8 @@ const menuValues = [
 		name: "Dashboard"
 	},
 	{
-		path: "/projects",
-		name: "Projetos"
+		path: "/new-project",
+		name: "Novo projeto"
 	},
 ]
 

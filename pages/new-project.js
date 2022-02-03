@@ -8,7 +8,7 @@ import { NavMenu } from "../src/components/NavMenu"
 import { UserMenu } from "../src/components/UserMenu"
 import { useAuth } from "../src/contexts/AuthContext"
 
-export default function Settings() {
+export default function Projects() {
 	const { currentUser } = useAuth()
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
@@ -28,15 +28,15 @@ export default function Settings() {
 	return (
 		<>
 			<Head>
-				<title>Configurações</title>
+				<title>Novo Projeto</title>
 			</Head>
 
 			<div className="min-h-[100vh] w-[100vw] relative flex flex-col">
-				<Header currentPage="Meus dados" currentUser={currentUser} openNavMenuFunction={handleOpenNavMenu} openMenuState={openMenu} />
+				<Header currentPage="Novo Projeto" currentUser={currentUser} openNavMenuFunction={handleOpenNavMenu} openMenuState={openMenu} />
 				<UserMenu openMenuState={openMenu} />
 
 				<div className="grow flex flex-col md:flex-row">
-					<NavMenu openMenuState={openMenu} currentURL="/settings" />
+					<NavMenu openMenuState={openMenu} currentURL="/new-project" />
 
 					<Main>
 						Default
