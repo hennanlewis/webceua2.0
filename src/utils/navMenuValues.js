@@ -1,4 +1,4 @@
-const menuValues = [
+const navMenuValues = [
 	{
 		path: "/dashboard",
 		name: "Dashboard"
@@ -9,4 +9,4 @@ const menuValues = [
 	},
 ]
 
-export default menuValues
+export default navMenuValues

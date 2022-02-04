@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Router from 'next/router'
 import { Formik } from 'formik'
-import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
-import { Cadastro } from '../services/firebase'
 import { useAuth } from '../src/contexts/AuthContext'
 
 export default function Home() {
@@ -15,7 +14,7 @@ export default function Home() {
 
 	useEffect(() => {
 		if (currentUser) {
-			router.push("/dashboard")
+			Router.push("/dashboard")
 		}
 	}, [currentUser])
 

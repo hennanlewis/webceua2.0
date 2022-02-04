@@ -17,7 +17,7 @@ export default function Settings() {
 
 	useEffect(() => {
 		if (!currentUser) {
-			Router.push("/login")
+			Router.push("/signout")
 		}
 	}, [currentUser])
 
@@ -25,7 +25,7 @@ export default function Settings() {
 		setOpenMenu({ ...openMenu, [key]: !openMenu[key] })
 	}
 
-	return (
+	return (currentUser &&
 		<>
 			<Head>
 				<title>Configurações</title>

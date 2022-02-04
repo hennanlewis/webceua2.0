@@ -17,16 +17,15 @@ export default function Dashboard() {
 
 	useEffect(() => {
 		if (!currentUser) {
-			Router.push("/login")
+			Router.push("/signout")
 		}
 	}, [currentUser])
 
 	const handleOpenNavMenu = (key) => {
-		console.log(openMenu)
 		setOpenMenu({ ...openMenu, [key]: !openMenu[key] })
 	}
 
-	return (
+	return (currentUser &&
 		<>
 			<Head>
 				<title>Dashboard</title>
