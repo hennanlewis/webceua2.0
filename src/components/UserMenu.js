@@ -1,15 +1,13 @@
 import Link from "next/link"
 
-import { useAuth } from "../contexts/AuthContext"
 import userMenuValues from '../utils/userMenuValues'
 
 export function UserMenu(props) {
 	const { openMenuState } = props
-	const { signOut } = useAuth()
 
 	return (
-		<div className={`${openMenuState.userMenu ? 'md:flex flex-col ' : 'hidden '}absolute origin-top-right right-3 mt-14
-			w-48 p-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5`}
+		<div className={`${openMenuState.userMenu ? 'md:flex flex-col' : 'hidden'} absolute origin-top-right right-3 mt-14
+			w-48 p-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10`}
 		>
 			{userMenuValues.map(item =>
 				<Link key={item.name} href={item.path}>

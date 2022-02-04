@@ -13,6 +13,8 @@ import { Header } from "../src/components/Header"
 import { Main } from "../src/components/Main"
 import { NavMenu } from "../src/components/NavMenu"
 import { UserMenu } from "../src/components/UserMenu"
+import { NewProjectMainData } from "../src/components/NewProjectMainData"
+import { NewProjectColaborators } from "../src/components/NewProjectColaborators"
 
 export default function NewProject() {
 	const { currentUser } = useAuth()
@@ -88,7 +90,7 @@ export default function NewProject() {
 											<span
 												className="flex justify-center items-center w-10 h-10 rounded-full text-white z-10 -translate-y-5 duration-200"
 												key={icons[index].key}
-												onClick={() => setFormPosition(index)}
+												onClick={() => console.log(index)}
 											>{icons[index]}</span>
 											:
 											<span
@@ -102,6 +104,7 @@ export default function NewProject() {
 							<Formik
 								initialValues={{}}
 								onSubmit={(values, { setSubmitting }) => {
+									console.log(values)
 									setTimeout(() => {
 										setSubmitting(false)
 									}, 400)
@@ -109,8 +112,13 @@ export default function NewProject() {
 								}}
 							>
 								{({ values, handleChange, handleSubmit, isSubmitting }) => (
-									<form onSubmit={handleSubmit}>
 
+									<form
+										onSubmit={handleSubmit}
+										className="max-w-[90vw] w-[40rem]"
+									>
+										<NewProjectColaborators values={values} handleChange={handleChange} />
+										
 										<button type="submit" disabled={isSubmitting}>Salvar projeto</button>
 									</form>
 								)}
