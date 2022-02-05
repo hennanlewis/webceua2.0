@@ -1,356 +1,442 @@
 import { useFormikContext } from "formik"
 import { ConditionalInput } from "./ConditionalInput"
 
-export function NewProjectMainData(props) {
+export function NewProjectAnimalModel(props) {
 	const { values, handleChange } = props
 	const captureFormik = useFormikContext()
 
 	return (
-		<div className="aba">
-
-			<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
-				<div className="col-span-3 xs:col-span-8">
-					<h2 className="title-option">Dados iniciais</h2>
-				</div>
-				<div className="col-span-5 grid grid-cols-6 xs:col-span-8 gap-12 bg-indigo-50 rounded-lg p-4">
-					<fieldset className="col-span-6 grid grid-cols-6 gap-3">
-						<span className="col-span-6 -mx-1 p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
-							Prazo
+		<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
+			<div className="col-span-3 xs:col-span-8">
+				<h2 className="title-option">Modelo Animal</h2>
+			</div>
+			<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
+				<fieldset className="flex flex-col gap-2">
+					<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						Modelo Animal
+					</span>
+					<label
+						htmlFor="modeloAnimalEspecie"
+						className=""
+					>
+						<span className="">
+							Espécie ou grupo taxonômico
 						</span>
-						<label
-							htmlFor="dadosPrazoInicio"
-							className="col-span-3 -mt-2"
-						>
-							<span className="text-sm font-medium text-gray-700">Início</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
-								type="date"
-								id="dadosPrazoInicio"
-								name="dadosPrazoInicio"
-								onChange={handleChange}
-								value={values.dadosPrazoInicio}
-							/>
-						</label>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="text"
+							id="modeloAnimalEspecie"
+							name="modeloAnimalEspecie"
+							onChange={handleChange}
+							value={values.modeloAnimalEspecie}
+							placeholder="Nome vulgar, se existir"
+						/>
+					</label>
 
-						<label
-							htmlFor="dadosPrazoTermino"
-							className="col-span-3 -mt-2"
-						>
-							<span className="text-sm font-medium text-gray-700">Término</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="date"
-								id="dadosPrazoTermino"
-								name="dadosPrazoTermino"
-								onChange={handleChange}
-								value={values.dadosPrazoTermino}
-							/>
-						</label>
-					</fieldset>
-
-					<fieldset className="col-span-6 grid grid-cols-6 gap-3">
-						<span className="col-span-6 p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
-							Título do Projeto
-						</span>
-						<label
-							className="col-span-6 -mt-3"
-							htmlFor="dadosProjetoTitulo"
-						>
-							<span className="col-span-6">Título em português</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosProjetoTitulo"
-								name="dadosProjetoTitulo"
-								onChange={handleChange}
-								value={values.dadosProjetoTitulo}
-								placeholder="O modelo animal deve estar descrito no título"
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosProjetoTituloEN"
-						>
-							<span className="col-span-6">Título em inglês</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosProjetoTituloEN"
-								name="dadosProjetoTituloEN"
-								onChange={handleChange}
-								value={values.dadosProjetoTituloEN}
-								placeholder="O modelo animal deve estar descrito no título"
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosProjetoArea"
-						>
-							<span className="col-span-6">Área de conhecimento</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosProjetoArea"
-								name="dadosProjetoArea"
-								onChange={handleChange}
-								value={values.dadosProjetoArea}
-							/>
-						</label>
-					</fieldset>
-
-					<fieldset className="col-span-6 grid grid-cols-6 gap-3">
-						<span className="col-span-6 -mx-1 p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
-							Responsável
-						</span>
-						<label
-							className="col-span-6 -mt-3"
-							htmlFor="dadosResponsavelNome"
-						>
-							<span className="col-span-6">Nome completo</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosResponsavelNome"
-								name="dadosResponsavelNome"
-								onChange={handleChange}
-								value={values.dadosResponsavelNome}
-								placeholder="Digite seu nome completo"
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosResponsavelInstituicao"
-						>
-							<span className="col-span-6">Instituição/Unidade</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosResponsavelInstituicao"
-								name="dadosResponsavelInstituicao"
-								onChange={handleChange}
-								value={values.dadosResponsavelInstituicao}
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosResponsavelDepartamento"
-						>
-							<span className="col-span-6">Departamento/Disciplina</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosResponsavelDepartamento"
-								name="dadosResponsavelDepartamento"
-								onChange={handleChange}
-								value={values.dadosResponsavelDepartamento}
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosResponsavelLattes"
-						>
-							<span className="col-span-6">Link do currículo lattes</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosResponsavelLattes"
-								name="dadosResponsavelLattes"
-								onChange={handleChange}
-								value={values.dadosResponsavelLattes}
-							/>
-						</label>
-
-						<ConditionalInput
-							title="Experiência prévia"
-							name="dadosResponsavelExperiencia"
-						>
-							<label
-								className="col-span-6"
-								htmlFor=""
-							>
-								<span className="col-span-6">Tempo</span>
-								<input
-									type="text"
-									id="dadosResponsavelTempoExperiencia"
-									name="dadosResponsavelTempoExperiencia"
-									onChange={handleChange}
-									value={values.dadosResponsavelTempoExperiencia}
-								/>
-							</label>
-						</ConditionalInput>
-
-						<ConditionalInput
-							title="Treinamento"
-							name="dadosResponsavelTreinamento"
-						>
-							<label
-								className="col-span-6"
-								htmlFor="dadosResponsavelTempoTreinamento"
-							>
-								<span className="col-span-6">Tempo</span>
-								<input
-									type="text"
-									id="dadosResponsavelTempoTreinamento"
-									name="dadosResponsavelTempoTreinamento"
-									onChange={handleChange}
-									value={values.dadosResponsavelTempoTreinamento}
-								/>
-							</label>
-						</ConditionalInput>
-
-						<label className="radio" htmlFor="exper">
-							<span className="col-span-6">Vínculo com a instituição</span>
-							<span className="col-span-6">
-								<input
-									type="radio" value="docente"
-									id="dadosResponsavelVinculo"
-									name="dadosResponsavelVinculo"
-									onChange={handleChange}
-								/>
-								Docente/Pesquisador
-							</span>
-							<span className="col-span-6">
-								<input
-									type="radio" value="tecnico"
-									id="dadosResponsavelVinculo"
-									name="dadosResponsavelVinculo"
-									onChange={handleChange}
-								/>
-								Técnico Nível Superior
-							</span>
-							<span className="col-span-6">
-								<input
-									type="radio" value="jovem_pes"
-									id="dadosResponsavelVinculo"
-									name="dadosResponsavelVinculo"
-									onChange={handleChange}
-								/>
-								Jovem Pes./Pes. Visitante
-							</span>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosResponsavelTelefone"
-						>
-							<span className="col-span-6">Telefone</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="tel"
-								id="dadosResponsavelTelefone"
-								name="dadosResponsavelTelefone"
-								onChange={handleChange}
-								value={values.dadosResponsavelTelefone}
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosResponsavelLocal"
-						>
-							<span className="col-span-6">Localização</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosResponsavelLocal"
-								name="dadosResponsavelLocal"
-								onChange={handleChange}
-								value={values.dadosResponsavelLocal}
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosResponsavelEmail"
-						>
-							<span className="col-span-6">E-mail</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="email"
-								id="dadosResponsavelEmail"
-								name="dadosResponsavelEmail"
-								onChange={handleChange}
-								value={values.dadosResponsavelEmail}
-							/>
-						</label>
-
-						<label
-							className="col-span-6"
-							htmlFor="dadosResponsavelLocalexperimentos"
-						>
-							<span className="col-span-6">Local de execução dos experimentos</span>
-							<input
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="dadosResponsavelLocalexperimentos"
-								name="dadosResponsavelLocalexperimentos"
-								onChange={handleChange}
-								value={values.dadosResponsavelLocalexperimentos}
-							/>
-						</label>
-					</fieldset>
-
-					<fieldset className="col-span-6 grid grid-cols-6 gap-1">
-						<span className="col-span-6 -mx-1 p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold"
-						>
-
-							Resumo do Projeto
+					<label
+						htmlFor="modeloAnimalJustificativa"
+						className=""
+					>
+						<span className="">
+							Justificativa do uso do modelo
 						</span>
 						<textarea
-							className="col-span-6 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-							id="dadosResumo"
-							name="dadosResumo"
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							id="modeloAnimalJustificativa"
+							name="modeloAnimalJustificativa"
 							onChange={handleChange}
-						>{values.dadosResumo}</textarea>
-					</fieldset>
-
-					<fieldset className="col-span-6 grid grid-cols-6 gap-1">
-						<span className="col-span-6 -mx-1 p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold"
+							value={values.modeloAnimalJustificativa}
 						>
+						</textarea>
+					</label>
+				</fieldset>
 
-							Objetivos
-						</span>
-						<textarea
-							className="col-span-6 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-							id="dadosObjetivos"
-							name="dadosObjetivos"
-							onChange={handleChange}
-						>{values.dadosObjetivos}</textarea>
-					</fieldset>
-
-					<fieldset className="col-span-6 grid grid-cols-6 gap-1">
-						<span className="col-span-6 -mx-1 p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold"
+				<fieldset className="flex flex-col gap-2">
+					<span className="p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						Biotério
+					</span>
+					<ConditionalInput
+						span="Procedência"
+						title="Biotério do NPDM"
+						name="modeloAnimalProcedenciaBioterio"
+						inverse={true}
+					>
+						<label
+							htmlFor="modeloAnimalProcedenciaBioterioNome"
+							className=""
 						>
+							<span className="">Qual?</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								id="modeloAnimalProcedenciaBioterioNome"
+								name="modeloAnimalProcedenciaBioterioNome"
+								onChange={handleChange}
+								value={values.modeloAnimalProcedenciaBioterioNome}
+							/>
+						</label>
 
-							Justificativa
-						</span>
-						<textarea
-							className="col-span-6 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-							id="dadosJustificativa"
-							name="dadosJustificativa"
-							onChange={handleChange}
-						>{values.dadosJustificativa}</textarea>
-					</fieldset>
-
-					<fieldset className="col-span-6 grid grid-cols-6 gap-1">
-						<span className="col-span-6 -mx-1 p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold"
+						<label
+							htmlFor="modeloAnimalProcedenciaBioterioLocalizacao"
+							className=""
 						>
+							<span className="">Localização</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								id="modeloAnimalProcedenciaBioterioLocalizacao"
+								name="modeloAnimalProcedenciaBioterioLocalizacao"
+								onChange={handleChange}
+								value={values.modeloAnimalProcedenciaBioterioLocalizacao}
+							/>
+						</label>
+					</ConditionalInput>
 
-							Relevância
+					<ConditionalInput
+						title="Animal silvestre"
+						name="modeloAnimalProcedenciaAnimalSilvestre"
+					>
+						<label
+							htmlFor="modeloAnimalProcedenciaAnimal"
+							className=""
+						>
+							<span className="">Qual?</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								id="modeloAnimalProcedenciaAnimal"
+								name="modeloAnimalProcedenciaAnimal"
+								onChange={handleChange}
+								value={values.modeloAnimalProcedenciaAnimal}
+							/>
+						</label>
+
+						<label
+							htmlFor="modeloAnimalProcedenciaNumSolicitacao"
+							className=""
+						>
+							<span className="">Número da solicitação ou autorização do SISBIO</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								id="modeloAnimalProcedenciaNumSolicitacao"
+								name="modeloAnimalProcedenciaNumSolicitacao"
+								onChange={handleChange}
+								value={values.modeloAnimalProcedenciaNumSolicitacao}
+							/>
+						</label>
+
+						<label
+							htmlFor="modeloAnimalProcedenciaOutra"
+							className=""
+						>
+							<span className="">Outra procedência?</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								id="modeloAnimalProcedenciaOutra"
+								name="modeloAnimalProcedenciaOutra"
+								onChange={handleChange}
+								value={values.modeloAnimalProcedenciaOutra}
+							/>
+						</label>
+
+						<label
+							htmlFor="modeloAnimalProcedenciaQual"
+							className=""
+						>
+							<span className="">Qual?</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								id="modeloAnimalProcedenciaQual"
+								name="modeloAnimalProcedenciaQual"
+								onChange={handleChange}
+								value={values.modeloAnimalProcedenciaQual}
+							/>
+						</label>
+					</ConditionalInput>
+
+					<ConditionalInput
+						title="O animal é geneticamente modificado?"
+						name="modeloAnimalProcedenciaModificado"
+					>
+						<label
+							htmlFor="modeloAnimalProcedenciaNumCQB"
+							className=""
+						>
+							<span className="">Número do CQB</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								id="modeloAnimalProcedenciaNumCQB"
+								name="modeloAnimalProcedenciaNumCQB"
+								onChange={handleChange}
+								value={values.modeloAnimalProcedenciaNumCQB}
+							/>
+						</label>
+					</ConditionalInput>
+				</fieldset>
+
+				<fieldset className="flex flex-col gap-2">
+					<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						Métodos de captura
+					</span>
+					<textarea
+						className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+						id="modeloAnimalMetodosCaptura"
+						name="modeloAnimalMetodosCaptura"
+					>
+						{values.modeloAnimalMetodosCaptura}
+					</textarea>
+				</fieldset>
+
+				<fieldset className="flex flex-col gap-2">
+					<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">Planejamento estatístico/delineamento experimental</span>
+					<textarea
+						className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+						id="modeloAnimalPlanejamentoEstatistico"
+						name="modeloAnimalPlanejamentoEstatistico"
+					>
+						{values.modeloAnimalPlanejamentoEstatistico}
+					</textarea>
+				</fieldset>
+
+				<fieldset className="flex flex-col gap-2">
+					<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						Grau de invasividade
+					</span>
+					<label className="flex flex-col gap-1" htmlFor="gi1">
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								value="gi1" id="gi1" name="modeloAnimalInvasividade"
+							/>
+							<span className="mb-1">GI 1</span>
 						</span>
-						<textarea
-							className="col-span-6 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-							id="dadosRelevancia"
-							name="dadosRelevancia"
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								value="gi2" id="gi2" name="modeloAnimalInvasividade"
+							/>
+							<span className="mb-1">GI 2</span>
+						</span>
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								value="gi3" id="gi3" name="modeloAnimalInvasividade"
+							/>
+							<span className="mb-1">GI 3</span>
+						</span>
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								value="gi4" id="gi4" name="modeloAnimalInvasividade"
+							/>
+							<span className="mb-1">GI 4</span>
+						</span>
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								value="giN" id="giN" name="modeloAnimalInvasividade"
+							/>
+							<span className="mb-1">Não e aplica</span>
+						</span>
+					</label>
+
+					<ConditionalInput
+						title="Os materiais biológicos destes exemplares serão usados em outro(s) projeto(s)?"
+						name="modeloAnimalInvasividadeUsoMaterial"
+					>
+						<label
+							htmlFor="modeloAnimalInvasividadeMaterial"
+							className=""
+						>
+							<span className="">Qual(is)?</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								name="modeloAnimalInvasividadeMaterial"
+							/>
+						</label>
+
+						<label
+							htmlFor="modeloAnimalInvasividadeProtocolo"
+							className=""
+						>
+							<span className="">Se já aprovado(s) pela CEUA, mencionar o número do protocolo</span>
+							<input
+								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								type="text"
+								name="modeloAnimalInvasividadeProtocolo"
+							/>
+						</label>
+					</ConditionalInput>
+				</fieldset>
+
+				<fieldset className="flex flex-col gap-2">
+					<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						Alojamento
+					</span>
+					<label
+						htmlFor="modeloAnimalCondicoesLocal"
+						className=""
+					>
+						<span className="">Local onde será mantido o animal</span>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="text"
+							id="modeloAnimalCondicoesLocal"
+							name="modeloAnimalCondicoesLocal"
 							onChange={handleChange}
-						>{values.dadosRelevancia}</textarea>
-					</fieldset>
-				</div>
+							value={values.modeloAnimalCondicoesLocal}
+							placeholder="Biotério, fazenda, aviário, etc"
+						/>
+					</label>
+
+					<label
+						htmlFor="modeloAnimalCondicoes"
+						className=""
+					>
+						<span className="">Endereço</span>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="text"
+							id="modeloAnimalCondicoes"
+							name="modeloAnimalCondicoes"
+							onChange={handleChange}
+							value={values.modeloAnimalCondicoes}
+						/>
+					</label>
+
+					<label className="flex flex-col">
+						<span className="">Ambiente de alojamento</span>
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								id="modeloAnimalAlojamentoGaiola"
+								name="modeloAnimalAlojamento"
+								value="gaiola"
+							/>
+							<span className="translate-y-[-2px]">Gaiola</span>
+						</span>
+
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								id="modeloAnimalAlojamentoJaula"
+								name="modeloAnimalAlojamento"
+								value="jaula"
+							/>
+							<span className="translate-y-[-2px]">Jaula</span>
+						</span>
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								id="modeloAnimalAlojamentoBaia"
+								name="modeloAnimalAlojamento"
+								value="baia"
+							/>
+							<span className="translate-y-[-2px]">Baia</span>
+						</span>
+						<span className="flex gap-1">
+							<input
+								type="radio"
+								id="modeloAnimalAlojamentoOutros"
+								name="modeloAnimalAlojamento"
+								value="outros"
+							/>
+							<span className="translate-y-[-2px]">Outros</span>
+						</span>
+					</label>
+
+					<label
+						htmlFor="modeloAnimalAnimaisPorGaiola"
+						className=""
+					>
+						<span className="">Número de animais por gaiola/galpão</span>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="number"
+							id="modeloAnimalAnimaisPorGaiola"
+							name="modeloAnimalAnimaisPorGaiola"
+							onChange={handleChange}
+							value={values.modeloAnimalAnimaisPorGaiola}
+							min="0"
+						/>
+					</label>
+
+					<label
+						htmlFor="modeloAnimalAnimaisCama"
+						className=""
+					>
+						<span className="">Tipo de cama (maravalha, estrado ou outro)</span>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="text"
+							id="modeloAnimalAnimaisCama"
+							name="modeloAnimalAnimaisCama"
+							onChange={handleChange}
+							value={values.modeloAnimalAnimaisCama}
+						/>
+					</label>
+				</fieldset>
+
+				<fieldset className="flex flex-col gap-2">
+					<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						Condições de alojamento e alimentação dos animais
+					</span>
+					<label
+						htmlFor="modeloAnimalCondicoesAlimentacao"
+						className=""
+					>
+						<span className="">Alimentação</span>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="text"
+							id="modeloAnimalCondicoesAlimentacao"
+							name="modeloAnimalCondicoesAlimentacao"
+							onChange={handleChange}
+							value={values.modeloAnimalCondicoesAlimentacao}
+						/>
+
+					</label>
+
+					<label
+						htmlFor="modeloAnimalCondicoesFonteAgua"
+						className=""
+					>
+						<span className="">Fonte de água</span>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="text"
+							id="modeloAnimalCondicoesFonteAgua"
+							name="modeloAnimalCondicoesFonteAgua"
+							onChange={handleChange}
+							value={values.modeloAnimalCondicoesFonteAgua}
+						/>
+					</label>
+
+					<label
+						htmlFor="modeloAnimalCondicoesLotacao"
+						className=""
+					>
+						<span className="">Lotação (Número de animais/área)</span>
+						<input
+							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							type="text"
+							id="modeloAnimalCondicoesLotacao"
+							name="modeloAnimalCondicoesLotacao"
+							onChange={handleChange}
+							value={values.modeloAnimalCondicoesLotacao}
+						/>
+					</label>
+
+					<ConditionalInput
+						title="Exaustão do ar"
+						name="modeloAnimalCondicoesExaustao"
+					/>
+				</fieldset>
 			</div>
 		</div>
 	)
