@@ -3,8 +3,7 @@ import Link from "next/link"
 import { useState } from "react"
 
 export function NewProjectAttachments(props) {
-	const { values, handleChange } = props
-	const captureFormik = useFormikContext()
+	const { values, handleChange, position } = props
 	const [vetorDeAnexos, setVetorAnexos] = useState([])
 	const adicionaAnexo = (event) => {
 		event.preventDefault()
@@ -12,32 +11,34 @@ export function NewProjectAttachments(props) {
 	}
 
 	return (
-		<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
-			<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
-				<h2 className="text-white text-right font-bold xs:text-center">Anexos</h2>
-				<div className="text-white text-justify lg:text-right">
-					Esta aba é dedicada a casos que sejam necessário o envio de anexos.
+		<div className={position === 7 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
+			<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
+				<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
+					<h2 className="text-white text-right font-bold xs:text-center">Anexos</h2>
+					<div className="text-sm text-white text-justify lg:text-right">
+						Preencha os campos caso seja necessário a adição de algum anexo.
+					</div>
+					<div className="mt-6 text-right">
+						<Link href="/dashboard">
+							<a
+								className="flex flex-col items-end text-white hover:text-gray-200 font-bold underline"
+							>
+								Página inicial
+							</a>
+						</Link>
+					</div>
 				</div>
-				<div className="mt-6 text-right">
-					<Link href="/dashboard">
-						<a
-							className="flex flex-col xs:text-center text-white hover:text-gray-200 font-bold"
-						>
-							Clique aqui para voltar a página inicial
-						</a>
-					</Link>
+				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
+
+					{vetorDeAnexos.map((_, index) => <PosicaoVetorAnexos key={index} position={index} />)}
+
+					<button
+						className="mt-1 bg-blue-800 text-gray-300 hover:bg-blue-800/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
+						onClick={(event) => adicionaAnexo(event)}
+					>
+						Adicionar Anexo
+					</button>
 				</div>
-			</div>
-			<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
-
-				{vetorDeAnexos.map((_, index) => <PosicaoVetorAnexos key={index} position={index} />)}
-
-				<button
-					className="mt-1 bg-blue-800 text-gray-300 hover:bg-blue-800/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
-					onClick={(event) => adicionaAnexo(event)}
-				>
-					Adicionar Anexo
-				</button>
 			</div>
 		</div>
 	)

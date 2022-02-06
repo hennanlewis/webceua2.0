@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { HiHome, HiOutlineHome, HiOutlinePlusCircle, HiPlusCircle } from "react-icons/hi"
 import { useAuth } from "../contexts/AuthContext"
 
 import navMenuValues from "../utils/navMenuValues"
@@ -6,7 +7,16 @@ import userMenuValues from "../utils/userMenuValues"
 
 export function NavMenu(props) {
 	const { openMenuState, currentURL } = props
-	const { signOut, currentUser } = useAuth()
+	const { currentUser } = useAuth()
+
+	const iconsMenu = [
+		<HiHome />,
+		<HiPlusCircle />
+	]
+	const iconsMenuOutline = [
+		<HiOutlineHome />,
+		<HiOutlinePlusCircle />,
+	]
 
 	return (
 		<nav className="flex flex-col">
@@ -49,22 +59,24 @@ export function NavMenu(props) {
 			</div>
 
 			{/* Menu de navegação em telas grandes */}
-			{/* <div className="hidden md:flex md:flex-col md:grow gap-1 p-2 bg-blue-800 text-center">
-				{navMenuValues.map(item =>
+			<div className="hidden md:flex md:flex-col md:grow gap-1 p-2 bg-blue-800 text-center">
+				{navMenuValues.map((item, index) =>
 					currentURL === item.path ?
 						<Link href={item.path} key={item.name}>
-							<a className="bg-gray-900 text-white px-14 py-2 rounded-md text-sm font-medium">
-								{item.name}
+							<a className="flex flex-col justify-center items-center p-6 bg-gray-900 text-white rounded-md text-sm font-medium">
+								<span className="text-3xl">{iconsMenu[index]}</span>
+								<span>{item.name}</span>
 							</a>
 						</Link>
 						:
 						<Link href={item.path} key={item.name}>
-							<a className="text-gray-300 hover:bg-gray-700 px-14 hover:text-white py-2 rounded-md text-sm font-medium">
-								{item.name}
+							<a className="flex flex-col justify-center items-center bg-black/20 p-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">
+								<span className="text-3xl">{iconsMenuOutline[index]}</span>
+								<span>{item.name}</span>
 							</a>
 						</Link>
 				)}
-			</div> */}
+			</div>
 		</nav>
 	)
 }

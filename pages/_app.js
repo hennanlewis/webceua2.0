@@ -1,6 +1,7 @@
 import { Router } from 'next/router'
-import AuthProvider from '../src/contexts/AuthContext'
 import nProgress from 'nprogress'
+
+import AuthProvider from '../src/contexts/AuthContext'
 
 import '../styles/globals.css'
 import 'nprogress/nprogress.css'
@@ -19,13 +20,13 @@ function MyApp({ Component, pageProps }) {
 	return (
 		<AuthProvider>
 			<Component {...pageProps} />
-				<style global jsx>
-					{`
+			<style global jsx>
+				{`
 					#nprogress .bar {
 						background: white;
 					}
 					`}
-				</style>
+			</style>
 		</AuthProvider>
 	)
 }

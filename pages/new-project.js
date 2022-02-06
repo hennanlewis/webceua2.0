@@ -1,8 +1,6 @@
 import Head from "next/head"
-import Link from "next/link"
 import Router from "next/router"
-import { Formik } from 'formik'
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { BsPeopleFill } from "react-icons/bs"
 import { TiDocumentText } from "react-icons/ti"
 import { FaIdCard, FaNotesMedical } from "react-icons/fa"
@@ -22,11 +20,12 @@ import { NewProjectAnimals } from "../src/components/NewProjectAnimals"
 import { NewProjectDrugs } from "../src/components/NewProjectDrugs"
 import { NewProjectAnimalPostoperative } from "../src/components/NewProjectAnimalPostoperative"
 import { NewProjectAttachments } from "../src/components/NewProjectAttachments"
+import { Form, Formik } from "formik"
 
 export default function NewProject() {
 	const { currentUser } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
-	const [formTabs, setFormTabs] = useState([])
+
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
 		{ userMenu: false }
@@ -42,20 +41,6 @@ export default function NewProject() {
 		'translate-x-[15rem]',
 		'translate-x-[17.5rem]',
 	]
-
-	const formRef = useRef()
-	useEffect(() => {
-		setFormTabs([
-			<NewProjectMainData key="NewProjectMainData" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectColaborators key="NewProjectColaborators" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimalModel key="NewProjectAnimalModel" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimals key="NewProjectAnimals" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimalExperiment key="NewProjectAnimalExperiment" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectDrugs key="NewProjectDrugs" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimalPostoperative key="NewProjectAnimalPostoperative" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAttachments key="NewProjectAttachments" values={formRef.current.values} handleChange={formRef.current.handleChange} />
-		])
-	}, [])
 
 	const icons = [
 		<FaIdCard key="FaIdCard" />,
@@ -113,43 +98,35 @@ export default function NewProject() {
 							</div>
 
 							<Formik
-								innerRef={formRef}
 								initialValues={{}}
-								onSubmit={(values, { setSubmitting }) => {
+								onSubmit={ values => {
 									console.log(values)
-									setTimeout(() => {
-										setSubmitting(false)
-									}, 400)
 								}}
 							>
-								{({ values, handleChange, handleSubmit, isSubmitting }) => (
-
-									<form
-										onSubmit={handleSubmit}
+								{({ values }) => (
+									<Form
 										className="max-w-[90vw] w-[40rem] bg-indigo-700/80 p-2 rounded-2xl max-h-[1000rem]"
 									>
 										<div className="bg-blue-800/90 p-2 rounded-t-xl">
-
-											{formTabs.map((item, index) =>
-												index === formPosition ?
-													<div className="max-h-[1000rem] opacity-100'} duration-500">{item}</div>
-													:
-													<div className="hidden">
-														<div className="max-h-[0] opacity-0 pointer-events-none duration-500">{item}</div>
-													</div>
-											)}
+											<NewProjectMainData position={formPosition} />
+											<NewProjectColaborators position={formPosition} />
+											<NewProjectAnimalModel position={formPosition} />
+											<NewProjectAnimals position={formPosition} />
+											<NewProjectAnimalExperiment position={formPosition} />
+											<NewProjectDrugs position={formPosition} />
+											<NewProjectAnimalPostoperative position={formPosition} />
+											<NewProjectAttachments position={formPosition} />
 										</div>
 										<span className="relative flex justify-end gap-2 bg-blue-800/90 p-2 bg-blue-800 rounded-b-xl">
 											<button
 												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-blue-800"
 												type="submit"
-												disabled={isSubmitting}
 											>
 												Salvar projeto
 											</button>
 
 										</span>
-									</form>
+									</Form>
 								)}
 							</Formik>
 						</div>

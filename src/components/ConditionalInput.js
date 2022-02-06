@@ -21,7 +21,6 @@ export function ConditionalInput(props) {
 				{props.title &&
 					<span className="">{props.title}</span>
 				}
-
 				<span className="flex gap-10">
 					<label
 						className="SimNao flex gap-1"
