@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 html {
+	max-height: none;
 	overflow-x: hidden;
+	background-color: #f5f5f5;
 }

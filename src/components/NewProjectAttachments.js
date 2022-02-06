@@ -1,4 +1,5 @@
 import { useFormikContext } from "formik"
+import Link from "next/link"
 import { useState } from "react"
 
 export function NewProjectAttachments(props) {
@@ -12,8 +13,20 @@ export function NewProjectAttachments(props) {
 
 	return (
 		<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
-			<div className="col-span-3 xs:col-span-8">
-				<h2 className="title-option">Anexos</h2>
+			<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
+				<h2 className="text-white text-right font-bold xs:text-center">Anexos</h2>
+				<div className="text-white text-justify lg:text-right">
+					Esta aba é dedicada a casos que sejam necessário o envio de anexos.
+				</div>
+				<div className="mt-6 text-right">
+					<Link href="/dashboard">
+						<a
+							className="flex flex-col xs:text-center text-white hover:text-gray-200 font-bold"
+						>
+							Clique aqui para voltar a página inicial
+						</a>
+					</Link>
+				</div>
 			</div>
 			<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 

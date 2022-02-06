@@ -1,4 +1,5 @@
 import { useFormikContext } from "formik"
+import Link from "next/link"
 import { useState } from "react"
 import { ConditionalInput } from "./ConditionalInput"
 
@@ -8,10 +9,21 @@ export function NewProjectAnimalPostoperative(props) {
 
 	return (
 		<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
-			<div className="col-span-3 xs:col-span-8">
-				<h2 className="title-option">Pós-Operatório</h2>
+			<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
+				<h2 className="text-white text-right font-bold xs:text-center">Pós operatório</h2>
+				<div className="text-white text-justify lg:text-right">
+					Cuidados necessários durante pós operatório.
+				</div>
+				<div className="mt-6 text-right">
+					<Link href="/dashboard">
+						<a
+							className="flex flex-col xs:text-center text-white hover:text-gray-200 font-bold"
+						>
+							Clique aqui para voltar a página inicial
+						</a>
+					</Link>
+				</div>
 			</div>
-
 			<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 				<fieldset className="flex flex-col gap-2">
 					<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">

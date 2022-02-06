@@ -12,7 +12,7 @@ export function NewProjectColaborators(props) {
 		}
 		return (
 			<div className="aba">
-				<h2 className="title-option">Colaboradores</h2>
+				<h2 className="text-white text-center font-bold lg:text-right">Colaboradores</h2>
 	
 				{vetorDeColaboradores.map((_, index) => <PosicaoVetorColaboradores key={index} position={index} />)}
 	

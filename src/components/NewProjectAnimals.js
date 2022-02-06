@@ -12,8 +12,8 @@ export function NewProjectAnimals(props) {
 
 	return (
 		<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
-			<div className="col-span-3 xs:col-span-8">
-				<h2 className="title-option">Animais</h2>
+			<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
+				<h2 className="text-white text-center font-bold lg:text-right">Animais</h2>
 			</div>
 			<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 				{vetorDeAnimais.map((_, index) => <PosicaoVetorAnimais key={index} position={index} />)}

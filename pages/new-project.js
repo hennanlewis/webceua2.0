@@ -26,7 +26,7 @@ import { NewProjectAttachments } from "../src/components/NewProjectAttachments"
 export default function NewProject() {
 	const { currentUser } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
-	const [formSelection, setFormSelection] = useState([])
+	const [formTabs, setFormTabs] = useState([])
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
 		{ userMenu: false }
@@ -45,15 +45,15 @@ export default function NewProject() {
 
 	const formRef = useRef()
 	useEffect(() => {
-		setFormSelection([
-			<NewProjectMainData values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectColaborators values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimalModel values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimals values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimalExperiment values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectDrugs values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAnimalPostoperative values={formRef.current.values} handleChange={formRef.current.handleChange} />,
-			<NewProjectAttachments values={formRef.current.values} handleChange={formRef.current.handleChange} />
+		setFormTabs([
+			<NewProjectMainData key="NewProjectMainData" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
+			<NewProjectColaborators key="NewProjectColaborators" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
+			<NewProjectAnimalModel key="NewProjectAnimalModel" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
+			<NewProjectAnimals key="NewProjectAnimals" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
+			<NewProjectAnimalExperiment key="NewProjectAnimalExperiment" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
+			<NewProjectDrugs key="NewProjectDrugs" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
+			<NewProjectAnimalPostoperative key="NewProjectAnimalPostoperative" values={formRef.current.values} handleChange={formRef.current.handleChange} />,
+			<NewProjectAttachments key="NewProjectAttachments" values={formRef.current.values} handleChange={formRef.current.handleChange} />
 		])
 	}, [])
 
@@ -120,32 +120,26 @@ export default function NewProject() {
 									setTimeout(() => {
 										setSubmitting(false)
 									}, 400)
-
 								}}
 							>
 								{({ values, handleChange, handleSubmit, isSubmitting }) => (
 
 									<form
 										onSubmit={handleSubmit}
-										className="max-w-[90vw] w-[40rem]"
+										className="max-w-[90vw] w-[40rem] bg-indigo-700/80 p-2 rounded-2xl max-h-[1000rem]"
 									>
-										<div>
+										<div className="bg-blue-800/90 p-2 rounded-t-xl">
 
-											{formSelection.map((item, index) =>
+											{formTabs.map((item, index) =>
 												index === formPosition ?
 													<div className="max-h-[1000rem] opacity-100'} duration-500">{item}</div>
 													:
-													<div className="max-h-[0] opacity-0 pointer-events-none duration-500">{item}</div>
+													<div className="hidden">
+														<div className="max-h-[0] opacity-0 pointer-events-none duration-500">{item}</div>
+													</div>
 											)}
 										</div>
 										<span className="relative flex justify-end gap-2 bg-blue-800/90 p-2 bg-blue-800 rounded-b-xl">
-											<Link href="/dashboard">
-												<a
-													className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-blue-800"
-												>
-													Voltar ao início
-												</a>
-											</Link>
 											<button
 												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-blue-800"
 												type="submit"

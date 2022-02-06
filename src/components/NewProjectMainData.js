@@ -1,4 +1,5 @@
 import { useFormikContext } from "formik"
+import Link from "next/link"
 import { ConditionalInput } from "./ConditionalInput"
 
 export function NewProjectMainData(props) {
@@ -7,8 +8,21 @@ export function NewProjectMainData(props) {
 
 	return (
 		<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
-			<div className="col-span-3 xs:col-span-8">
-				<h2 className="title-option">Dados iniciais</h2>
+			<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
+				<h2 className="text-white text-right font-bold xs:text-center">Dados iniciais</h2>
+				<div className="text-white text-justify lg:text-right">
+					Nesta aba do formulário de submissão, cerão preenchidos alguns
+					dados voltados a área acadêmica e alguns dados pessoais apenas para contato
+				</div>
+				<div className="mt-6 text-right">
+					<Link href="/dashboard">
+						<a
+							className="flex flex-col lg:flex-row text-white hover:text-gray-200 font-bold"
+						>
+							Clique aqui para voltar a página inicial
+						</a>
+					</Link>
+				</div>
 			</div>
 			<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 				<fieldset className="flex flex-col gap-2">
@@ -20,7 +34,7 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosPrazoInicio"
 							className="grow"
 						>
-							<span className="text-sm font-medium text-gray-700">Início</span>
+							<span className="">Início</span>
 							<input
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 								type="date"
@@ -35,7 +49,7 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosPrazoTermino"
 							className="grow"
 						>
-							<span className="text-sm font-medium text-gray-700">Término</span>
+							<span className="">Término</span>
 							<input
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="date"
