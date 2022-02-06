@@ -37,12 +37,11 @@ export function NewProjectMainData(props) {
 								className="grow"
 							>
 								<span className="">Início</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 									type="date"
 									id="dadosPrazoInicio"
-									name="dadosPrazoInicio"
-									value=""
+									name="PrazoInicio"
 								/>
 							</label>
 
@@ -51,12 +50,11 @@ export function NewProjectMainData(props) {
 								className="grow"
 							>
 								<span className="">Término</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="date"
 									id="dadosPrazoTermino"
-									name="dadosPrazoTermino"
-									value=""
+									name="PrazoTermino"
 								/>
 							</label>
 						</div>
@@ -71,12 +69,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosProjetoTitulo"
 						>
 							<span className="flex flex-col">Título em português</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosProjetoTitulo"
-								name="dadosProjetoTitulo"
-								value=""
+								name="ProjetoTitulo"
 								placeholder="O modelo animal deve estar descrito no título"
 							/>
 						</label>
@@ -86,12 +83,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosProjetoTituloEN"
 						>
 							<span className="flex flex-col">Título em inglês</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosProjetoTituloEN"
-								name="dadosProjetoTituloEN"
-								value=""
+								name="ProjetoTituloEN"
 								placeholder="O modelo animal deve estar descrito no título"
 							/>
 						</label>
@@ -101,12 +97,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosProjetoArea"
 						>
 							<span className="flex flex-col">Área de conhecimento</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosProjetoArea"
-								name="dadosProjetoArea"
-								value=""
+								name="ProjetoArea"
 							/>
 						</label>
 					</fieldset>
@@ -120,12 +115,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelNome"
 						>
 							<span className="flex flex-col">Nome completo</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelNome"
-								name="dadosResponsavelNome"
-								value=""
+								name="ResponsavelNome"
 								placeholder="Digite seu nome completo"
 							/>
 						</label>
@@ -135,12 +129,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelInstituicao"
 						>
 							<span className="flex flex-col">Instituição/Unidade</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelInstituicao"
-								name="dadosResponsavelInstituicao"
-								value=""
+								name="ResponsavelInstituicao"
 							/>
 						</label>
 
@@ -149,12 +142,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelDepartamento"
 						>
 							<span className="flex flex-col">Departamento/Disciplina</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelDepartamento"
-								name="dadosResponsavelDepartamento"
-								value=""
+								name="ResponsavelDepartamento"
 							/>
 						</label>
 
@@ -163,49 +155,46 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelLattes"
 						>
 							<span className="flex flex-col">Link do currículo lattes</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLattes"
-								name="dadosResponsavelLattes"
-								value=""
+								name="ResponsavelLattes"
 							/>
 						</label>
 
 						<ConditionalInput
 							title="Experiência prévia"
-							name="dadosResponsavelExperiencia"
+							name="ResponsavelExperiencia"
 						>
 							<label
 								className="flex flex-col"
 								htmlFor="dadosResponsavelTempoExperiencia"
 							>
 								<span className="">Tempo</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="dadosResponsavelTempoExperiencia"
-									name="dadosResponsavelTempoExperiencia"
-									value=""
+									name="ResponsavelTempoExperiencia"
 								/>
 							</label>
 						</ConditionalInput>
 
 						<ConditionalInput
 							title="Treinamento"
-							name="dadosResponsavelTreinamento"
+							name="ResponsavelTreinamento"
 						>
 							<label
 								className="flex flex-col"
 								htmlFor="dadosResponsavelTempoTreinamento"
 							>
 								<span className="flex flex-col">Tempo</span>
-								<input
+								<Field
 									className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="dadosResponsavelTempoTreinamento"
-									name="dadosResponsavelTempoTreinamento"
-									value=""
+									name="ResponsavelTempoTreinamento"
 								/>
 							</label>
 						</ConditionalInput>
@@ -214,29 +203,29 @@ export function NewProjectMainData(props) {
 							<span className="">Vínculo com a instituição</span>
 							<label htmlFor="dadosResponsavelVinculoDocente">
 								<span className="flex gap-1">
-									<input
+									<Field
 										type="radio" value="docente"
 										id="dadosResponsavelVinculoDocente"
-										name="dadosResponsavelVinculo"
+										name="ResponsavelVinculo"
 									/>
 									<span className="translate-y-[-2px]">
 										Docente/Pesquisador</span>
 								</span>
 							</label>
 							<label htmlFor="dadosResponsavelVinculoTecnico" className="flex gap-1">
-								<input
+								<Field
 									type="radio" value="tecnico"
 									id="dadosResponsavelVinculoTecnico"
-									name="dadosResponsavelVinculo"
+									name="ResponsavelVinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Técnico Nível Superior</span>
 							</label>
 							<label htmlFor="dadosResponsavelVinculoJovem" className="flex gap-1">
-								<input
+								<Field
 									type="radio" value="jovem_pes"
 									id="dadosResponsavelVinculoJovem"
-									name="dadosResponsavelVinculo"
+									name="ResponsavelVinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Jovem Pes./Pes. Visitante</span>
@@ -248,12 +237,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelTelefone"
 						>
 							<span className="flex flex-col">Telefone</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="tel"
 								id="dadosResponsavelTelefone"
-								name="dadosResponsavelTelefone"
-								value=""
+								name="ResponsavelTelefone"
 							/>
 						</label>
 
@@ -262,12 +250,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelLocal"
 						>
 							<span className="flex flex-col">Localização</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLocal"
-								name="dadosResponsavelLocal"
-								value=""
+								name="ResponsavelLocal"
 							/>
 						</label>
 
@@ -276,12 +263,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelEmail"
 						>
 							<span className="flex flex-col">E-mail</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="email"
 								id="dadosResponsavelEmail"
-								name="dadosResponsavelEmail"
-								value=""
+								name="dadosnsavelEmail"
 							/>
 						</label>
 
@@ -290,12 +276,11 @@ export function NewProjectMainData(props) {
 							htmlFor="dadosResponsavelLocalexperimentos"
 						>
 							<span className="flex flex-col">Local de execução dos experimentos</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLocalexperimentos"
-								name="dadosResponsavelLocalexperimentos"
-								value=""
+								name="ResponsavelLocalexperimentos"
 							/>
 						</label>
 					</fieldset>
@@ -308,8 +293,8 @@ export function NewProjectMainData(props) {
 						<textarea
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosResumo"
-							name="dadosResumo"
-						>""</textarea>
+							name="Resumo"
+						></textarea>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -320,8 +305,8 @@ export function NewProjectMainData(props) {
 						<textarea
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosObjetivos"
-							name="dadosObjetivos"
-						>""</textarea>
+							name="Objetivos"
+						></textarea>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -332,8 +317,8 @@ export function NewProjectMainData(props) {
 						<textarea
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosJustificativa"
-							name="dadosJustificativa"
-						>""</textarea>
+							name="Justificativa"
+						></textarea>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -344,8 +329,8 @@ export function NewProjectMainData(props) {
 						<textarea
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosRelevancia"
-							name="dadosRelevancia"
-						>""</textarea>
+							name="Relevancia"
+						></textarea>
 					</fieldset>
 				</div>
 			</div>

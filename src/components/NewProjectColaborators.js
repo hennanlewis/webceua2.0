@@ -74,10 +74,10 @@ function PosicaoVetorColaboradores(props) {
 		<fieldset>
 			<legend>Colaboradores</legend>
 
-			<Select name='id_colaborador' label='Colaborador' formik={formik}>
+			<select name='id_colaborador' label='Colaborador'>
 				<option>Selecione...</option>
-				{researchs.map(research => <option key={research.id} value={research.id}>{research.nome}</option>)}
-			</Select>
+				{researchs?.map(research => <option key={research.id} value={research.id}>{research.nome}</option>)}
+			</select>
 
 			<label htmlFor="temp">
 				<input type="text" name={`colaboradoresInstituicao${props.position}`} />

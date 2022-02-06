@@ -1,4 +1,4 @@
-import { useFormikContext } from "formik"
+import { Field, useFormikContext } from "formik"
 import Link from "next/link"
 import { useState } from "react"
 
@@ -60,7 +60,7 @@ function PosicaoVetorAnexos(props) {
 			</span>
 
 			<label className="flex flex-col-reverse">
-				<input
+				<Field
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					type="file"
 					name="anexo"

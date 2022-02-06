@@ -1,4 +1,4 @@
-import { useFormikContext } from "formik"
+import { Field, useFormikContext } from "formik"
 import Link from "next/link"
 import { useEffect } from "react"
 import { ConditionalInput } from "./ConditionalInput"
@@ -39,7 +39,7 @@ export function NewProjectAnimalModel(props) {
 							<span className="">
 								Espécie ou grupo taxonômico
 							</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="modeloAnimalEspecie"
@@ -79,7 +79,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Qual?</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="modeloAnimalProcedenciaBioterioNome"
@@ -92,7 +92,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Localização</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="modeloAnimalProcedenciaBioterioLocalizacao"
@@ -110,7 +110,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Qual?</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="modeloAnimalProcedenciaAnimal"
@@ -123,7 +123,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Número da solicitação ou autorização do SISBIO</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="modeloAnimalProcedenciaNumSolicitacao"
@@ -136,7 +136,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Outra procedência?</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="modeloAnimalProcedenciaOutra"
@@ -149,7 +149,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Qual?</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="modeloAnimalProcedenciaQual"
@@ -167,7 +167,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Número do CQB</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="modeloAnimalProcedenciaNumCQB"
@@ -207,35 +207,35 @@ export function NewProjectAnimalModel(props) {
 						</span>
 						<label className="flex flex-col gap-1" htmlFor="gi1">
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									value="gi1" id="gi1" name="modeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 1</span>
 							</span>
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									value="gi2" id="gi2" name="modeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 2</span>
 							</span>
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									value="gi3" id="gi3" name="modeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 3</span>
 							</span>
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									value="gi4" id="gi4" name="modeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 4</span>
 							</span>
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									value="giN" id="giN" name="modeloAnimalInvasividade"
 								/>
@@ -252,7 +252,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Qual(is)?</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									name="modeloAnimalInvasividadeMaterial"
@@ -264,7 +264,7 @@ export function NewProjectAnimalModel(props) {
 								className=""
 							>
 								<span className="">Se já aprovado(s) pela CEUA, mencionar o número do protocolo</span>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									name="modeloAnimalInvasividadeProtocolo"
@@ -282,7 +282,7 @@ export function NewProjectAnimalModel(props) {
 							className=""
 						>
 							<span className="">Local onde será mantido o animal</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="modeloAnimalCondicoesLocal"
@@ -296,7 +296,7 @@ export function NewProjectAnimalModel(props) {
 							className=""
 						>
 							<span className="">Endereço</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="modeloAnimalCondicoes"
@@ -307,7 +307,7 @@ export function NewProjectAnimalModel(props) {
 						<label className="flex flex-col">
 							<span className="">Ambiente de alojamento</span>
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									id="modeloAnimalAlojamentoGaiola"
 									name="modeloAnimalAlojamento"
@@ -317,7 +317,7 @@ export function NewProjectAnimalModel(props) {
 							</span>
 
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									id="modeloAnimalAlojamentoJaula"
 									name="modeloAnimalAlojamento"
@@ -326,7 +326,7 @@ export function NewProjectAnimalModel(props) {
 								<span className="translate-y-[-2px]">Jaula</span>
 							</span>
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									id="modeloAnimalAlojamentoBaia"
 									name="modeloAnimalAlojamento"
@@ -335,7 +335,7 @@ export function NewProjectAnimalModel(props) {
 								<span className="translate-y-[-2px]">Baia</span>
 							</span>
 							<span className="flex gap-1">
-								<input
+								<Field
 									type="radio"
 									id="modeloAnimalAlojamentoOutros"
 									name="modeloAnimalAlojamento"
@@ -350,7 +350,7 @@ export function NewProjectAnimalModel(props) {
 							className=""
 						>
 							<span className="">Número de animais por gaiola/galpão</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="number"
 								id="modeloAnimalAnimaisPorGaiola"
@@ -364,7 +364,7 @@ export function NewProjectAnimalModel(props) {
 							className=""
 						>
 							<span className="">Tipo de cama (maravalha, estrado ou outro)</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="modeloAnimalAnimaisCama"
@@ -382,7 +382,7 @@ export function NewProjectAnimalModel(props) {
 							className=""
 						>
 							<span className="">Alimentação</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="modeloAnimalCondicoesAlimentacao"
@@ -396,7 +396,7 @@ export function NewProjectAnimalModel(props) {
 							className=""
 						>
 							<span className="">Fonte de água</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="modeloAnimalCondicoesFonteAgua"
@@ -409,7 +409,7 @@ export function NewProjectAnimalModel(props) {
 							className=""
 						>
 							<span className="">Lotação (Número de animais/área)</span>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="modeloAnimalCondicoesLotacao"

@@ -1,14 +1,10 @@
-import { useFormikContext } from "formik"
+import { Field, FieldArray, useFormikContext } from "formik"
 import Link from "next/link"
 import { useState } from "react"
 
 export function NewProjectDrugs(props) {
-	const { values, handleChange, position } = props
-	const [vetorDeFarmacos, setVetorDeFarmacos] = useState([])
-	const adicionaFarmaco = (event) => {
-		event.preventDefault()
-		setVetorDeFarmacos(oldValue => [...oldValue, 0])
-	}
+	const { position } = props
+	const { values } = useFormikContext()
 
 	return (
 		<div className={position === 5 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
@@ -29,15 +25,30 @@ export function NewProjectDrugs(props) {
 					</div>
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
+					<FieldArray name="farmacos">
+						{({ insert, remove, push }) => (
+							<>
+								{values.farmacos.length > 0 &&
+									values.farmacos.map((_, index) =>
+										<PosicaoVetorFarmacos key={index} remove={remove} position={index} />)}
 
-					{vetorDeFarmacos.map((_, index) => <PosicaoVetorFarmacos key={index} position={index} />)}
-
-					<button
-						className="mt-1 bg-blue-800 text-gray-300 hover:bg-blue-800/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
-						onClick={(event) => adicionaFarmaco(event)}
-					>
-						Adicionar Fármaco
-					</button>
+								<button
+									className="mt-1 bg-blue-800 text-gray-300 hover:bg-blue-800/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
+									type="button"
+									onClick={() => push({
+										farmaco: "",
+										nome: "",
+										dose: "",
+										via: "",
+										frequencia: "",
+										justificativa: "",
+									})}
+								>
+									Adicionar Fármaco
+								</button>
+							</>
+						)}
+					</FieldArray>
 				</div>
 			</div>
 		</div>
@@ -45,14 +56,8 @@ export function NewProjectDrugs(props) {
 }
 
 function PosicaoVetorFarmacos(props) {
-	const [deleteOption, setDeleteOption] = useState(false)
+	const { position, remove } = props
 
-	const removeFarmaco = (event) => {
-		setDeleteOption(true)
-	}
-
-	if (deleteOption === true)
-		return null
 	return (
 		<fieldset className="flex flex-col gap-2">
 			<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
@@ -60,65 +65,68 @@ function PosicaoVetorFarmacos(props) {
 			</span>
 
 			<label className="flex flex-col-reverse">
-				<select
+				<Field
+					as="select"
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					id="farmacos"
-					name={`farmaco${props.position}`}
+					name={`farmacos.${position}.farmaco`}
 					htmlFor="list"
 				>
+					<option value="">Selecione o tipo de fármaco</option>
 					<option value="anestésico">Anestésico</option>
 					<option value="analgésico">Analgésico</option>
-					<option value="relaxante_muscular">Relaxante muscular</option>
+					<option value="relaxante muscular">Relaxante muscular</option>
 					<option value="outro">Outro</option>
-				</select>
+				</Field>
 			</label>
 			<label className="flex flex-col-reverse">
-				<input
+				<Field
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					type="text"
-					name="experienciaFarmacoNome"
+					name={`farmacos.${position}.nome`}
 				/>
 				<span>Fármaco</span>
 			</label>
 
 			<label className="flex flex-col-reverse">
-				<input
+				<Field
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					type="text"
-					name="experienciaFarmacoDose"
+					name={`farmacos.${position}.dose`}
 				/>
 				<span>Dose (UI ou mg/kg)</span>
 			</label>
 
 			<label className="flex flex-col-reverse">
-				<input
+				<Field
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					type="text"
-					name="experienciaFarmacoVia"
+					name={`farmacos.${position}.via`}
 				/>
 				<span>Via de administração</span>
 			</label>
 
 			<label className="flex flex-col-reverse">
-				<input
+				<Field
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					type="text"
-					name="experienciaFarmacoFrequencia"
+					name={`farmacos.${position}.frequencia`}
 				/>
 				<span>Frequência</span>
 			</label>
 
 			<label className="flex flex-col-reverse">
-				<input
+				<Field
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					type="text"
-					name="experienciaFarmacoJustificativa"
+					name={`farmacos.${position}.justificativa`}
 				/>
 				<span>Justificativa em caso de não uso</span>
 			</label>
 			<button
 				className="mt-1 bg-gray-400/75 hover:bg-gray-400 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
-				onClick={(event) => removeFarmaco(event)}
+				type="button"
+				onClick={() => remove(position)}
 			>
 				Remover fármaco
 			</button>

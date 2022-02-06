@@ -98,8 +98,36 @@ export default function NewProject() {
 							</div>
 
 							<Formik
-								initialValues={{}}
-								onSubmit={ values => {
+								initialValues={{
+								PrazoInicio: "",
+								PrazoTermino: "",
+								ProjetoTitulo: "",
+								ProjetoTituloEN: "",
+								ProjetoArea: "",
+								ResponsavelNome: "",
+								ResponsavelInstituicao: "",
+								ResponsavelDepartamento: "",
+								ResponsavelLattes: "",
+								ResponsavelExperiencia: "",
+								ResponsavelTempoExperiencia: "",
+								ResponsavelTreinamento: "",
+								ResponsavelTempoTreinamento: "",
+								ResponsavelVinculo: "",
+								ResponsavelVinculo: "",
+								ResponsavelVinculo: "",
+								ResponsavelTelefone: "",
+								ResponsavelLocal: "",
+								ResponsavelEmail: "",
+								ResponsavelLocalexperimentos: "",
+								Resumo: "",
+								Objetivos: "",
+								Justificativa: "",
+								Relevancia: "",
+									animais: [],
+									farmacos: [],
+									anexos: []
+								}}
+								onSubmit={values => {
 									console.log(values)
 								}}
 							>

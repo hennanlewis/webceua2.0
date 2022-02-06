@@ -1,4 +1,4 @@
-import { useFormikContext } from "formik"
+import { Field, useFormikContext } from "formik"
 import Link from "next/link"
 import { useState } from "react"
 import { ConditionalInput } from "./ConditionalInput"
@@ -45,7 +45,7 @@ export function NewProjectAnimalExperiment(props) {
 							<label className="flex flex-col">
 								<span>Duração:</span>
 								<span className="flex gap-1">
-									<input
+									<Field
 										type="radio"
 										value="curto"
 										id="experienciaProcedimentoTipo"
@@ -54,7 +54,7 @@ export function NewProjectAnimalExperiment(props) {
 									<span className="translate-y-[-2px]">Curto</span>
 								</span>
 								<span className="flex gap-1">
-									<input
+									<Field
 										type="radio"
 										value="longo"
 										id="experienciaProcedimentoTipo"
@@ -79,7 +79,7 @@ export function NewProjectAnimalExperiment(props) {
 
 								<label htmlFor="experienciaProcedimentoEstresseTipo">
 									<span className="flex gap-1">
-										<input
+										<Field
 											type="checkbox"
 											value="estresse"
 											id="estressevalor1"
@@ -91,7 +91,7 @@ export function NewProjectAnimalExperiment(props) {
 
 								<label htmlFor="estressevalor2">
 									<span className="flex gap-1">
-										<input
+										<Field
 											type="checkbox"
 											value="dores"
 											id="estressevalor2"
@@ -103,7 +103,7 @@ export function NewProjectAnimalExperiment(props) {
 
 								<label htmlFor="estressevalor3">
 									<span className="flex gap-1">
-										<input
+										<Field
 											type="checkbox"
 											value="outros"
 											id="estressevalor3"
@@ -120,7 +120,7 @@ export function NewProjectAnimalExperiment(props) {
 									htmlFor="experienciaEstresse"
 									className={`${hiddenOptions ? 'max-h-[0] opacity-0 pointer-events-none' : 'max-h-[100%] opacity-100'} flex flex-col-reverse duration-500`}
 								>
-									<input
+									<Field
 										className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 										type="text"
 										id="experienciaEstresse"
@@ -134,7 +134,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaEstresseJustificativa"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaEstresseJustificativa"
@@ -158,7 +158,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaImobilizacaoTipo"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaImobilizacaoTipo"
@@ -171,7 +171,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaImobilizacaoTempo"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaImobilizacaoTempo"
@@ -194,7 +194,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaAlimentarDuracao"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaAlimentarDuracao"
@@ -207,7 +207,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaAlimentarJustificativa"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaAlimentarJustificativa"
@@ -225,7 +225,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaRestricaoDuracao"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaRestricaoDuracao"
@@ -238,7 +238,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaRestricaoJustificativa"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaRestricaoJustificativa"
@@ -264,7 +264,7 @@ export function NewProjectAnimalExperiment(props) {
 							>
 								<span>Tipo:</span>
 								<span className="flex gap-1">
-									<input
+									<Field
 										type="radio"
 										value="unica"
 										name="experienciaCirurgiaTipo"
@@ -272,7 +272,7 @@ export function NewProjectAnimalExperiment(props) {
 									<span>Única</span>
 								</span>
 								<span className="flex gap-1">
-									<input
+									<Field
 										type="radio"
 										value="multipla"
 										name="experienciaCirurgiaTipo"
@@ -285,7 +285,7 @@ export function NewProjectAnimalExperiment(props) {
 								htmlFor="experienciaCirurgiaMesmoAto"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaCirurgiaMesmoAto"
@@ -297,7 +297,7 @@ export function NewProjectAnimalExperiment(props) {
 							<label
 								htmlFor="experienciaCirurgiaNome" className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaCirurgiaNome"

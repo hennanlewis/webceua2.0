@@ -1,35 +1,39 @@
+import { Field, useFormikContext } from 'formik'
 import { useState } from 'react'
 
 export function ConditionalInput(props) {
+	const { children, inverse, legend, name, title } = props
+	const { values, setFieldValue, handleChange } = useFormikContext()
 	const [hiddenOptions, setHiddenoptions] = useState(true)
 	const checkedFunction = (event) => {
-		if (props.inverse === true && event.target.value === 'nao') {
-			setHiddenoptions(() => false)
+		handleChange(event)
+		if (inverse === true && event.target.value === 'nao') {
+			setHiddenoptions(false)
 			return
 		}
 		if (event.target.value === 'sim') {
-			setHiddenoptions(() => false)
+			setHiddenoptions(false)
 			return
 		}
-		setHiddenoptions(() => true)
+		setHiddenoptions(true)
 	}
 
 	return (
 		<div>
-			{props.legend && <span>{props.legend}</span>}
+			{legend && <span>{legend}</span>}
 			<div className="radio">
-				{props.title &&
-					<span className="">{props.title}</span>
+				{title &&
+					<span className="">{title}</span>
 				}
 				<span className="flex gap-10">
 					<label
-						className="SimNao flex gap-1"
-						htmlFor={`${props.name}Sim`}
+						className="flex gap-1"
+						htmlFor={`${name}Sim`}
 					>
-						<input
+						<Field
 							type="radio"
-							id={`${props.name}Sim`}
-							name={props.name}
+							id={`${name}Sim`}
+							name={`${name}SN`}
 							onChange={(event) => checkedFunction(event)}
 							value="sim"
 						/>
@@ -37,13 +41,13 @@ export function ConditionalInput(props) {
 					</label>
 
 					<label
-						className="SimNao flex gap-1"
-						htmlFor={`${props.name}Nao`}
+						className="flex gap-1"
+						htmlFor={`${name}Nao`}
 					>
-						<input
+						<Field
 							type="radio"
-							id={`${props.name}Nao`}
-							name={props.name}
+							id={`${name}Nao`}
+							name={`${name}SN`}
 							onChange={(event) => checkedFunction(event)}
 							value="não"
 						/>
@@ -53,7 +57,7 @@ export function ConditionalInput(props) {
 			</div>
 
 			<div className={`${hiddenOptions ? 'max-h-[0] opacity-0 pointer-events-none' : 'max-h-[1000rem] opacity-100'} duration-500`}>
-				{props.children}
+				{children}
 			</div>
 		</div>
 	)

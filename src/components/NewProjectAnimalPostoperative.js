@@ -1,4 +1,4 @@
-import { useFormikContext } from "formik"
+import { Field, useFormikContext } from "formik"
 import Link from "next/link"
 import { useState } from "react"
 import { ConditionalInput } from "./ConditionalInput"
@@ -36,7 +36,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioTempo"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioTempo"
@@ -58,7 +58,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioAnalgesiaFarmaco"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioAnalgesiaFarmaco"
@@ -71,7 +71,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioAnalgesiaDose"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioAnalgesiaDose"
@@ -84,7 +84,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioAnalgesiaVia"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioAnalgesiaVia"
@@ -97,7 +97,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioAnalgesiaFrequencia"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioAnalgesiaFrequencia"
@@ -110,7 +110,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioAnalgesiaDuracao"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioAnalgesiaDuracao"
@@ -124,7 +124,7 @@ export function NewProjectAnimalPostoperative(props) {
 							htmlFor="posOperatorioAnalgesiaJustificativa"
 							className="flex flex-col-reverse"
 						>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="posOperatorioAnalgesiaJustificativa"
@@ -146,7 +146,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioOutrosDescricao"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioOutrosDescricao"
@@ -187,7 +187,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExposicaoFarmaco"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExposicaoFarmaco"
@@ -200,7 +200,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExposicaoDose"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExposicaoDose"
@@ -213,7 +213,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExposicaoVia"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExposicaoVia"
@@ -226,7 +226,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExposicaoFrequencia"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExposicaoFrequencia"
@@ -249,7 +249,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExtracaoMaterial"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExtracaoMaterial"
@@ -262,7 +262,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExtracaoQuantidade"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExtracaoQuantidade"
@@ -275,7 +275,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExtracaoFrequencia"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExtracaoFrequencia"
@@ -288,7 +288,7 @@ export function NewProjectAnimalPostoperative(props) {
 								htmlFor="posOperatorioExtracaoMetodo"
 								className="flex flex-col-reverse"
 							>
-								<input
+								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="posOperatorioExtracaoMetodo"
@@ -308,7 +308,7 @@ export function NewProjectAnimalPostoperative(props) {
 							htmlFor="posOperatorioEutanasia"
 							className="flex flex-col-reverse"
 						>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="posOperatorioEutanasia"
@@ -321,7 +321,7 @@ export function NewProjectAnimalPostoperative(props) {
 							htmlFor="posOperatorioEutanasiaDescricao"
 							className="flex flex-col-reverse"
 						>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="posOperatorioEutanasiaDescricao"
@@ -334,7 +334,7 @@ export function NewProjectAnimalPostoperative(props) {
 							htmlFor="posOperatorioEutanasiaSubstancia"
 							className="flex flex-col-reverse"
 						>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="posOperatorioEutanasiaSubstancia"
@@ -347,7 +347,7 @@ export function NewProjectAnimalPostoperative(props) {
 							htmlFor="posOperatorioEutanasiaDose"
 							className="flex flex-col-reverse"
 						>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="posOperatorioEutanasiaDose"
@@ -360,7 +360,7 @@ export function NewProjectAnimalPostoperative(props) {
 							htmlFor="posOperatorioEutanasiaVia"
 							className="flex flex-col-reverse"
 						>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="posOperatorioEutanasiaVia"
@@ -373,7 +373,7 @@ export function NewProjectAnimalPostoperative(props) {
 							htmlFor="posOperatorioEutanasiaInfraestrutura"
 							className="flex flex-col-reverse"
 						>
-							<input
+							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="posOperatorioEutanasiaInfraestrutura"

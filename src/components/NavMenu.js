@@ -10,12 +10,12 @@ export function NavMenu(props) {
 	const { currentUser } = useAuth()
 
 	const iconsMenu = [
-		<HiHome />,
-		<HiPlusCircle />
+		<HiHome key="HiHome" />,
+		<HiPlusCircle key="HiPlusCircle" />
 	]
 	const iconsMenuOutline = [
-		<HiOutlineHome />,
-		<HiOutlinePlusCircle />,
+		<HiOutlineHome key="HiOutlineHome" />,
+		<HiOutlinePlusCircle key="HiOutlinePlusCircle" />,
 	]
 
 	return (
