@@ -7,6 +7,10 @@ const navMenuValues = [
 		path: "/new-project",
 		name: "Novo projeto"
 	},
+	{
+		path: "/settings",
+		name: "Configurações"
+	},
 ]
 
 export default navMenuValues

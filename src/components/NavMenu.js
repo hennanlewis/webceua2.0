@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { HiHome, HiOutlineHome, HiOutlinePlusCircle, HiPlusCircle } from "react-icons/hi"
+import { RiSettings3Fill, RiSettings3Line } from "react-icons/ri"
 import { useAuth } from "../contexts/AuthContext"
 
 import navMenuValues from "../utils/navMenuValues"
@@ -11,11 +12,13 @@ export function NavMenu(props) {
 
 	const iconsMenu = [
 		<HiHome key="HiHome" />,
-		<HiPlusCircle key="HiPlusCircle" />
+		<HiPlusCircle key="HiPlusCircle" />,
+		<RiSettings3Fill key="RiSettings3Fill" />
 	]
 	const iconsMenuOutline = [
 		<HiOutlineHome key="HiOutlineHome" />,
 		<HiOutlinePlusCircle key="HiOutlinePlusCircle" />,
+		<RiSettings3Line key="RiSettings3Line" />
 	]
 
 	return (
@@ -39,9 +42,9 @@ export function NavMenu(props) {
 					)}
 
 					<div className="flex items-center gap-2 mx-4 my-2 px-3 py-2 rounded-full bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset focus:ring-offset-gray-800 focus:ring-white">
-						<img className="w-12 h-12 rounded-full" src={currentUser?.photoURL ? currentUser.photoURL : 'default-image-progile.jpg'} />
+						<img className="w-12 h-12 rounded-full" src={currentUser.foto ? currentUser.foto : 'default-image-progile.jpg'} />
 						<div className="flex flex-col">
-							<span className="text-white">{currentUser.displayName ? currentUser.displayName : currentUser.email}</span>
+							<span className="text-white">{currentUser.nome ? currentUser.nome : currentUser.email}</span>
 							<span className="text-gray-300">{currentUser.email}</span>
 						</div>
 					</div>
@@ -59,23 +62,28 @@ export function NavMenu(props) {
 			</div>
 
 			{/* Menu de navegação em telas grandes */}
-			<div className="hidden md:flex md:flex-col md:grow gap-1 p-2 bg-blue-800 text-center">
-				{navMenuValues.map((item, index) =>
-					currentURL === item.path ?
-						<Link href={item.path} key={item.name}>
-							<a className="flex flex-col justify-center items-center p-6 bg-gray-900 text-white rounded-md text-sm font-medium">
-								<span className="text-3xl">{iconsMenu[index]}</span>
-								<span>{item.name}</span>
-							</a>
-						</Link>
-						:
-						<Link href={item.path} key={item.name}>
-							<a className="flex flex-col justify-center items-center bg-black/20 p-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">
-								<span className="text-3xl">{iconsMenuOutline[index]}</span>
-								<span>{item.name}</span>
-							</a>
-						</Link>
-				)}
+			<div className="hidden max-w-[10rem] md:flex md:flex-col items-center md:grow gap-2 p-2 bg-blue-800 text-center">
+				<div className="flex h-28 mt-2 mx-2 bg-white rounded-md shadow overflow-hidden">
+					<img className="w-full object-cover" src={currentUser.foto ? currentUser.foto : 'default-image-progile.jpg'} />
+				</div>
+				<div className="flex flex-col gap-2">
+					{navMenuValues.map((item, index) =>
+						currentURL === item.path ?
+							<Link href={item.path} key={item.name}>
+								<a className="flex flex-col justify-center items-center p-6 bg-gray-900 text-white rounded-md text-sm font-medium">
+									<span className="text-3xl">{iconsMenu[index]}</span>
+									<span>{item.name}</span>
+								</a>
+							</Link>
+							:
+							<Link href={item.path} key={item.name}>
+								<a className="flex flex-col justify-center items-center bg-black/20 p-6 text-gray-300 hover:bg-gray-700 hover:text-white rounded-md text-sm font-medium">
+									<span className="text-3xl">{iconsMenuOutline[index]}</span>
+									<span>{item.name}</span>
+								</a>
+							</Link>
+					)}
+				</div>
 			</div>
 		</nav>
 	)

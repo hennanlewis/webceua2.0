@@ -119,7 +119,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelNome"
-								name="ResponsavelNome"
+								name="nome"
 								placeholder="Digite seu nome completo"
 							/>
 						</label>
@@ -133,7 +133,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelInstituicao"
-								name="ResponsavelInstituicao"
+								name="instituicao"
 							/>
 						</label>
 
@@ -146,7 +146,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelDepartamento"
-								name="ResponsavelDepartamento"
+								name="departamento"
 							/>
 						</label>
 
@@ -159,7 +159,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLattes"
-								name="ResponsavelLattes"
+								name="lattes"
 							/>
 						</label>
 
@@ -206,7 +206,7 @@ export function NewProjectMainData(props) {
 									<Field
 										type="radio" value="docente"
 										id="dadosResponsavelVinculoDocente"
-										name="ResponsavelVinculo"
+										name="vinculo"
 									/>
 									<span className="translate-y-[-2px]">
 										Docente/Pesquisador</span>
@@ -214,9 +214,9 @@ export function NewProjectMainData(props) {
 							</label>
 							<label htmlFor="dadosResponsavelVinculoTecnico" className="flex gap-1">
 								<Field
-									type="radio" value="tecnico"
+									type="radio" value="técnico"
 									id="dadosResponsavelVinculoTecnico"
-									name="ResponsavelVinculo"
+									name="vinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Técnico Nível Superior</span>
@@ -225,7 +225,7 @@ export function NewProjectMainData(props) {
 								<Field
 									type="radio" value="jovem_pes"
 									id="dadosResponsavelVinculoJovem"
-									name="ResponsavelVinculo"
+									name="vinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Jovem Pes./Pes. Visitante</span>
@@ -241,7 +241,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="tel"
 								id="dadosResponsavelTelefone"
-								name="ResponsavelTelefone"
+								name="telefone"
 							/>
 						</label>
 
@@ -267,7 +267,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="email"
 								id="dadosResponsavelEmail"
-								name="dadosnsavelEmail"
+								name="email"
 							/>
 						</label>
 

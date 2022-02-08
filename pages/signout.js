@@ -7,7 +7,6 @@ import { useAuth } from '../src/contexts/AuthContext'
 export default function Logout() {
 	const { currentUser, signOut } = useAuth()
 	const signOutRef = useRef(signOut)
-	console.log(signOutRef)
 
 	useEffect(() => {
 		if (!currentUser) {

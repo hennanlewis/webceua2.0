@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import Router from 'next/router'
+import {useRouter} from 'next/router'
 import { Formik } from 'formik'
 import { useEffect, useState } from 'react'
 
@@ -14,7 +14,7 @@ export default function Home() {
 
 	useEffect(() => {
 		if (currentUser) {
-			Router.push("/dashboard")
+			router.push("/dashboard")
 		}
 	}, [currentUser])
 

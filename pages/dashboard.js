@@ -38,9 +38,13 @@ export default function Dashboard() {
 				<div className="grow flex flex-col md:flex-row">
 					<NavMenu openMenuState={openMenu} currentURL="/dashboard" />
 
-					<Main>
-						Default
-					</Main>
+						<Main center>
+							<h2 className="flex flex-col items-center text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+								<span className="block text-center">Não há projetos para revisar</span>
+								<span className="block text-center text-indigo-600">Você fez um bom trabalho!</span>
+							</h2>
+						</Main>
+
 				</div>
 			</div>
 		</>

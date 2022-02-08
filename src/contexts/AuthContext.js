@@ -1,5 +1,5 @@
 import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { auth, db } from '../../services/firebase'
@@ -7,8 +7,27 @@ import { auth, db } from '../../services/firebase'
 const AuthContext = createContext()
 
 export default function AuthProvider({ children }) {
-	const [currentUser, setCurrentUser] = useState('')
+	const [currentUser, setCurrentUser] = useState({})
 	const [loading, setLoading] = useState(true)
+
+	const getUser = async () => {
+		const user = auth.currentUser
+		try {
+			const data = await getDoc(doc(db, "usuarios", user.uid))
+
+			if (data.exists()) {
+				return data.data()
+			}
+		} catch (erro) {
+			return {}
+		}
+	}
+
+	const setUser = async (values) => {
+		const { uid } = auth.currentUser
+		setCurrentUser({ ...currentUser, ...values })
+		await setDoc(doc(db, "usuarios", uid), { ...currentUser, ...values })
+	}
 
 	const cadastro = (values) => {
 		return addDoc(collection(db, "cadastros"), values)
@@ -17,7 +36,7 @@ export default function AuthProvider({ children }) {
 	const login = (email, password) => {
 		const info = signInWithEmailAndPassword(auth, email, password)
 			.then(response => {
-				
+
 			})
 			.catch(error => {
 				return error.code, error.message
@@ -33,24 +52,19 @@ export default function AuthProvider({ children }) {
 		return auth.createUserWithEmailAndPassword(email, password)
 	}
 
-	const getUser = () => {
-		const user = auth.currentUser
-		return user
-	}
-
 	const resetPassword = (email) => {
 		const info = sendPasswordResetEmail(auth, email)
 			.then(() => {
 				return { message: "Enviamos o link de reset para seu email" }
 			})
 			.catch((error) => {
-				return { errorMessage: error.message}
+				return { errorMessage: error.message }
 			})
 		return info
 	}
 
 	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged(user => {
+		const unsubscribe = auth.onAuthStateChanged(async user => {
 			setCurrentUser(user)
 			setLoading(false)
 		})
@@ -64,6 +78,7 @@ export default function AuthProvider({ children }) {
 		signOut,
 		signUp,
 		getUser,
+		setUser,
 		resetPassword,
 		cadastro
 	}
@@ -85,6 +100,7 @@ export function useAuth() {
 		signOut,
 		signUp,
 		getUser,
+		setUser,
 		resetPassword,
 		cadastro
 	} = context
@@ -95,6 +111,7 @@ export function useAuth() {
 		signOut,
 		signUp,
 		getUser,
+		setUser,
 		resetPassword,
 		cadastro
 	}
