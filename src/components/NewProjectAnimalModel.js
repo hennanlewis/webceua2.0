@@ -10,7 +10,7 @@ export function NewProjectAnimalModel(props) {
 
 	return (
 		<div className={position === 2 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
-			<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
+			<div className="relative grid grid-cols-8 bg-[#005090]/90 p-2 rounded-t-xl">
 				<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
 					<h2 className="text-white text-right font-bold xs:text-center">Modelo animal</h2>
 					<div className="text-sm text-white text-justify lg:text-right">
@@ -29,7 +29,7 @@ export function NewProjectAnimalModel(props) {
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Modelo Animal
 						</span>
 						<label
@@ -65,7 +65,7 @@ export function NewProjectAnimalModel(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="p-2 py-1 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="p-2 py-1 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Biotério
 						</span>
 						<ConditionalInput
@@ -178,7 +178,7 @@ export function NewProjectAnimalModel(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Métodos de captura
 						</span>
 						<textarea
@@ -191,7 +191,7 @@ export function NewProjectAnimalModel(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">Planejamento estatístico/delineamento experimental</span>
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">Planejamento estatístico/delineamento experimental</span>
 						<textarea
 							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="modeloAnimalPlanejamentoEstatistico"
@@ -202,7 +202,7 @@ export function NewProjectAnimalModel(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Grau de invasividade
 						</span>
 						<label className="flex flex-col gap-1" htmlFor="gi1">
@@ -274,7 +274,7 @@ export function NewProjectAnimalModel(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Alojamento
 						</span>
 						<label
@@ -374,7 +374,7 @@ export function NewProjectAnimalModel(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Condições de alojamento e alimentação dos animais
 						</span>
 						<label

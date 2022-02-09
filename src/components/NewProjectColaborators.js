@@ -18,7 +18,7 @@ export function NewProjectColaborators(props) {
 	return (
 		<div className={position === 0 ? 'flex' : 'hidden'}>
 			<div className={hiddenShowClass}>
-				<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
+				<div className="relative grid grid-cols-8 bg-[#005090]/90 p-2 rounded-t-xl">
 					<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
 						<h2 className="text-white text-right font-bold xs:text-center">Colaboradores</h2>
 						<div className="text-sm text-white text-justify lg:text-right">

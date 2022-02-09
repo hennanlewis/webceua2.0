@@ -1,20 +1,19 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import {useRouter} from 'next/router'
+import Router from 'next/router'
 import { Formik } from 'formik'
 import { useEffect, useState } from 'react'
 
 import { useAuth } from '../src/contexts/AuthContext'
 
 export default function Home() {
-	const router = useRouter()
 	const { currentUser, cadastro } = useAuth()
 
 	const [errorMessage, setErrorMessage] = useState('')
 
 	useEffect(() => {
 		if (currentUser) {
-			router.push("/dashboard")
+			Router.push("/dashboard")
 		}
 	}, [currentUser])
 
@@ -23,11 +22,11 @@ export default function Home() {
 			<Head>
 				<title>Cadastro - WEBCEUA</title>
 			</Head>
-			<div className="w-[100vw] h-[100vh] bg-blue-800 p-5">
+			<div className="w-[100vw] h-[100vh] bg-[#005090] p-5">
 				<div className="min-h-full sm-w-96 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg">
 					<div className="max-w-xs w-full space-y-8">
 						<div>
-							<h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+							<h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
 								Solicitação de cadastro
 							</h2>
 						</div>
@@ -138,11 +137,11 @@ export default function Home() {
 										</div>
 									}
 									<div className="flex flex-col gap-2">
-										<button type="submit" disabled={isSubmitting} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500]">
+										<button type="submit" disabled={isSubmitting} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#005090] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500]">
 											Cadastrar
 										</button>
 										<Link href="/login">
-											<a className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500] cursor-pointer">
+											<a className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#005090] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500] cursor-pointer">
 												Fazer Login
 											</a>
 										</Link>

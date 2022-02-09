@@ -4,25 +4,36 @@ import React, { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 
 export function FormSettings(props) {
-	const { user } = props
+	const { userInfo } = props
 	const { currentUser, setUser } = useAuth()
 	const [photoProfile, setPhotoProfile] = useState(false)
 
 	const handleSetUser = (values) => {
-		setUser({ ...currentUser, ...values})
+		setUser({ ...currentUser, ...values })
+	}
+
+	const handleVerFoto = (value) => {
+		setPhotoProfile(!photoProfile)
+		console.log(value)
+		let x = fetch(value)
+			.then(response => { 
+				console.log(response)
+			})
+			.then(data => console.log(data))
 	}
 
 	return (
 		<Formik
 			enableReinitialize
 			initialValues={{
-				nome: currentUser.nome,
-				departamento: currentUser.departamento,
-				vinculo: currentUser.vinculo,
-				telefone: currentUser.telefone,
-				fotoNova: currentUser.foto,
-				instituicao: currentUser.instituicao,
-				lattes: currentUser.lattes,
+				nome: "",
+				departamento: "",
+				vinculo: "",
+				telefone: "",
+				fotoNova: "",
+				instituicao: "",
+				lattes: "",
+				...userInfo
 			}}
 			onSubmit={(values) => {
 				nProgress.start()
@@ -40,12 +51,12 @@ export function FormSettings(props) {
 				}, 1000)
 			}}
 		>
-			{({values}) => (
+			{({ values }) => (
 
 				<Form
 					className="max-w-[90%] bg-indigo-700/80 m-6 p-2 rounded-2xl max-h-[1000rem]"
 				>
-					<div className="bg-blue-800/90 flex flex-col gap-2 p-2 rounded-xl">
+					<div className="bg-[#005090]/90 flex flex-col gap-2 p-2 rounded-xl">
 						<div className="max-w-[30rem] m-auto p-2 text-white text-center">
 							Alguns dos dados a seguir são inseridos automaticamente
 							no formulário de submissão de um novo projeto
@@ -53,12 +64,12 @@ export function FormSettings(props) {
 						<div className="flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 
 							<fieldset className="flex flex-col gap-4">
-								<span className="flex flex-col -mb-4 p-2 py-1 -ml-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+								<span className="flex flex-col -mb-4 p-2 py-1 -ml-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 									Meus dados
 								</span>
 
 								<div className="flex justify-center gap-2 h-28 mt-2 mx-2 rounded-md">
-									<img className="w-28 object-cover rounded-lg" src={photoProfile ? values.fotoNova : user?.foto ? user.foto : "default-image-progile.jpg" } />
+									<img className="w-28 object-cover rounded-lg" src={photoProfile ? values.fotoNova : userInfo?.foto ? userInfo.foto : "default-image-progile.jpg"} />
 								</div>
 
 								<label
@@ -73,9 +84,9 @@ export function FormSettings(props) {
 										placeholder="Link para nova foto"
 									/>
 									<button
-										className="p-2 text-sm ml-auto text-white bg-blue-800 rounded-md hover:bg-gray-300 hover:text-blue-800 shadow-[0_1px_5px_#0006]"
+										className="w-28 p-2 text-sm ml-auto text-white bg-[#005090] rounded-md hover:bg-gray-300 hover:text-[#005090] shadow-[0_1px_5px_#0006]"
 										type="button"
-										onClick={() => setPhotoProfile(!photoProfile)}
+										onClick={() => handleVerFoto(values.fotoNova)}
 									>
 										{photoProfile ? "Desfazer" : "Ver foto"}
 									</button>
@@ -185,7 +196,7 @@ export function FormSettings(props) {
 						<div className="flex justify-end gap-2">
 							<span>
 								<button
-									className="p-2 text-sm ml-auto text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-blue-800"
+									className="p-2 text-sm ml-auto text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 									type="submit"
 								>
 									Salvar alterações

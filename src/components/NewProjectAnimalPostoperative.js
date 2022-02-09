@@ -8,7 +8,7 @@ export function NewProjectAnimalPostoperative(props) {
 
 	return (
 		<div className={position === 6 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
-			<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
+			<div className="relative grid grid-cols-8 bg-[#005090]/90 p-2 rounded-t-xl">
 				<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
 					<h2 className="text-white text-right font-bold xs:text-center">Pós operatório</h2>
 					<div className="text-sm text-white text-justify lg:text-right">
@@ -26,7 +26,7 @@ export function NewProjectAnimalPostoperative(props) {
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Observação da recuperação
 						</span>
 						<ConditionalInput
@@ -48,7 +48,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Uso de analgesia
 						</span>
 						<ConditionalInput
@@ -135,7 +135,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Outros cuidados pós-operatório
 						</span>
 						<ConditionalInput
@@ -158,7 +158,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Ponto final humanitário
 						</span>
 						<label
@@ -176,7 +176,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Exposição/Inoculação/Administração
 						</span>
 						<ConditionalInput
@@ -238,7 +238,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Extração de materiais biológicos
 						</span>
 						<ConditionalInput
@@ -300,7 +300,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold
 					">
 							Eutanásia</span>
 
@@ -384,7 +384,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Destino dos animais após o experimento</span>
 						<textarea
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
@@ -397,7 +397,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Forma de descarte da carcaça</span>
 						<textarea
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
@@ -410,7 +410,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Resumo do procedimento</span>
 						<textarea
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
@@ -423,7 +423,7 @@ export function NewProjectAnimalPostoperative(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Referências bibliográficas
 						</span>
 						<textarea

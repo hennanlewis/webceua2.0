@@ -8,7 +8,7 @@ export function NewProjectAnimals(props) {
 
 	return (
 		<div className={position === 3 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
-			<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
+			<div className="relative grid grid-cols-8 bg-[#005090]/90 p-2 rounded-t-xl">
 				<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
 					<h2 className="text-white text-right font-bold xs:text-center">Animais</h2>
 					<div className="text-sm text-white text-justify lg:text-right">
@@ -34,7 +34,7 @@ export function NewProjectAnimals(props) {
 									)}
 
 								<button
-									className="mt-1 bg-blue-800 text-gray-300 hover:bg-blue-800/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
+									className="mt-1 bg-[#005090] text-gray-300 hover:bg-[#005090]/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
 									type="button"
 									onClick={() => push({
 										animal: "",
@@ -85,7 +85,7 @@ function PosicaoVetorAnimais(props) {
 
 	return (
 		<fieldset className="flex flex-col gap-2">
-			<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+			<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 				Tipo e Características
 			</span>
 

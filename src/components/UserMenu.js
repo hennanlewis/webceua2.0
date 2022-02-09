@@ -12,7 +12,7 @@ export function UserMenu(props) {
 			{userMenuValues.map(item =>
 				<Link key={item.name} href={item.path}>
 					<a
-						className="block px-4 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-300 hover:text-blue-800" role="menuitem" tabIndex="-1" id="user-menu-item-2"
+						className="block px-4 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-300 hover:text-[#005090]" role="menuitem" tabIndex="-1" id="user-menu-item-2"
 					>
 						{item.name}
 					</a>

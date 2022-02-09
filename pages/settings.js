@@ -1,6 +1,6 @@
 import Head from "next/head"
 import Router from "next/router"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { FormSettings } from "../src/components/FormSettings"
 
 import { Header } from "../src/components/Header"
@@ -10,17 +10,20 @@ import { UserMenu } from "../src/components/UserMenu"
 import { useAuth } from "../src/contexts/AuthContext"
 
 export default function Settings() {
-	const { currentUser, getUser } = useAuth()
-	const [user, setUser] = useState({})
+	const { currentUser, getUserInfo } = useAuth()
+	const [userInfo, setUserInfo] = useState({})
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
 		{ userMenu: false }
 	)
 
+	const userInfoRef = useRef(getUserInfo)
+
 	useEffect(() => {
 		(async () => {
-			const data = await getUser()
-			setUser(data)
+			const data = await userInfoRef.current()
+			console.log(data)
+			setUserInfo(data)
 		})()
 	}, [])
 
@@ -48,7 +51,7 @@ export default function Settings() {
 					<NavMenu openMenuState={openMenu} currentURL="/settings" />
 
 					<Main center>
-						<FormSettings user={user} />
+						<FormSettings userInfo={userInfo.data} />
 					</Main>
 				</div>
 			</div >

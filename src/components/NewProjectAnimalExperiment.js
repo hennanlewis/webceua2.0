@@ -16,7 +16,7 @@ export function NewProjectAnimalExperiment(props) {
 
 	return (
 		<div className={position === 4 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
-			<div className="relative grid grid-cols-8 bg-blue-800/90 p-2 rounded-t-xl">
+			<div className="relative grid grid-cols-8 bg-[#005090]/90 p-2 rounded-t-xl">
 				<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
 					<h2 className="text-white text-right font-bold xs:text-center">Procedimentos experimentais</h2>
 					<div className="text-sm text-white text-justify lg:text-right">
@@ -35,7 +35,7 @@ export function NewProjectAnimalExperiment(props) {
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Procedimentos Experimentais
 						</span>
 						<ConditionalInput
@@ -67,7 +67,7 @@ export function NewProjectAnimalExperiment(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Estresse
 						</span>
 						<ConditionalInput
@@ -147,7 +147,7 @@ export function NewProjectAnimalExperiment(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Imobilização
 						</span>
 						<ConditionalInput
@@ -183,7 +183,7 @@ export function NewProjectAnimalExperiment(props) {
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Condições alimentares
 						</span>
 						<ConditionalInput
@@ -251,7 +251,7 @@ export function NewProjectAnimalExperiment(props) {
 
 					<fieldset className="flex flex-col gap-2">
 
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-blue-800/90 text-md text-white font-semibold">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Cirurgia
 						</span>
 						<ConditionalInput

@@ -1,4 +1,4 @@
-import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth'
+import { inMemoryPersistence, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
 import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -8,40 +8,45 @@ const AuthContext = createContext()
 
 export default function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState({})
+	const [persistencia, setPersistencia] = useState(false)
 	const [loading, setLoading] = useState(true)
 
-	const getUser = async () => {
+	const getUserInfo = async () => {
 		const user = auth.currentUser
 		try {
 			const data = await getDoc(doc(db, "usuarios", user.uid))
 
 			if (data.exists()) {
-				return data.data()
+				return { res: true, data: data.data() }
 			}
 		} catch (erro) {
-			return {}
+			return { res: false, erro }
 		}
 	}
 
-	const setUser = async (values) => {
-		const { uid } = auth.currentUser
-		setCurrentUser({ ...currentUser, ...values })
-		await setDoc(doc(db, "usuarios", uid), { ...currentUser, ...values })
+	const setUserInfo = async (values) => {
+		try {
+			const { uid } = auth.currentUser
+			setCurrentUser({ ...currentUser, ...values })
+			await setDoc(doc(db, "usuarios", uid), { ...currentUser, ...values })
+			return { res: true }
+		} catch (erro) {
+			return { res: false, erro }
+		}
 	}
 
 	const cadastro = (values) => {
 		return addDoc(collection(db, "cadastros"), values)
 	}
 
-	const login = (email, password) => {
-		const info = signInWithEmailAndPassword(auth, email, password)
-			.then(response => {
-
-			})
-			.catch(error => {
-				return error.code, error.message
-			})
-		return info
+	const login = async (email, password, remember) => {
+		if (!remember) {
+			setPersistence(auth, inMemoryPersistence)
+				.then(() =>
+					signInWithEmailAndPassword(auth, email, password)
+				)
+		}
+		signInWithEmailAndPassword(auth, email, password)
 	}
 
 	const signOut = () => {
@@ -52,15 +57,13 @@ export default function AuthProvider({ children }) {
 		return auth.createUserWithEmailAndPassword(email, password)
 	}
 
-	const resetPassword = (email) => {
-		const info = sendPasswordResetEmail(auth, email)
-			.then(() => {
-				return { message: "Enviamos o link de reset para seu email" }
-			})
-			.catch((error) => {
-				return { errorMessage: error.message }
-			})
-		return info
+	const resetPassword = async (email) => {
+		try {
+			const data = await sendPasswordResetEmail(auth, email)
+			return { res: true, data }
+		} catch (erro) {
+			return { res: false, erro }
+		}
 	}
 
 	useEffect(() => {
@@ -77,8 +80,8 @@ export default function AuthProvider({ children }) {
 		login,
 		signOut,
 		signUp,
-		getUser,
-		setUser,
+		getUserInfo,
+		setUserInfo,
 		resetPassword,
 		cadastro
 	}
@@ -99,8 +102,8 @@ export function useAuth() {
 		login,
 		signOut,
 		signUp,
-		getUser,
-		setUser,
+		getUserInfo,
+		setUserInfo,
 		resetPassword,
 		cadastro
 	} = context
@@ -110,8 +113,8 @@ export function useAuth() {
 		login,
 		signOut,
 		signUp,
-		getUser,
-		setUser,
+		getUserInfo,
+		setUserInfo,
 		resetPassword,
 		cadastro
 	}

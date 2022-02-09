@@ -79,7 +79,7 @@ export default function NewProject() {
 					<Main center>
 						<div className="flex flex-col items-center gap-10">
 							<div className="grow-0 relative flex mt-10 px-4 py-2 text-2xl rounded-xl bg-white shadow-[0_2px_5px_#0008] xs:scale-90">
-								<span className={`absolute w-12 -ml-1 h-12 rounded-full bg-blue-800 shadow-[0_2px_10px_#000] translate-x- ring-white ring-4 ${translateIndicator[formPosition]} -translate-y-6 duration-200`}></span>
+								<span className={`absolute w-12 -ml-1 h-12 rounded-full bg-[#005090] shadow-[0_2px_10px_#000] translate-x- ring-white ring-4 ${translateIndicator[formPosition]} -translate-y-6 duration-200`}></span>
 								{
 									icons.map((_, index) =>
 										index === formPosition ?
@@ -135,7 +135,7 @@ export default function NewProject() {
 									<Form
 										className="max-w-[90vw] w-[40rem] bg-indigo-700/80 p-2 rounded-2xl max-h-[1000rem]"
 									>
-										<div className="bg-blue-800/90 p-2 rounded-t-xl">
+										<div className="bg-[#005090]/90 p-2 rounded-t-xl">
 											<NewProjectMainData position={formPosition} />
 											<NewProjectColaborators position={formPosition} />
 											<NewProjectAnimalModel position={formPosition} />
@@ -145,9 +145,9 @@ export default function NewProject() {
 											<NewProjectAnimalPostoperative position={formPosition} />
 											<NewProjectAttachments position={formPosition} />
 										</div>
-										<span className="relative flex justify-end gap-2 bg-blue-800/90 p-2 bg-blue-800 rounded-b-xl">
+										<span className="relative flex justify-end gap-2 bg-[#005090]/90 p-2 bg-[#005090] rounded-b-xl">
 											<button
-												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-blue-800"
+												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 												type="submit"
 											>
 												Salvar projeto

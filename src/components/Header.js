@@ -6,7 +6,7 @@ export function Header(props) {
 	const { currentUser } = useAuth()
 
 	return (
-		<header className="max-h-18 bg-blue-800 shadow-[0_0_10px_#000] p-4 sm:px-6 lg:px-8 border-b border-gray-700 border-0 z-10">
+		<header className="max-h-18 bg-[#005090] shadow-[0_0_10px_#000] p-4 sm:px-6 lg:px-8 border-b border-gray-700 border-0 z-10">
 			<div className="flex justify-between text-white items-center">
 				<h1 className="text-3xl font-bold">
 					{currentPage}

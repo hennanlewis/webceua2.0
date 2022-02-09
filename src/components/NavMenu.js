@@ -25,7 +25,7 @@ export function NavMenu(props) {
 		<nav className="flex flex-col">
 			{/* Menu de navegação em telas médias ou menores */}
 			<div className={openMenuState.navMenu ? 'block' : 'hidden'}>
-				<div className="md:hidden flex flex-col gap-1 p-2 bg-blue-800">
+				<div className="md:hidden flex flex-col gap-1 p-2 bg-[#005090]">
 					{navMenuValues.map(item =>
 						currentURL === item.path ?
 							<Link href={item.path} key={item.name}>
@@ -35,7 +35,7 @@ export function NavMenu(props) {
 							</Link>
 							:
 							<Link href={item.path} key={item.name}>
-								<a className="px-4 py-2 text-sm text-white rounded-md hover:bg-gray-300 hover:text-blue-800 cursor-pointer">
+								<a className="px-4 py-2 text-sm text-white rounded-md hover:bg-gray-300 hover:text-[#005090] cursor-pointer">
 									{item.name}
 								</a>
 							</Link>
@@ -52,7 +52,7 @@ export function NavMenu(props) {
 					{userMenuValues.map(item =>
 						<Link key={item.name} href={item.path}>
 							<a
-								className="block px-4 py-2 text-sm text-white rounded-md hover:bg-gray-300 hover:text-blue-800"
+								className="block px-4 py-2 text-sm text-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 							>
 								{item.name}
 							</a>
@@ -62,7 +62,7 @@ export function NavMenu(props) {
 			</div>
 
 			{/* Menu de navegação em telas grandes */}
-			<div className="hidden max-w-[10rem] md:flex md:flex-col items-center md:grow gap-2 p-2 bg-blue-800 text-center">
+			<div className="hidden max-w-[10rem] md:flex md:flex-col items-center md:grow gap-2 p-2 bg-[#005090] text-center">
 				<div className="flex h-28 mt-2 mx-2 bg-white rounded-md shadow overflow-hidden">
 					<img className="w-full object-cover" src={currentUser.foto ? currentUser.foto : 'default-image-progile.jpg'} />
 				</div>

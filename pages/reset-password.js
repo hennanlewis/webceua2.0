@@ -23,7 +23,7 @@ export default function ResetPassword() {
 			<Head>
 				<title>Login - WEBCEUA</title>
 			</Head>
-			<div className="w-[100vw] h-[100vh] bg-blue-800 p-5">
+			<div className="w-[100vw] h-[100vh] bg-[#005090] p-5">
 				<div className="min-h-full sm-w-96 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white rounded-lg">
 				<div className="max-w-xs w-full space-y-2">
 					<div>
@@ -77,7 +77,7 @@ export default function ResetPassword() {
 									</div>
 
 									<div className="flex flex-col gap-2">
-										<button type="submit" disabled={isSubmitting} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500]">
+										<button type="submit" disabled={isSubmitting} className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#005090] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500]">
 											Enviar
 										</button>
 									</div>
@@ -86,7 +86,7 @@ export default function ResetPassword() {
 						</Formik>
 					}
 					<Link href="/login">
-						<a className="relative w-full flex justify-center -mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500] cursor-pointer">
+						<a className="relative w-full flex justify-center -mt-2 py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#005090] hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[indigo-500] cursor-pointer">
 							Voltar para Login
 						</a>
 					</Link>

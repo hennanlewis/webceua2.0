@@ -7,7 +7,7 @@ export function UserMenuOptions() {
 	return (
 		<span
 			onClick={signOut}
-			className="px-4 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-300 hover:text-blue-800 cursor-pointer"
+			className="px-4 py-2 text-sm text-gray-700 rounded-md hover:bg-gray-300 hover:text-[#005090] cursor-pointer"
 		>
 			Sair
 		</span>
