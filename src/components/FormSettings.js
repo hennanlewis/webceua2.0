@@ -4,15 +4,13 @@ import Router from 'next/router'
 import nProgress from 'nprogress'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
+import { isValidImage } from '../utils/validateImage'
 
 export function FormSettings(props) {
 	const { userInfo } = props
 	const { currentUser, setUserDBInfo, getUserInfo } = useAuth()
-	const [photoProfile, setPhotoProfile] = useState(false)
-
-	useEffect(() => {
-		setPhotoProfile(userInfo.foto ? userInfo.foto : "default-image-profile.jpg")
-	}, [userInfo])
+	const [foto, setFoto] = useState('')
+	const [showFoto, setShowFoto] = useState(false)
 
 	useEffect(() => {
 		if (!currentUser) {
@@ -24,19 +22,15 @@ export function FormSettings(props) {
 		setUserDBInfo(values)
 	}
 
-	const handleVerFoto = async (value) => {
-		try {
-			const response = await axios.get(value)
-			if (response.headers["content-type"].match(/^image/g)[0].length) {
-				setPhotoProfile(!photoProfile)
-				return
-			}
-			setPhotoProfile('')
-		} catch (erro) {
-			console.log(erro)
-			setPhotoProfile('')
-		}
+	const handleValidImage = async (url) => {
+		const image = await isValidImage(url, userInfo.foto)
+		setShowFoto(!showFoto)
+		setFoto(image)
 	}
+
+	useEffect(() => {
+		handleValidImage(foto)
+	}, [])
 
 	return (
 		<Formik
@@ -51,18 +45,20 @@ export function FormSettings(props) {
 				lattes: "",
 				...userInfo
 			}}
-			onSubmit={(values) => {
+			onSubmit={async (values) => {
 				nProgress.start()
+				handleValidImage()
 				setTimeout(() => {
 					handleSetUser({
 						nome: values.nome,
 						departamento: values.departamento,
 						vinculo: values.vinculo,
 						telefone: values.telefone,
-						foto: values.fotoNova,
+						foto: showFoto ? values.fotoNova : userInfo.foto,
 						instituicao: values.instituicao,
 						lattes: values.lattes,
 					})
+
 					nProgress.done()
 				}, 1000)
 			}}
@@ -85,7 +81,7 @@ export function FormSettings(props) {
 								</span>
 
 								<div className="flex justify-center gap-2 h-28 mt-2 mx-2 rounded-md">
-									<img className="w-28 object-cover rounded-lg" src={photoProfile ? values.fotoNova : "default-image-profile.jpg"} />
+									<img className="w-28 object-cover rounded-lg" src={showFoto ? foto : userInfo.foto} />
 								</div>
 
 								<label
@@ -102,9 +98,9 @@ export function FormSettings(props) {
 									<button
 										className="w-28 p-2 text-sm ml-auto text-white bg-[#005090] rounded-md hover:bg-gray-300 hover:text-[#005090] shadow-[0_1px_5px_#0006]"
 										type="button"
-										onClick={() => handleVerFoto(values.fotoNova)}
+										onClick={() => handleValidImage(values.fotoNova)}
 									>
-										{photoProfile ? "Ver foto" : "Desfazer"}
+										{showFoto ? "Desfazer" : "Visualizar"}
 									</button>
 								</label>
 

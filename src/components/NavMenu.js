@@ -42,7 +42,7 @@ export function NavMenu(props) {
 					)}
 
 					<div className="flex items-center gap-2 mx-4 my-2 px-3 py-2 rounded-full bg-blue-900 focus:outline-none focus:ring-2 focus:ring-offset focus:ring-offset-gray-800 focus:ring-white">
-						<img className="w-12 h-12 rounded-full" src={userInfo?.foto ? userInfo.foto : 'default-image-profile.jpg'} />
+						<img className="w-12 h-12 rounded-full" src={userInfo.foto} />
 						<div className="flex flex-col">
 							<span className="text-white">{currentUser.nome ? currentUser.nome : currentUser.email}</span>
 							<span className="text-gray-300">{currentUser.email}</span>
@@ -64,7 +64,7 @@ export function NavMenu(props) {
 			{/* Menu de navegação em telas grandes */}
 			<div className="hidden max-w-[10rem] md:flex md:flex-col items-center md:grow gap-2 p-2 bg-[#005090] text-center">
 				<div className="flex h-28 mt-2 mx-2 bg-white rounded-md shadow overflow-hidden">
-					<img className="w-full object-cover" src={userInfo?.foto ? userInfo.foto : 'default-image-profile.jpg'} />
+					<img className="w-full object-cover" src={userInfo?.foto} />
 				</div>
 				<div className="flex flex-col gap-2">
 					{navMenuValues.map((item, index) =>

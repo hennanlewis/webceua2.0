@@ -27,7 +27,7 @@ export default function AuthProvider({ children }) {
 	const setUserDBInfo = async (values) => {
 		try {
 			const { uid } = auth.currentUser
-			await setDoc(doc(db, "usuarios", uid), { ...userInfo, ...values})
+			await setDoc(doc(db, "usuarios", uid), { ...userInfo, ...values })
 			setUserInfo({ ...userInfo, ...values })
 			return { res: true }
 		} catch (erro) {
@@ -68,10 +68,8 @@ export default function AuthProvider({ children }) {
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(async user => {
-			const info = getUserDBInfo()
-				.then(({data}) => {
-					setUserInfo(data)
-				})
+			const info = await getUserDBInfo()
+			setUserInfo(info.data)
 			setCurrentUser(user)
 			setLoading(false)
 		})
