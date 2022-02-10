@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Router from 'next/router'
 
 import { useAuth } from '../src/contexts/AuthContext'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { LoginForm } from '../src/components/LoginForm'
 
 export default function LoginPage() {

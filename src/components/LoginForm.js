@@ -25,7 +25,6 @@ export function LoginForm() {
 				}}
 				onSubmit={(values, { setSubmitting }) => {
 					login(values.email, values.password, values["remember-me"])
-					console.log(values)
 					setSubmitting(false)
 				}}
 			>

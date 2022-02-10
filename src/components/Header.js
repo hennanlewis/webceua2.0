@@ -1,9 +1,10 @@
+import { useEffect, useRef, useState } from 'react'
 import { HiMenu, HiOutlineBell, HiX } from 'react-icons/hi'
 import { useAuth } from '../contexts/AuthContext'
 
 export function Header(props) {
 	const { openNavMenuFunction, openMenuState, currentPage } = props
-	const { currentUser } = useAuth()
+	const { currentUser, userInfo } = useAuth()
 
 	return (
 		<header className="max-h-18 bg-[#005090] shadow-[0_0_10px_#000] p-4 sm:px-6 lg:px-8 border-b border-gray-700 border-0 z-10">
@@ -37,7 +38,7 @@ export function Header(props) {
 								className="flex w-8 h-8 rounded-full
 									focus:outline-none focus:ring-2 focus:ring-offset focus:ring-offset-gray-800 focus:ring-white"
 							>
-								<img className="w-8 h-8 rounded-full" src={currentUser.foto ? currentUser.foto : 'default-image-progile.jpg'} />
+								<img className="w-8 h-8 rounded-full" src={userInfo?.foto ? userInfo.foto : 'default-image-profile.jpg'} />
 							</button>
 						</div>
 					</div>

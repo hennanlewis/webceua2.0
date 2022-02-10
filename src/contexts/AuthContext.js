@@ -8,10 +8,10 @@ const AuthContext = createContext()
 
 export default function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState({})
-	const [persistencia, setPersistencia] = useState(false)
+	const [userInfo, setUserInfo] = useState({})
 	const [loading, setLoading] = useState(true)
 
-	const getUserInfo = async () => {
+	const getUserDBInfo = async () => {
 		const user = auth.currentUser
 		try {
 			const data = await getDoc(doc(db, "usuarios", user.uid))
@@ -24,11 +24,11 @@ export default function AuthProvider({ children }) {
 		}
 	}
 
-	const setUserInfo = async (values) => {
+	const setUserDBInfo = async (values) => {
 		try {
 			const { uid } = auth.currentUser
-			setCurrentUser({ ...currentUser, ...values })
-			await setDoc(doc(db, "usuarios", uid), { ...currentUser, ...values })
+			await setDoc(doc(db, "usuarios", uid), { ...userInfo, ...values})
+			setUserInfo({ ...userInfo, ...values })
 			return { res: true }
 		} catch (erro) {
 			return { res: false, erro }
@@ -68,6 +68,10 @@ export default function AuthProvider({ children }) {
 
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged(async user => {
+			const info = getUserDBInfo()
+				.then(({data}) => {
+					setUserInfo(data)
+				})
 			setCurrentUser(user)
 			setLoading(false)
 		})
@@ -77,13 +81,14 @@ export default function AuthProvider({ children }) {
 
 	const value = {
 		currentUser,
+		userInfo,
+		cadastro,
 		login,
+		getUserDBInfo,
+		setUserDBInfo,
 		signOut,
 		signUp,
-		getUserInfo,
-		setUserInfo,
-		resetPassword,
-		cadastro
+		resetPassword
 	}
 
 	return (
@@ -99,22 +104,24 @@ export function useAuth() {
 	const context = useContext(AuthContext)
 	const {
 		currentUser,
+		userInfo,
 		login,
 		signOut,
 		signUp,
-		getUserInfo,
-		setUserInfo,
+		getUserDBInfo,
+		setUserDBInfo,
 		resetPassword,
 		cadastro
 	} = context
 
 	return {
 		currentUser,
+		userInfo,
 		login,
 		signOut,
 		signUp,
-		getUserInfo,
-		setUserInfo,
+		getUserDBInfo,
+		setUserDBInfo,
 		resetPassword,
 		cadastro
 	}

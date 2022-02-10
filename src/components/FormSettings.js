@@ -1,25 +1,41 @@
+import axios from 'axios'
 import { Field, Form, Formik, useFormikContext } from 'formik'
+import Router from 'next/router'
 import nProgress from 'nprogress'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 
 export function FormSettings(props) {
 	const { userInfo } = props
-	const { currentUser, setUser } = useAuth()
+	const { currentUser, setUserDBInfo, getUserInfo } = useAuth()
 	const [photoProfile, setPhotoProfile] = useState(false)
 
+	useEffect(() => {
+		setPhotoProfile(userInfo.foto ? userInfo.foto : "default-image-profile.jpg")
+	}, [userInfo])
+
+	useEffect(() => {
+		if (!currentUser) {
+			Router.push("/signout")
+		}
+	}, [currentUser])
+
 	const handleSetUser = (values) => {
-		setUser({ ...currentUser, ...values })
+		setUserDBInfo(values)
 	}
 
-	const handleVerFoto = (value) => {
-		setPhotoProfile(!photoProfile)
-		console.log(value)
-		let x = fetch(value)
-			.then(response => { 
-				console.log(response)
-			})
-			.then(data => console.log(data))
+	const handleVerFoto = async (value) => {
+		try {
+			const response = await axios.get(value)
+			if (response.headers["content-type"].match(/^image/g)[0].length) {
+				setPhotoProfile(!photoProfile)
+				return
+			}
+			setPhotoProfile('')
+		} catch (erro) {
+			console.log(erro)
+			setPhotoProfile('')
+		}
 	}
 
 	return (
@@ -69,7 +85,7 @@ export function FormSettings(props) {
 								</span>
 
 								<div className="flex justify-center gap-2 h-28 mt-2 mx-2 rounded-md">
-									<img className="w-28 object-cover rounded-lg" src={photoProfile ? values.fotoNova : userInfo?.foto ? userInfo.foto : "default-image-progile.jpg"} />
+									<img className="w-28 object-cover rounded-lg" src={photoProfile ? values.fotoNova : "default-image-profile.jpg"} />
 								</div>
 
 								<label
@@ -88,7 +104,7 @@ export function FormSettings(props) {
 										type="button"
 										onClick={() => handleVerFoto(values.fotoNova)}
 									>
-										{photoProfile ? "Desfazer" : "Ver foto"}
+										{photoProfile ? "Ver foto" : "Desfazer"}
 									</button>
 								</label>
 

@@ -10,22 +10,11 @@ import { UserMenu } from "../src/components/UserMenu"
 import { useAuth } from "../src/contexts/AuthContext"
 
 export default function Settings() {
-	const { currentUser, getUserInfo } = useAuth()
-	const [userInfo, setUserInfo] = useState({})
+	const { currentUser, userInfo } = useAuth()
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
 		{ userMenu: false }
 	)
-
-	const userInfoRef = useRef(getUserInfo)
-
-	useEffect(() => {
-		(async () => {
-			const data = await userInfoRef.current()
-			console.log(data)
-			setUserInfo(data)
-		})()
-	}, [])
 
 	useEffect(() => {
 		if (!currentUser) {
@@ -51,7 +40,7 @@ export default function Settings() {
 					<NavMenu openMenuState={openMenu} currentURL="/settings" />
 
 					<Main center>
-						<FormSettings userInfo={userInfo.data} />
+						<FormSettings userInfo={userInfo} />
 					</Main>
 				</div>
 			</div >
