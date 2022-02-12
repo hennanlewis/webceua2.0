@@ -1,11 +1,11 @@
 import { Field, useFormikContext } from "formik"
 import Link from "next/link"
-import { useState } from "react"
 
 import { ConditionalInput } from "./ConditionalInput"
 
 export function NewProjectMainData(props) {
 	const { position } = props
+	const { errors } = useFormikContext()
 
 	return (
 		<div className={position === 0 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
@@ -119,7 +119,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelNome"
-								name="nome"
+								name="ResponsavelNome"
 								placeholder="Digite seu nome completo"
 							/>
 						</label>
@@ -133,7 +133,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelInstituicao"
-								name="instituicao"
+								name="ResponsavelInstituicao"
 							/>
 						</label>
 
@@ -146,7 +146,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelDepartamento"
-								name="departamento"
+								name="ResponsavelDepartamento"
 							/>
 						</label>
 
@@ -159,7 +159,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLattes"
-								name="lattes"
+								name="ResponsavelLattes"
 							/>
 						</label>
 
@@ -206,7 +206,7 @@ export function NewProjectMainData(props) {
 									<Field
 										type="radio" value="docente"
 										id="dadosResponsavelVinculoDocente"
-										name="vinculo"
+										name="ResponsavelVinculo"
 									/>
 									<span className="translate-y-[-2px]">
 										Docente/Pesquisador</span>
@@ -241,7 +241,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="tel"
 								id="dadosResponsavelTelefone"
-								name="telefone"
+								name="ResponsavelTelefone"
 							/>
 						</label>
 
@@ -267,7 +267,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="email"
 								id="dadosResponsavelEmail"
-								name="email"
+								name="ResponsavelEmail"
 							/>
 						</label>
 

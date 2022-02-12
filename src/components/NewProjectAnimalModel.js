@@ -33,7 +33,7 @@ export function NewProjectAnimalModel(props) {
 							Modelo Animal
 						</span>
 						<label
-							htmlFor="modeloAnimalEspecie"
+							htmlFor="ModeloAnimalEspecie"
 							className=""
 						>
 							<span className="">
@@ -42,14 +42,14 @@ export function NewProjectAnimalModel(props) {
 							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
-								id="modeloAnimalEspecie"
-								name="modeloAnimalEspecie"
+								id="ModeloAnimalEspecie"
+								name="ModeloAnimalEspecie"
 								placeholder="Nome vulgar, se existir"
 							/>
 						</label>
 
 						<label
-							htmlFor="modeloAnimalJustificativa"
+							htmlFor="ModeloAnimalJustificativa"
 							className=""
 						>
 							<span className="">
@@ -57,8 +57,8 @@ export function NewProjectAnimalModel(props) {
 							</span>
 							<textarea
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								id="modeloAnimalJustificativa"
-								name="modeloAnimalJustificativa"
+								id="ModeloAnimalJustificativa"
+								name="ModeloAnimalJustificativa"
 							>
 							</textarea>
 						</label>
@@ -71,107 +71,107 @@ export function NewProjectAnimalModel(props) {
 						<ConditionalInput
 							span="Procedência"
 							title="Biotério do NPDM"
-							name="modeloAnimalProcedenciaBioterio"
+							name="ModeloAnimalProcedenciaBioterio"
 							inverse={true}
 						>
 							<label
-								htmlFor="modeloAnimalProcedenciaBioterioNome"
+								htmlFor="ModeloAnimalProcedenciaBioterioNome"
 								className=""
 							>
 								<span className="">Qual?</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									id="modeloAnimalProcedenciaBioterioNome"
-									name="modeloAnimalProcedenciaBioterioNome"
+									id="ModeloAnimalProcedenciaBioterioNome"
+									name="ModeloAnimalProcedenciaBioterioNome"
 								/>
 							</label>
 
 							<label
-								htmlFor="modeloAnimalProcedenciaBioterioLocalizacao"
+								htmlFor="ModeloAnimalProcedenciaBioterioLocalizacao"
 								className=""
 							>
 								<span className="">Localização</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									id="modeloAnimalProcedenciaBioterioLocalizacao"
-									name="modeloAnimalProcedenciaBioterioLocalizacao"
+									id="ModeloAnimalProcedenciaBioterioLocalizacao"
+									name="ModeloAnimalProcedenciaBioterioLocalizacao"
 								/>
 							</label>
 						</ConditionalInput>
 
 						<ConditionalInput
 							title="Animal silvestre"
-							name="modeloAnimalProcedenciaAnimalSilvestre"
+							name="ModeloAnimalSilvestre"
 						>
 							<label
-								htmlFor="modeloAnimalProcedenciaAnimal"
+								htmlFor="ModeloAnimalSilvestreAnimal"
 								className=""
 							>
 								<span className="">Qual?</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									id="modeloAnimalProcedenciaAnimal"
-									name="modeloAnimalProcedenciaAnimal"
+									id="ModeloAnimalSilvestreAnimal"
+									name="ModeloAnimalSilvestreAnimal"
 								/>
 							</label>
 
 							<label
-								htmlFor="modeloAnimalProcedenciaNumSolicitacao"
+								htmlFor="ModeloAnimalSilvestreNumSolicitacao"
 								className=""
 							>
 								<span className="">Número da solicitação ou autorização do SISBIO</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									id="modeloAnimalProcedenciaNumSolicitacao"
-									name="modeloAnimalProcedenciaNumSolicitacao"
+									id="ModeloAnimalSilvestreNumSolicitacao"
+									name="ModeloAnimalSilvestreNumSolicitacao"
 								/>
 							</label>
 
 							<label
-								htmlFor="modeloAnimalProcedenciaOutra"
+								htmlFor="ModeloAnimalSilvestreOutra"
 								className=""
 							>
 								<span className="">Outra procedência?</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									id="modeloAnimalProcedenciaOutra"
-									name="modeloAnimalProcedenciaOutra"
+									id="ModeloAnimalSilvestreOutra"
+									name="ModeloAnimalSilvestreOutra"
 								/>
 							</label>
 
 							<label
-								htmlFor="modeloAnimalProcedenciaQual"
+								htmlFor="ModeloAnimalSilvestreQual"
 								className=""
 							>
 								<span className="">Qual?</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									id="modeloAnimalProcedenciaQual"
-									name="modeloAnimalProcedenciaQual"
+									id="ModeloAnimalSilvestreQual"
+									name="ModeloAnimalSilvestreQual"
 								/>
 							</label>
 						</ConditionalInput>
 
 						<ConditionalInput
 							title="O animal é geneticamente modificado?"
-							name="modeloAnimalProcedenciaModificado"
+							name="ModeloAnimalProcedenciaModificado"
 						>
 							<label
-								htmlFor="modeloAnimalProcedenciaNumCQB"
+								htmlFor="ModeloAnimalProcedenciaNumCQB"
 								className=""
 							>
 								<span className="">Número do CQB</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									id="modeloAnimalProcedenciaNumCQB"
-									name="modeloAnimalProcedenciaNumCQB"
+									id="ModeloAnimalProcedenciaNumCQB"
+									name="ModeloAnimalProcedenciaNumCQB"
 								/>
 							</label>
 						</ConditionalInput>
@@ -183,10 +183,10 @@ export function NewProjectAnimalModel(props) {
 						</span>
 						<textarea
 							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-							id="modeloAnimalMetodosCaptura"
-							name="modeloAnimalMetodosCaptura"
+							id="ModeloAnimalMetodosCaptura"
+							name="ModeloAnimalMetodosCaptura"
 						>
-							
+
 						</textarea>
 					</fieldset>
 
@@ -194,10 +194,10 @@ export function NewProjectAnimalModel(props) {
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">Planejamento estatístico/delineamento experimental</span>
 						<textarea
 							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-							id="modeloAnimalPlanejamentoEstatistico"
-							name="modeloAnimalPlanejamentoEstatistico"
+							id="ModeloAnimalPlanejamentoEstatistico"
+							name="ModeloAnimalPlanejamentoEstatistico"
 						>
-							
+
 						</textarea>
 					</fieldset>
 
@@ -209,35 +209,35 @@ export function NewProjectAnimalModel(props) {
 							<span className="flex gap-1">
 								<Field
 									type="radio"
-									value="gi1" id="gi1" name="modeloAnimalInvasividade"
+									value="gi1" id="gi1" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 1</span>
 							</span>
 							<span className="flex gap-1">
 								<Field
 									type="radio"
-									value="gi2" id="gi2" name="modeloAnimalInvasividade"
+									value="gi2" id="gi2" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 2</span>
 							</span>
 							<span className="flex gap-1">
 								<Field
 									type="radio"
-									value="gi3" id="gi3" name="modeloAnimalInvasividade"
+									value="gi3" id="gi3" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 3</span>
 							</span>
 							<span className="flex gap-1">
 								<Field
 									type="radio"
-									value="gi4" id="gi4" name="modeloAnimalInvasividade"
+									value="gi4" id="gi4" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 4</span>
 							</span>
 							<span className="flex gap-1">
 								<Field
 									type="radio"
-									value="giN" id="giN" name="modeloAnimalInvasividade"
+									value="giN" id="giN" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">Não e aplica</span>
 							</span>
@@ -245,29 +245,29 @@ export function NewProjectAnimalModel(props) {
 
 						<ConditionalInput
 							title="Os materiais biológicos destes exemplares serão usados em outro(s) projeto(s)?"
-							name="modeloAnimalInvasividadeUsoMaterial"
+							name="ModeloAnimalUsoMaterial"
 						>
 							<label
-								htmlFor="modeloAnimalInvasividadeMaterial"
+								htmlFor="ModeloAnimalUsoMaterial"
 								className=""
 							>
 								<span className="">Qual(is)?</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									name="modeloAnimalInvasividadeMaterial"
+									name="ModeloAnimalUsoMaterial"
 								/>
 							</label>
 
 							<label
-								htmlFor="modeloAnimalInvasividadeProtocolo"
+								htmlFor="ModeloAnimalUsoMaterialProtocolo"
 								className=""
 							>
 								<span className="">Se já aprovado(s) pela CEUA, mencionar o número do protocolo</span>
 								<Field
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
-									name="modeloAnimalInvasividadeProtocolo"
+									name="ModeloAnimalUsoMaterialProtocolo"
 								/>
 							</label>
 						</ConditionalInput>
@@ -277,100 +277,116 @@ export function NewProjectAnimalModel(props) {
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Alojamento
 						</span>
-						<label
-							htmlFor="modeloAnimalCondicoesLocal"
-							className=""
-						>
-							<span className="">Local onde será mantido o animal</span>
-							<Field
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="modeloAnimalCondicoesLocal"
-								name="modeloAnimalCondicoesLocal"
-								placeholder="Biotério, fazenda, aviário, etc"
-							/>
-						</label>
-
-						<label
-							htmlFor="modeloAnimalCondicoes"
-							className=""
-						>
-							<span className="">Endereço</span>
-							<Field
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="modeloAnimalCondicoes"
-								name="modeloAnimalCondicoes"
-							/>
-						</label>
-
-						<label className="flex flex-col">
-							<span className="">Ambiente de alojamento</span>
-							<span className="flex gap-1">
+						<div className="flex flex-col gap-2">
+							<label
+								htmlFor="ModeloAnimalCondicoesLocal"
+								className=""
+							>
+								<span className="">Local onde será mantido o animal</span>
 								<Field
-									type="radio"
-									id="modeloAnimalAlojamentoGaiola"
-									name="modeloAnimalAlojamento"
-									value="gaiola"
+									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+									type="text"
+									id="ModeloAnimalCondicoesLocal"
+									name="ModeloAnimalCondicoesLocal"
+									placeholder="Biotério, fazenda, aviário, etc"
 								/>
-								<span className="translate-y-[-2px]">Gaiola</span>
-							</span>
+							</label>
 
-							<span className="flex gap-1">
+							<label
+								htmlFor="ModeloAnimalCondicoes"
+								className=""
+							>
+								<span className="">Endereço</span>
 								<Field
-									type="radio"
-									id="modeloAnimalAlojamentoJaula"
-									name="modeloAnimalAlojamento"
-									value="jaula"
+									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+									type="text"
+									id="ModeloAnimalCondicoes"
+									name="ModeloAnimalCondicoes"
 								/>
-								<span className="translate-y-[-2px]">Jaula</span>
-							</span>
-							<span className="flex gap-1">
-								<Field
-									type="radio"
-									id="modeloAnimalAlojamentoBaia"
-									name="modeloAnimalAlojamento"
-									value="baia"
-								/>
-								<span className="translate-y-[-2px]">Baia</span>
-							</span>
-							<span className="flex gap-1">
-								<Field
-									type="radio"
-									id="modeloAnimalAlojamentoOutros"
-									name="modeloAnimalAlojamento"
-									value="outros"
-								/>
-								<span className="translate-y-[-2px]">Outros</span>
-							</span>
-						</label>
+							</label>
 
-						<label
-							htmlFor="modeloAnimalAnimaisPorGaiola"
-							className=""
-						>
-							<span className="">Número de animais por gaiola/galpão</span>
-							<Field
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="number"
-								id="modeloAnimalAnimaisPorGaiola"
-								name="modeloAnimalAnimaisPorGaiola"
-								min="0"
-							/>
-						</label>
+							<div className="flex flex-col">
+								<span className="">Ambiente de alojamento</span>
+								<label
+									htmlFor="ModeloAnimalAlojamentoGaiola"
+									className="flex gap-1"
+								>
+									<Field
+										type="radio"
+										id="ModeloAnimalAlojamentoGaiola"
+										name="ModeloAnimalAlojamento"
+										value="gaiola"
+									/>
+									<span className="translate-y-[-2px]">Gaiola</span>
+								</label>
 
-						<label
-							htmlFor="modeloAnimalAnimaisCama"
-							className=""
-						>
-							<span className="">Tipo de cama (maravalha, estrado ou outro)</span>
-							<Field
-								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								type="text"
-								id="modeloAnimalAnimaisCama"
-								name="modeloAnimalAnimaisCama"
-							/>
-						</label>
+								<label
+									htmlFor="ModeloAnimalAlojamentoJaula"
+									className="flex gap-1"
+								>
+									<Field
+										type="radio"
+										id="ModeloAnimalAlojamentoJaula"
+										name="ModeloAnimalAlojamento"
+										value="jaula"
+									/>
+									<span className="translate-y-[-2px]">Jaula</span>
+								</label>
+
+								<label
+									htmlFor="ModeloAnimalAlojamentoBaia"
+									className="flex gap-1"
+								>
+									<Field
+										type="radio"
+										id="ModeloAnimalAlojamentoBaia"
+										name="ModeloAnimalAlojamento"
+										value="baia"
+									/>
+									<span className="translate-y-[-2px]">Baia</span>
+								</label>
+
+								<label
+									htmlFor="ModeloAnimalAlojamentoOutros"
+									className="flex gap-1"
+								>
+									<Field
+										type="radio"
+										id="ModeloAnimalAlojamentoOutros"
+										name="ModeloAnimalAlojamento"
+										value="outros"
+									/>
+									<span className="translate-y-[-2px]">Outros</span>
+								</label>
+							</div>
+
+							<label
+								htmlFor="ModeloAnimalAnimaisPorGaiola"
+								className=""
+							>
+								<span className="">Número de animais por gaiola/galpão</span>
+								<Field
+									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+									type="number"
+									id="ModeloAnimalAnimaisPorGaiola"
+									name="ModeloAnimalAnimaisPorGaiola"
+									min="0"
+								/>
+							</label>
+
+							<label
+								htmlFor="ModeloAnimalAnimaisCama"
+								className=""
+							>
+								<span className="">Tipo de cama (maravalha, estrado ou outro)</span>
+								<Field
+									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+									type="text"
+									id="ModeloAnimalAnimaisCama"
+									name="ModeloAnimalAnimaisCama"
+								/>
+							</label>
+						</div>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -378,48 +394,48 @@ export function NewProjectAnimalModel(props) {
 							Condições de alojamento e alimentação dos animais
 						</span>
 						<label
-							htmlFor="modeloAnimalCondicoesAlimentacao"
+							htmlFor="ModeloAnimalCondicoesAlimentacao"
 							className=""
 						>
 							<span className="">Alimentação</span>
 							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
-								id="modeloAnimalCondicoesAlimentacao"
-								name="modeloAnimalCondicoesAlimentacao"
+								id="ModeloAnimalCondicoesAlimentacao"
+								name="ModeloAnimalCondicoesAlimentacao"
 							/>
 
 						</label>
 
 						<label
-							htmlFor="modeloAnimalCondicoesFonteAgua"
+							htmlFor="ModeloAnimalCondicoesFonteAgua"
 							className=""
 						>
 							<span className="">Fonte de água</span>
 							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
-								id="modeloAnimalCondicoesFonteAgua"
-								name="modeloAnimalCondicoesFonteAgua"
+								id="ModeloAnimalCondicoesFonteAgua"
+								name="ModeloAnimalCondicoesFonteAgua"
 							/>
 						</label>
 
 						<label
-							htmlFor="modeloAnimalCondicoesLotacao"
+							htmlFor="ModeloAnimalCondicoesLotacao"
 							className=""
 						>
 							<span className="">Lotação (Número de animais/área)</span>
 							<Field
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
-								id="modeloAnimalCondicoesLotacao"
-								name="modeloAnimalCondicoesLotacao"
+								id="ModeloAnimalCondicoesLotacao"
+								name="ModeloAnimalCondicoesLotacao"
 							/>
 						</label>
 
 						<ConditionalInput
 							title="Exaustão do ar"
-							name="modeloAnimalCondicoesExaustao"
+							name="ModeloAnimalCondicoesExaustao"
 						/>
 					</fieldset>
 				</div>

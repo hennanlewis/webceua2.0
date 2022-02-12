@@ -1,10 +1,17 @@
 import { Field, FieldArray, useFormikContext } from "formik"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export function NewProjectAnimals(props) {
 	const { position } = props
-	const { values } = useFormikContext()
+	const { values, setFieldValue } = useFormikContext()
+
+	useEffect(() => {
+		const soma = values.animais?.reduce((sum, item) => {
+			return sum + item.quantidadeFemea + item.quantidadeMacho
+		}, 0)
+		setFieldValue('animaisTotais', soma)
+	}, [values, setFieldValue])
 
 	return (
 		<div className={position === 3 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
@@ -28,8 +35,8 @@ export function NewProjectAnimals(props) {
 					<FieldArray name="animais">
 						{({ insert, remove, push }) => (
 							<>
-								{values.animais.length > 0 &&
-									values.animais.map((_, index) =>
+								{values.animais?.length > 0 &&
+									values.animais?.map((_, index) =>
 										<PosicaoVetorAnimais key={index} remove={remove} position={index} />
 									)}
 
@@ -42,9 +49,9 @@ export function NewProjectAnimals(props) {
 										linhagem: "",
 										idade: "",
 										peso: "",
-										quantidadeFemea: "",
-										quantidadeMacho: "",
-										subtotal: "",
+										quantidadeFemea: 0,
+										quantidadeMacho: 0,
+										subtotal: 0,
 									})}
 								>
 									Adicionar animal
@@ -57,11 +64,10 @@ export function NewProjectAnimals(props) {
 						<span>Total de animais</span>
 						<Field
 							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
-							type="text"
+							type="number"
 							name="animaisTotais"
-							value={values.animais.reduce((sum, item) =>
-								sum + item.quantidadeFemea + item.quantidadeMacho, 0)}
-							readOnly
+							min="0"
+							value={values.animaisTotais}
 						/>
 					</fieldset>
 				</div>
@@ -74,6 +80,11 @@ function PosicaoVetorAnimais(props) {
 	const { position, remove } = props
 	const { values, setFieldValue } = useFormikContext()
 	const [hiddenOptions, setHiddenOptions] = useState(true)
+
+	useEffect(() => {
+		setFieldValue(`animais.${position}.subtotal`,
+			values.animais[position].quantidadeFemea + values.animais[position].quantidadeMacho)
+	}, [values, setFieldValue, position])
 
 	const handleShowHide = (event) => {
 		event.target.value === 'outro' ?
@@ -190,7 +201,6 @@ function PosicaoVetorAnimais(props) {
 					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 					type="text"
 					name={`animais.${position}.subtotal`}
-					value={values.animais[position].quantidadeFemea + values.animais[position].quantidadeMacho}
 				/>
 				<span>Subtotal (M+F)</span>
 			</label>

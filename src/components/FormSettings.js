@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { Field, Form, Formik, useFormikContext } from 'formik'
+import { Field, Form, Formik } from 'formik'
 import Router from 'next/router'
 import nProgress from 'nprogress'
 import React, { useEffect, useState } from 'react'
@@ -8,8 +7,8 @@ import { isValidImage } from '../utils/validateImage'
 
 export function FormSettings(props) {
 	const { userInfo } = props
-	const { currentUser, setUserDBInfo, getUserInfo } = useAuth()
-	const [foto, setFoto] = useState('')
+	const { currentUser, updateUserDBInfo } = useAuth()
+	const [foto, setFoto] = useState("default-image-profile.jpg")
 	const [showFoto, setShowFoto] = useState(false)
 
 	useEffect(() => {
@@ -18,8 +17,16 @@ export function FormSettings(props) {
 		}
 	}, [currentUser])
 
-	const handleSetUser = (values) => {
-		setUserDBInfo(values)
+	const handleUpdateUser = (values) => {
+		updateUserDBInfo({
+			nome: values.nome,
+			departamento: values.departamento,
+			vinculo: values.vinculo,
+			telefone: values.telefone,
+			foto: showFoto ? values.fotoNova : userInfo.foto,
+			instituicao: values.instituicao,
+			lattes: values.lattes,
+		})
 	}
 
 	const handleValidImage = async (url) => {
@@ -49,15 +56,7 @@ export function FormSettings(props) {
 				nProgress.start()
 				handleValidImage()
 				setTimeout(() => {
-					handleSetUser({
-						nome: values.nome,
-						departamento: values.departamento,
-						vinculo: values.vinculo,
-						telefone: values.telefone,
-						foto: showFoto ? values.fotoNova : userInfo.foto,
-						instituicao: values.instituicao,
-						lattes: values.lattes,
-					})
+					handleUpdateUser(values)
 
 					nProgress.done()
 				}, 1000)

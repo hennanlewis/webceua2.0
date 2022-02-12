@@ -28,7 +28,7 @@ export function NewProjectDrugs(props) {
 					<FieldArray name="farmacos">
 						{({ insert, remove, push }) => (
 							<>
-								{values.farmacos.length > 0 &&
+								{values.farmacos?.length > 0 &&
 									values.farmacos.map((_, index) =>
 										<PosicaoVetorFarmacos key={index} remove={remove} position={index} />)}
 

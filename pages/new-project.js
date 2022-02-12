@@ -1,5 +1,6 @@
 import Head from "next/head"
 import Router from "next/router"
+import { Form, Formik } from "formik"
 import { useEffect, useState } from "react"
 import { BsPeopleFill } from "react-icons/bs"
 import { TiDocumentText } from "react-icons/ti"
@@ -7,10 +8,10 @@ import { FaIdCard, FaNotesMedical } from "react-icons/fa"
 import { GiSeatedMouse, GiLoveInjection } from "react-icons/gi"
 import { ImAttachment } from "react-icons/im"
 
-import { useAuth } from "../src/contexts/AuthContext"
 import { Header } from "../src/components/Header"
 import { Main } from "../src/components/Main"
 import { NavMenu } from "../src/components/NavMenu"
+import { useAuth } from "../src/contexts/AuthContext"
 import { UserMenu } from "../src/components/UserMenu"
 import { NewProjectMainData } from "../src/components/NewProjectMainData"
 import { NewProjectColaborators } from "../src/components/NewProjectColaborators"
@@ -20,10 +21,11 @@ import { NewProjectAnimals } from "../src/components/NewProjectAnimals"
 import { NewProjectDrugs } from "../src/components/NewProjectDrugs"
 import { NewProjectAnimalPostoperative } from "../src/components/NewProjectAnimalPostoperative"
 import { NewProjectAttachments } from "../src/components/NewProjectAttachments"
-import { Form, Formik } from "formik"
+
+import initialProjectValues from '../src/utils/initialProjectValues'
 
 export default function NewProject() {
-	const { currentUser } = useAuth()
+	const { currentUser, userInfo } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 
 	const [openMenu, setOpenMenu] = useState(
@@ -99,33 +101,14 @@ export default function NewProject() {
 
 							<Formik
 								initialValues={{
-								PrazoInicio: "",
-								PrazoTermino: "",
-								ProjetoTitulo: "",
-								ProjetoTituloEN: "",
-								ProjetoArea: "",
-								ResponsavelNome: "",
-								ResponsavelInstituicao: "",
-								ResponsavelDepartamento: "",
-								ResponsavelLattes: "",
-								ResponsavelExperiencia: "",
-								ResponsavelTempoExperiencia: "",
-								ResponsavelTreinamento: "",
-								ResponsavelTempoTreinamento: "",
-								ResponsavelVinculo: "",
-								ResponsavelVinculo: "",
-								ResponsavelVinculo: "",
-								ResponsavelTelefone: "",
-								ResponsavelLocal: "",
-								ResponsavelEmail: "",
-								ResponsavelLocalexperimentos: "",
-								Resumo: "",
-								Objetivos: "",
-								Justificativa: "",
-								Relevancia: "",
-									animais: [],
-									farmacos: [],
-									anexos: []
+									...initialProjectValues,
+									ResponsavelNome: userInfo.nome || "",
+									ResponsavelInstituicao: userInfo.instituicao || "",
+									ResponsavelDepartamento: userInfo.departartamento || "",
+									ResponsavelLattes: userInfo.lattes || "",
+									ResponsavelVinculo: userInfo.vinculo || "",
+									ResponsavelTelefone: userInfo.telefone || "",
+									ResponsavelEmail: userInfo.ResponsavelEmail || "",
 								}}
 								onSubmit={values => {
 									console.log(values)

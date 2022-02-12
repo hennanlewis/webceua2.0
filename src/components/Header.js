@@ -5,7 +5,9 @@ import { isValidImage } from '../utils/validateImage'
 
 export function Header(props) {
 	const { openNavMenuFunction, openMenuState, currentPage } = props
-	const { currentUser, userInfo, setUserDBInfo } = useAuth()
+	const { userInfo, setUserDBInfo } = useAuth()
+
+	const userInfoRef = useRef(userInfo)
 
 	const handleValidImage = async (url, urlDefault) => {
 		const image = await isValidImage(url, urlDefault)
@@ -13,8 +15,10 @@ export function Header(props) {
 		return image
 	}
 
+	const validImageRef = useRef(handleValidImage)
+
 	useEffect(() => {
-		handleValidImage(userInfo.foto, "default-image-profile.jpg")
+		validImageRef.current(userInfoRef.current.foto, "default-image-profile.jpg")
 	}, [])
 
 	return (

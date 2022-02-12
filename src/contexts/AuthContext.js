@@ -1,5 +1,5 @@
 import { inMemoryPersistence, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
-import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, runTransaction, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { auth, db } from '../../services/firebase'
@@ -31,6 +31,27 @@ export default function AuthProvider({ children }) {
 			setUserInfo({ ...userInfo, ...values })
 			return { res: true }
 		} catch (erro) {
+			return { res: false, erro }
+		}
+	}
+
+	const updateUserDBInfo = async (values) => {
+
+		try {
+			const { uid } = auth.currentUser
+			const userDocRef = doc(db, "usuarios", uid)
+			await runTransaction(db, async (transaction) => {
+				const userDoc = await transaction.get(userDocRef)
+				if (!userDoc.exists()) {
+					return { res: false, erro: "Usuário não existe" }
+				}
+				
+				transaction.update(userDocRef, values)
+				return { res: true, data: "Valores atualizados com sucesso" }
+			})
+			
+		} catch (erro) {
+			console.error(erro)
 			return { res: false, erro }
 		}
 	}
@@ -84,6 +105,7 @@ export default function AuthProvider({ children }) {
 		login,
 		getUserDBInfo,
 		setUserDBInfo,
+		updateUserDBInfo,
 		signOut,
 		signUp,
 		resetPassword
@@ -108,6 +130,7 @@ export function useAuth() {
 		signUp,
 		getUserDBInfo,
 		setUserDBInfo,
+		updateUserDBInfo,
 		resetPassword,
 		cadastro
 	} = context
@@ -120,6 +143,7 @@ export function useAuth() {
 		signUp,
 		getUserDBInfo,
 		setUserDBInfo,
+		updateUserDBInfo,
 		resetPassword,
 		cadastro
 	}
