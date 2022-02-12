@@ -45,11 +45,11 @@ export default function AuthProvider({ children }) {
 				if (!userDoc.exists()) {
 					return { res: false, erro: "Usuário não existe" }
 				}
-				
+
 				transaction.update(userDocRef, values)
 				return { res: true, data: "Valores atualizados com sucesso" }
 			})
-			
+
 		} catch (erro) {
 			console.error(erro)
 			return { res: false, erro }
@@ -61,13 +61,25 @@ export default function AuthProvider({ children }) {
 	}
 
 	const login = async (email, password, remember) => {
+		let erro = {}
 		if (!remember) {
-			setPersistence(auth, inMemoryPersistence)
-				.then(() =>
-					signInWithEmailAndPassword(auth, email, password)
-				)
+			erro = setPersistence(auth, inMemoryPersistence)
+				.then(() => {
+					return signInWithEmailAndPassword(auth, email, password)
+						.then(response => {
+
+						})
+						.catch(err => {
+							return { erro: "Não foi possível fazer login. Confira sua senha e seu email." }
+						})
+				})
+			return erro
 		}
-		signInWithEmailAndPassword(auth, email, password)
+		erro = signInWithEmailAndPassword(auth, email, password)
+			.catch(err => {
+				return { erro: "Não foi possível fazer login" }
+			})
+		return erro
 	}
 
 	const signOut = () => {

@@ -55,9 +55,9 @@ export function FormSettings(props) {
 			onSubmit={async (values) => {
 				nProgress.start()
 				handleValidImage()
+
 				setTimeout(() => {
 					handleUpdateUser(values)
-
 					nProgress.done()
 				}, 1000)
 			}}
@@ -65,10 +65,10 @@ export function FormSettings(props) {
 			{({ values }) => (
 
 				<Form
-					className="max-w-[90%] bg-indigo-700/80 m-6 p-2 rounded-2xl max-h-[1000rem]"
+					className="bg-indigo-700/80 p-2 rounded-2xl max-h-[1000rem]"
 				>
 					<div className="bg-[#005090]/90 flex flex-col gap-2 p-2 rounded-xl">
-						<div className="max-w-[30rem] m-auto p-2 text-white text-center">
+						<div className="max-w-[30rem] p-2 text-white text-center">
 							Alguns dos dados a seguir são inseridos automaticamente
 							no formulário de submissão de um novo projeto
 						</div>

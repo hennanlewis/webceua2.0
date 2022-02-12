@@ -40,29 +40,35 @@ export function NewProjectAnimalExperiment(props) {
 						</span>
 						<ConditionalInput
 							legend="Procedimentos experimentais do projeto"
-							name="experienciaProcedimento"
+							name="ExperienciaProcedimento"
 						>
-							<label className="flex flex-col">
+							<span className="flex flex-col">
 								<span>Duração:</span>
-								<span className="flex gap-1">
+								<label
+									htmlFor="ExperienciaProcedimentoTipoCurto"
+									className="flex gap-1"
+								>
 									<Field
 										type="radio"
 										value="curto"
-										id="experienciaProcedimentoTipo"
-										name="experienciaProcedimentoTipo"
+										id="ExperienciaProcedimentoTipoCurto"
+										name="ExperienciaProcedimentoTipo"
 									/>
 									<span className="translate-y-[-2px]">Curto</span>
-								</span>
-								<span className="flex gap-1">
+								</label>
+								<label
+									htmlFor="ExperienciaProcedimentoTipoLongo"
+									className="flex gap-1"
+								>
 									<Field
 										type="radio"
 										value="longo"
-										id="experienciaProcedimentoTipo"
-										name="experienciaProcedimentoTipo"
+										id="ExperienciaProcedimentoTipoLongo"
+										name="ExperienciaProcedimentoTipo"
 									/>
 									<span className="translate-y-[-2px]">Longo</span>
-								</span>
-							</label>
+								</label>
+							</span>
 						</ConditionalInput>
 					</fieldset>
 
@@ -72,18 +78,18 @@ export function NewProjectAnimalExperiment(props) {
 						</span>
 						<ConditionalInput
 							title="Realização de procedimento de estresse?"
-							name="experienciaProcedimentoEstresse"
+							name="ExperienciaProcedimentoEstresse"
 						>
 							<div className="flex flex-col">
 								<span>Tipo:</span>
 
-								<label htmlFor="experienciaProcedimentoEstresseTipo">
+								<label htmlFor="estressevalor1">
 									<span className="flex gap-1">
 										<Field
 											type="checkbox"
-											value="estresse"
+											value="Estresse"
 											id="estressevalor1"
-											name="experienciaProcedimentoEstresseTipo"
+											name="ExperienciaProcedimentoEstresseTipo"
 										/>
 										<span className="translate-y-[-2px]">Estresse</span>
 									</span>
@@ -93,9 +99,9 @@ export function NewProjectAnimalExperiment(props) {
 									<span className="flex gap-1">
 										<Field
 											type="checkbox"
-											value="dores"
+											value="Dor"
 											id="estressevalor2"
-											name="experienciaProcedimentoEstresseTipo"
+											name="ExperienciaProcedimentoEstresseTipo"
 										/>
 										<span className="translate-y-[-2px]">Dor</span>
 									</span>
@@ -105,10 +111,10 @@ export function NewProjectAnimalExperiment(props) {
 									<span className="flex gap-1">
 										<Field
 											type="checkbox"
-											value="outros"
+											value="Outros"
 											id="estressevalor3"
-											name="experienciaProcedimentoEstresseTipo"
-											onChange={event => checkedFunction(event)}
+											name="ExperienciaProcedimentoEstresseTipo"
+											onClick={checkedFunction}
 										/>
 										<span className="translate-y-[-2px]">Outro</span>
 									</span>
@@ -124,7 +130,7 @@ export function NewProjectAnimalExperiment(props) {
 										className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 										type="text"
 										id="experienciaEstresse"
-										name="experienciaEstresse"
+										name="ExperienciaEstresse"
 									/>
 									<span className="translate-y-[-2px]">Tipo de estresse</span>
 								</label>
@@ -138,7 +144,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaEstresseJustificativa"
-									name="experienciaEstresseJustificativa"
+									name="ExperienciaEstresseJustificativa"
 								/>
 								<span>Justificativa</span>
 							</label>
@@ -152,7 +158,7 @@ export function NewProjectAnimalExperiment(props) {
 						</span>
 						<ConditionalInput
 							legend="Imobilização do animal"
-							name="experienciaImobilizacao"
+							name="ExperienciaImobilizacao"
 						>
 							<label
 								htmlFor="experienciaImobilizacaoTipo"
@@ -162,7 +168,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaImobilizacaoTipo"
-									name="experienciaImobilizacaoTipo"
+									name="ExperienciaImobilizacaoTipo"
 								/>
 								<span>Tipo</span>
 							</label>
@@ -175,7 +181,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaImobilizacaoTempo"
-									name="experienciaImobilizacaoTempo"
+									name="ExperienciaImobilizacaoTempo"
 								/>
 								<span>Tempo</span>
 							</label>
@@ -188,7 +194,7 @@ export function NewProjectAnimalExperiment(props) {
 						</span>
 						<ConditionalInput
 							title="Jejum"
-							name="experienciaAlimentar"
+							name="ExperienciaAlimentar"
 						>
 							<label
 								htmlFor="experienciaAlimentarDuracao"
@@ -198,7 +204,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaAlimentarDuracao"
-									name="experienciaAlimentarDuracao"
+									name="ExperienciaAlimentarDuracao"
 								/>
 								<span>Duração em horas</span>
 							</label>
@@ -211,7 +217,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaAlimentarJustificativa"
-									name="experienciaAlimentarJustificativa"
+									name="ExperienciaAlimentarJustificativa"
 								/>
 								<span>Justificativa</span>
 							</label>
@@ -219,7 +225,7 @@ export function NewProjectAnimalExperiment(props) {
 
 						<ConditionalInput
 							title="Restrição hídrica"
-							name="experienciaRestricao"
+							name="ExperienciaRestricao"
 						>
 							<label
 								htmlFor="experienciaRestricaoDuracao"
@@ -229,7 +235,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaRestricaoDuracao"
-									name="experienciaRestricaoDuracao"
+									name="ExperienciaRestricaoDuracao"
 								/>
 								<span>Duração em horas</span>
 							</label>
@@ -242,7 +248,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaRestricaoJustificativa"
-									name="experienciaRestricaoJustificativa"
+									name="ExperienciaRestricaoJustificativa"
 								/>
 								<span>Justificativa</span>
 							</label>
@@ -256,30 +262,39 @@ export function NewProjectAnimalExperiment(props) {
 						</span>
 						<ConditionalInput
 							legend="Realização de cirurgia"
-							name="experienciaCirurgia"
+							name="ExperienciaCirurgia"
 						>
-							<label
-								className="flex flex-col"
-								htmlFor="si"
-							>
+							<span className="flex flex-col">
 								<span>Tipo:</span>
-								<span className="flex gap-1">
-									<Field
-										type="radio"
-										value="unica"
-										name="experienciaCirurgiaTipo"
-									/>
-									<span>Única</span>
-								</span>
-								<span className="flex gap-1">
-									<Field
-										type="radio"
-										value="multipla"
-										name="experienciaCirurgiaTipo"
-									/>
-									<span>Múltipla</span>
-								</span>
-							</label>
+								<label
+									htmlFor="ExperienciaCirurgiaTipoUnica"
+									className="flex flex-col"
+								>
+									<span className="flex gap-1">
+										<Field
+											type="radio"
+											value="unica"
+											id="ExperienciaCirurgiaTipoUnica"
+											name="ExperienciaCirurgiaTipo"
+										/>
+										<span>Única</span>
+									</span>
+								</label>
+								<label
+									htmlFor="ExperienciaCirurgiaTipoMultipla"
+									className="flex flex-col"
+								>
+									<span className="flex gap-1">
+										<Field
+											type="radio"
+											value="multipla"
+											id="ExperienciaCirurgiaTipoMultipla"
+											name="ExperienciaCirurgiaTipo"
+										/>
+										<span>Múltipla</span>
+									</span>
+								</label>
+							</span>
 
 							<label
 								htmlFor="experienciaCirurgiaMesmoAto"
@@ -289,7 +304,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaCirurgiaMesmoAto"
-									name="experienciaCirurgiaMesmoAto"
+									name="ExperienciaCirurgiaMesmoAto"
 								/>
 								<span>No mesmo ato cirúrgico ou em atos diferentes?</span>
 							</label>
@@ -301,7 +316,7 @@ export function NewProjectAnimalExperiment(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="experienciaCirurgiaNome"
-									name="experienciaCirurgiaNome"
+									name="ExperienciaCirurgiaNome"
 								/>
 								<span>Qual?</span>
 							</label>

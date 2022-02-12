@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { Field, Form, Formik } from 'formik'
 
@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/AuthContext'
 
 export function LoginForm() {
 	const { login } = useAuth()
+	const [erroMessage, setErroMessage] = useState("")
 
 	return (
 		<>
@@ -25,10 +26,14 @@ export function LoginForm() {
 				}}
 				onSubmit={(values, { setSubmitting }) => {
 					login(values.email, values.password, values["remember-me"])
+						.then(response => {
+							if(response)
+								setErroMessage(response.erro)
+						})
 					setSubmitting(false)
 				}}
 			>
-				{({}) => (
+				{({ }) => (
 
 					<Form className="mt-8 space-y-6">
 						<input type="hidden" name="remember" value="true" />
@@ -56,6 +61,8 @@ export function LoginForm() {
 								/>
 							</div>
 						</div>
+
+						{erroMessage && <div className="text-center">{erroMessage}</div>}
 
 						<div className="flex items-center justify-between">
 							<div className="flex items-center">

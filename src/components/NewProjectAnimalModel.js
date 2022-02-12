@@ -55,12 +55,12 @@ export function NewProjectAnimalModel(props) {
 							<span className="">
 								Justificativa do uso do modelo
 							</span>
-							<textarea
+							<Field
+								as="textarea"
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								id="ModeloAnimalJustificativa"
 								name="ModeloAnimalJustificativa"
-							>
-							</textarea>
+							/>
 						</label>
 					</fieldset>
 
@@ -181,67 +181,80 @@ export function NewProjectAnimalModel(props) {
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Métodos de captura
 						</span>
-						<textarea
+						<Field
+							as="textarea"
 							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="ModeloAnimalMetodosCaptura"
 							name="ModeloAnimalMetodosCaptura"
-						>
-
-						</textarea>
+						/>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">Planejamento estatístico/delineamento experimental</span>
-						<textarea
+						<Field
+							as="textarea"
 							className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="ModeloAnimalPlanejamentoEstatistico"
 							name="ModeloAnimalPlanejamentoEstatistico"
-						>
-
-						</textarea>
+						/>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Grau de invasividade
 						</span>
-						<label className="flex flex-col gap-1" htmlFor="gi1">
-							<span className="flex gap-1">
+						<span className="flex flex-col gap-1">
+							<label
+								htmlFor="gi1"
+								className="flex gap-1"
+							>
 								<Field
 									type="radio"
-									value="gi1" id="gi1" name="ModeloAnimalInvasividade"
+									value="GI 1" id="gi1" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 1</span>
-							</span>
-							<span className="flex gap-1">
+							</label>
+							<label
+								htmlFor="gi2"
+								className="flex gap-1"
+							>
 								<Field
 									type="radio"
-									value="gi2" id="gi2" name="ModeloAnimalInvasividade"
+									value="GI 2" id="gi2" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 2</span>
-							</span>
-							<span className="flex gap-1">
+							</label>
+							<label
+								htmlFor="gi3"
+								className="flex gap-1"
+							>
 								<Field
 									type="radio"
-									value="gi3" id="gi3" name="ModeloAnimalInvasividade"
+									value="GI 3" id="gi3" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 3</span>
-							</span>
-							<span className="flex gap-1">
+							</label>
+							<label
+								htmlFor="gi4"
+								className="flex gap-1"
+							>
 								<Field
 									type="radio"
-									value="gi4" id="gi4" name="ModeloAnimalInvasividade"
+									value="GI 4" id="gi4" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">GI 4</span>
-							</span>
-							<span className="flex gap-1">
+							</label>
+							<label
+								htmlFor="giN"
+								className="flex gap-1"
+							>
 								<Field
 									type="radio"
-									value="giN" id="giN" name="ModeloAnimalInvasividade"
+									value="Não se aplica" id="giN" name="ModeloAnimalInvasividade"
 								/>
 								<span className="mb-1">Não e aplica</span>
-							</span>
-						</label>
+							</label>
+						</span>
 
 						<ConditionalInput
 							title="Os materiais biológicos destes exemplares serão usados em outro(s) projeto(s)?"
@@ -440,6 +453,6 @@ export function NewProjectAnimalModel(props) {
 					</fieldset>
 				</div>
 			</div>
-		</div>
+		</div >
 	)
 }

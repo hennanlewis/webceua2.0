@@ -41,7 +41,7 @@ export function NewProjectMainData(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
 									type="date"
 									id="dadosPrazoInicio"
-									name="PrazoInicio"
+									name="DadosPrazoInicio"
 								/>
 							</label>
 
@@ -54,7 +54,7 @@ export function NewProjectMainData(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="date"
 									id="dadosPrazoTermino"
-									name="PrazoTermino"
+									name="DadosPrazoTermino"
 								/>
 							</label>
 						</div>
@@ -73,7 +73,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosProjetoTitulo"
-								name="ProjetoTitulo"
+								name="DadosProjetoTitulo"
 								placeholder="O modelo animal deve estar descrito no título"
 							/>
 						</label>
@@ -87,7 +87,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosProjetoTituloEN"
-								name="ProjetoTituloEN"
+								name="DadosProjetoTituloEN"
 								placeholder="O modelo animal deve estar descrito no título"
 							/>
 						</label>
@@ -101,7 +101,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosProjetoArea"
-								name="ProjetoArea"
+								name="DadosProjetoArea"
 							/>
 						</label>
 					</fieldset>
@@ -119,7 +119,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelNome"
-								name="ResponsavelNome"
+								name="DadosResponsavelNome"
 								placeholder="Digite seu nome completo"
 							/>
 						</label>
@@ -133,7 +133,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelInstituicao"
-								name="ResponsavelInstituicao"
+								name="DadosResponsavelInstituicao"
 							/>
 						</label>
 
@@ -146,7 +146,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelDepartamento"
-								name="ResponsavelDepartamento"
+								name="DadosResponsavelDepartamento"
 							/>
 						</label>
 
@@ -159,13 +159,13 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLattes"
-								name="ResponsavelLattes"
+								name="DadosResponsavelLattes"
 							/>
 						</label>
 
 						<ConditionalInput
 							title="Experiência prévia"
-							name="ResponsavelExperiencia"
+							name="DadosResponsavelExperiencia"
 						>
 							<label
 								className="flex flex-col"
@@ -176,14 +176,14 @@ export function NewProjectMainData(props) {
 									className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="dadosResponsavelTempoExperiencia"
-									name="ResponsavelTempoExperiencia"
+									name="DadosResponsavelTempoExperiencia"
 								/>
 							</label>
 						</ConditionalInput>
 
 						<ConditionalInput
 							title="Treinamento"
-							name="ResponsavelTreinamento"
+							name="DadosResponsavelTreinamento"
 						>
 							<label
 								className="flex flex-col"
@@ -194,7 +194,7 @@ export function NewProjectMainData(props) {
 									className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 									type="text"
 									id="dadosResponsavelTempoTreinamento"
-									name="ResponsavelTempoTreinamento"
+									name="DadosResponsavelTempoTreinamento"
 								/>
 							</label>
 						</ConditionalInput>
@@ -206,7 +206,7 @@ export function NewProjectMainData(props) {
 									<Field
 										type="radio" value="docente"
 										id="dadosResponsavelVinculoDocente"
-										name="ResponsavelVinculo"
+										name="DadosResponsavelVinculo"
 									/>
 									<span className="translate-y-[-2px]">
 										Docente/Pesquisador</span>
@@ -216,7 +216,7 @@ export function NewProjectMainData(props) {
 								<Field
 									type="radio" value="técnico"
 									id="dadosResponsavelVinculoTecnico"
-									name="vinculo"
+									name="Dadosvinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Técnico Nível Superior</span>
@@ -225,7 +225,7 @@ export function NewProjectMainData(props) {
 								<Field
 									type="radio" value="jovem_pes"
 									id="dadosResponsavelVinculoJovem"
-									name="vinculo"
+									name="Dadosvinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Jovem Pes./Pes. Visitante</span>
@@ -241,7 +241,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="tel"
 								id="dadosResponsavelTelefone"
-								name="ResponsavelTelefone"
+								name="DadosResponsavelTelefone"
 							/>
 						</label>
 
@@ -254,7 +254,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLocal"
-								name="ResponsavelLocal"
+								name="DadosResponsavelLocal"
 							/>
 						</label>
 
@@ -267,7 +267,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="email"
 								id="dadosResponsavelEmail"
-								name="ResponsavelEmail"
+								name="DadosResponsavelEmail"
 							/>
 						</label>
 
@@ -280,7 +280,7 @@ export function NewProjectMainData(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								type="text"
 								id="dadosResponsavelLocalexperimentos"
-								name="ResponsavelLocalexperimentos"
+								name="DadosResponsavelLocalexperimentos"
 							/>
 						</label>
 					</fieldset>
@@ -290,11 +290,12 @@ export function NewProjectMainData(props) {
 						>
 							Resumo do Projeto
 						</span>
-						<textarea
+						<Field
+							as="textarea"
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosResumo"
-							name="Resumo"
-						></textarea>
+							name="DadosResumo"
+						/>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -302,11 +303,12 @@ export function NewProjectMainData(props) {
 						>
 							Objetivos
 						</span>
-						<textarea
+						<Field
+							as="textarea"
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosObjetivos"
-							name="Objetivos"
-						></textarea>
+							name="DadosObjetivos"
+						/>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -314,11 +316,12 @@ export function NewProjectMainData(props) {
 						>
 							Justificativa
 						</span>
-						<textarea
+						<Field
+							as="textarea"
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosJustificativa"
-							name="Justificativa"
-						></textarea>
+							name="DadosJustificativa"
+						/>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -326,11 +329,12 @@ export function NewProjectMainData(props) {
 						>
 							Relevância
 						</span>
-						<textarea
+						<Field
+							as="textarea"
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosRelevancia"
-							name="Relevancia"
-						></textarea>
+							name="DadosRelevancia"
+						/>
 					</fieldset>
 				</div>
 			</div>

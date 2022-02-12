@@ -80,7 +80,7 @@ export default function NewProject() {
 
 					<Main center>
 						<div className="flex flex-col items-center gap-10">
-							<div className="grow-0 relative flex mt-10 px-4 py-2 text-2xl rounded-xl bg-white shadow-[0_2px_5px_#0008] xs:scale-90">
+							<div className="grow-0 relative flex px-4 py-2 text-2xl rounded-xl bg-white shadow-[0_2px_5px_#0008] xs:scale-90">
 								<span className={`absolute w-12 -ml-1 h-12 rounded-full bg-[#005090] shadow-[0_2px_10px_#000] translate-x- ring-white ring-4 ${translateIndicator[formPosition]} -translate-y-6 duration-200`}></span>
 								{
 									icons.map((_, index) =>
