@@ -23,9 +23,10 @@ import { NewProjectAnimalPostoperative } from "../src/components/NewProjectAnima
 import { NewProjectAttachments } from "../src/components/NewProjectAttachments"
 
 import initialProjectValues from '../src/utils/initialProjectValues'
+import nProgress from "nprogress"
 
 export default function NewProject() {
-	const { currentUser, userInfo } = useAuth()
+	const { currentUser, userInfo, setProjects } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 
 	const [openMenu, setOpenMenu] = useState(
@@ -111,7 +112,13 @@ export default function NewProject() {
 									ResponsavelEmail: userInfo.ResponsavelEmail || "",
 								}}
 								onSubmit={values => {
-									console.log(values)
+									nProgress.start()
+
+									setTimeout(async () => {
+										const x = await setProjects(values)
+										nProgress.done()
+										console.log(x)
+									}, 1000)
 								}}
 							>
 								{({ values }) => (

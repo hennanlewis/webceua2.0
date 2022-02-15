@@ -35,6 +35,16 @@ export default function AuthProvider({ children }) {
 		}
 	}
 
+	const setProjects = async (values) => {
+		try {
+			const { uid } = auth.currentUser
+			await setDoc(doc(collection(db, "usuarios", uid, "projetos")), values)
+			return { res: true }
+		} catch (erro) {
+			return { res: false, erro }
+		}
+	}
+
 	const updateUserDBInfo = async (values) => {
 
 		try {
@@ -117,6 +127,7 @@ export default function AuthProvider({ children }) {
 		login,
 		getUserDBInfo,
 		setUserDBInfo,
+		setProjects,
 		updateUserDBInfo,
 		signOut,
 		signUp,
@@ -142,6 +153,7 @@ export function useAuth() {
 		signUp,
 		getUserDBInfo,
 		setUserDBInfo,
+		setProjects,
 		updateUserDBInfo,
 		resetPassword,
 		cadastro
@@ -155,6 +167,7 @@ export function useAuth() {
 		signUp,
 		getUserDBInfo,
 		setUserDBInfo,
+		setProjects,
 		updateUserDBInfo,
 		resetPassword,
 		cadastro
