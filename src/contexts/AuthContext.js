@@ -1,5 +1,5 @@
 import { inMemoryPersistence, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
-import { addDoc, collection, doc, getDoc, runTransaction, setDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, getDocs, query, runTransaction, setDoc } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { auth, db } from '../../services/firebase'
@@ -19,6 +19,7 @@ export default function AuthProvider({ children }) {
 			if (data.exists()) {
 				return { res: true, data: data.data() }
 			}
+			return { res: false, data: "Sem usuário" }
 		} catch (erro) {
 			return { res: false, erro }
 		}
@@ -35,7 +36,33 @@ export default function AuthProvider({ children }) {
 		}
 	}
 
-	const setProjects = async (values) => {
+	const getProjects = async () => {
+		const { uid } = auth.currentUser
+		try {
+			const data = await getDocs(query(collection(db, "usuarios", uid, "projetos")))
+			data.forEach((doc) => {
+				// doc.data() is never undefined for query doc snapshots
+				console.log(doc.data())
+			})
+		} catch (erro) {
+			return { res: false, erro }
+		}
+	}
+
+	const getProject = async () => {
+		const { uid } = auth.currentUser
+		try {
+			const data = await getDoc(doc(db, "usuarios", uid, "projetos"))
+			if (data.exists()) {
+				return { res: true, data: data.data() }
+			}
+			return { res: false, data: "Sem projeto" }
+		} catch (erro) {
+			return { res: false, erro }
+		}
+	}
+
+	const setProject = async (values) => {
 		try {
 			const { uid } = auth.currentUser
 			await setDoc(doc(collection(db, "usuarios", uid, "projetos")), values)
@@ -127,7 +154,9 @@ export default function AuthProvider({ children }) {
 		login,
 		getUserDBInfo,
 		setUserDBInfo,
-		setProjects,
+		getProjects,
+		getProject,
+		setProject,
 		updateUserDBInfo,
 		signOut,
 		signUp,
@@ -153,7 +182,9 @@ export function useAuth() {
 		signUp,
 		getUserDBInfo,
 		setUserDBInfo,
-		setProjects,
+		getProjects,
+		getProject,
+		setProject,
 		updateUserDBInfo,
 		resetPassword,
 		cadastro
@@ -167,7 +198,9 @@ export function useAuth() {
 		signUp,
 		getUserDBInfo,
 		setUserDBInfo,
-		setProjects,
+		getProjects,
+		getProject,
+		setProject,
 		updateUserDBInfo,
 		resetPassword,
 		cadastro

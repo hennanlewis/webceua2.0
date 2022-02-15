@@ -26,7 +26,7 @@ import initialProjectValues from '../src/utils/initialProjectValues'
 import nProgress from "nprogress"
 
 export default function NewProject() {
-	const { currentUser, userInfo, setProjects } = useAuth()
+	const { currentUser, userInfo, setProject } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 
 	const [openMenu, setOpenMenu] = useState(
@@ -115,7 +115,7 @@ export default function NewProject() {
 									nProgress.start()
 
 									setTimeout(async () => {
-										const x = await setProjects(values)
+										const x = await setProject(values)
 										nProgress.done()
 										console.log(x)
 									}, 1000)

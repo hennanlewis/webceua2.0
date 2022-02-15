@@ -9,7 +9,7 @@ import { UserMenu } from "../src/components/UserMenu"
 import { useAuth } from "../src/contexts/AuthContext"
 
 export default function Dashboard() {
-	const { currentUser } = useAuth()
+	const { currentUser, getProjects } = useAuth()
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
 		{ userMenu: false }
@@ -24,6 +24,16 @@ export default function Dashboard() {
 	const handleOpenNavMenu = (key) => {
 		setOpenMenu({ ...openMenu, [key]: !openMenu[key] })
 	}
+
+	useEffect(() => {
+		getProjects()
+			.then(response => {
+				console.log(response)
+			})
+			.catch(erro => {
+				console.log(erro)
+			})
+	}, [])
 
 	return (currentUser &&
 		<>
