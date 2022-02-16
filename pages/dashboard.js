@@ -61,7 +61,7 @@ export default function Dashboard() {
 							{projetos &&
 								<div className="flex flex-col lg:flex-row bg-[#005090] rounded-2xl gap-4 p-4 max-h-[1000rem] shadow-[0_1px_5px_#000]">
 									<div className="flex flex-col m-auto lg:w-60">
-										<h3 class="text-2xl text-center lg:text-right font-extrabold tracking-tight text-white sm:text-3xl">Projetos</h3>
+										<h3 className="text-2xl text-center lg:text-right font-extrabold tracking-tight text-white sm:text-3xl">Projetos</h3>
 										<div className="text-sm text-white text-center lg:text-right">
 											Para visualizar os dados de cada projeto, clique no título do respectivo projeto desejado.
 
@@ -74,41 +74,41 @@ export default function Dashboard() {
 											</div>
 										</div>
 									</div>
-									<table class="overflow-hidden rounded-lg">
-										<thead class="bg-gray-50">
+									<table className="overflow-hidden rounded-lg">
+										<thead className="bg-gray-50">
 											<tr className="bg-black">
-												<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Título</th>
-												<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-												<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pesquisadores</th>
-												<th scope="col" class="relative px-6 py-3">
-													<span class="sr-only">Edit</span>
+												<th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Título</th>
+												<th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+												<th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Pesquisadores</th>
+												<th scope="col" className="relative px-6 py-3">
+													<span className="sr-only">Edit</span>
 												</th>
 											</tr>
 										</thead>
-										<tbody class="bg-white divide-y divide-gray-200">
+										<tbody className="bg-white divide-y divide-gray-200">
 											{projetos.filter(item => item.status === "Salvo").map(item =>
 												<tr>
-													<td class="px-6 py-4 whitespace-nowrap">
-														<div class="flex items-center">
-															<div class="ml-4">
-																<div class="text-sm font-medium text-gray-900">{item.projeto.DadosProjetoTitulo || "Projeto sem título"}</div>
+													<td className="px-6 py-4 whitespace-nowrap">
+														<div className="flex items-center">
+															<div className="ml-4">
+																<div className="text-sm font-medium text-gray-900">{item.projeto.DadosProjetoTitulo || "Projeto sem título"}</div>
 															</div>
 														</div>
 													</td>
-													<td class="px-6 py-4 whitespace-nowrap">
-														<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{item.status}</span>
+													<td className="px-6 py-4 whitespace-nowrap">
+														<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{item.status}</span>
 													</td>
-													<td class="px-6 py-4 whitespace-nowrap">
-														<div class="flex items-center">
-															<div class="ml-4">
-																<div class="text-sm font-medium text-gray-900">
+													<td className="px-6 py-4 whitespace-nowrap">
+														<div className="flex items-center">
+															<div className="ml-4">
+																<div className="text-sm font-medium text-gray-900">
 																	<img className="w-8 h-8 rounded-full" src={userInfo.foto} />
 																</div>
 															</div>
 														</div>
 													</td>
-													<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-														<a href="#" class="text-indigo-600 hover:text-indigo-900">Editar</a>
+													<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+														<a href="#" className="text-indigo-600 hover:text-indigo-900">Editar</a>
 													</td>
 												</tr>
 											)}
