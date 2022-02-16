@@ -87,7 +87,7 @@ export default function Dashboard() {
 										</thead>
 										<tbody className="bg-white divide-y divide-gray-200">
 											{projetos.filter(item => item.status === "Salvo").map(item =>
-												<tr>
+												<tr key={item.id}>
 													<td className="px-6 py-4 whitespace-nowrap">
 														<div className="flex items-center">
 															<div className="ml-4">
