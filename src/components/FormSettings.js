@@ -1,4 +1,5 @@
 import { Field, Form, Formik } from 'formik'
+import { urlObjectKeys } from 'next/dist/shared/lib/utils'
 import Router from 'next/router'
 import nProgress from 'nprogress'
 import React, { useEffect, useState } from 'react'
@@ -17,8 +18,8 @@ export function FormSettings(props) {
 		}
 	}, [currentUser])
 
-	const handleUpdateUser = (values) => {
-		updateUserDBInfo({
+	const handleUpdateUser = async (values) => {
+		await updateUserDBInfo({
 			nome: values.nome,
 			departamento: values.departamento,
 			vinculo: values.vinculo,
@@ -47,17 +48,17 @@ export function FormSettings(props) {
 				departamento: "",
 				vinculo: "",
 				telefone: "",
-				fotoNova: "",
+				fotoNova: foto,
 				instituicao: "",
 				lattes: "",
 				...userInfo
 			}}
 			onSubmit={async (values) => {
 				nProgress.start()
-				handleValidImage()
+				handleValidImage(values.foto)
 
-				setTimeout(() => {
-					handleUpdateUser(values)
+				setTimeout(async () => {
+					await handleUpdateUser(values)
 					nProgress.done()
 				}, 1000)
 			}}
@@ -75,12 +76,12 @@ export function FormSettings(props) {
 						<div className="flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 
 							<fieldset className="flex flex-col gap-4">
-								<span className="flex flex-col -mb-4 p-2 py-1 -ml-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
+								<span className="flex flex-col p-2 py-1 -ml-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 									Meus dados
 								</span>
 
-								<div className="flex justify-center gap-2 h-28 mt-2 mx-2 rounded-md">
-									<img className="w-28 object-cover rounded-lg" src={showFoto ? foto : userInfo.foto} />
+								<div className="flex flex-col items-center h-40 mt-2 mx-2 rounded-md">
+									<img className="w-40 object-cover rounded-lg" src={showFoto ? foto : userInfo.foto} />
 								</div>
 
 								<label
@@ -99,7 +100,7 @@ export function FormSettings(props) {
 										type="button"
 										onClick={() => handleValidImage(values.fotoNova)}
 									>
-										{showFoto ? "Desfazer" : "Visualizar"}
+										{!showFoto ? "Visualizar" : "Foto padrão"}
 									</button>
 								</label>
 

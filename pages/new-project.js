@@ -101,15 +101,16 @@ export default function NewProject() {
 							</div>
 
 							<Formik
+								enableReinitialize
 								initialValues={{
 									...initialProjectValues,
-									ResponsavelNome: userInfo.nome || "",
-									ResponsavelInstituicao: userInfo.instituicao || "",
-									ResponsavelDepartamento: userInfo.departartamento || "",
-									ResponsavelLattes: userInfo.lattes || "",
-									ResponsavelVinculo: userInfo.vinculo || "",
-									ResponsavelTelefone: userInfo.telefone || "",
-									ResponsavelEmail: userInfo.ResponsavelEmail || "",
+									DadosResponsavelNome: userInfo.nome || "",
+									DadosResponsavelInstituicao: userInfo.instituicao || "",
+									DadosResponsavelDepartamento: userInfo.departartamento || "",
+									DadosResponsavelLattes: userInfo.lattes || "",
+									DadosResponsavelVinculo: userInfo.vinculo || "",
+									DadosResponsavelTelefone: userInfo.telefone || "",
+									DadosResponsavelEmail: userInfo.ResponsavelEmail || "",
 								}}
 								onSubmit={values => {
 									nProgress.start()

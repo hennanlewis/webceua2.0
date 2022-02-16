@@ -1,14 +1,13 @@
 import axios from "axios"
 
-export async function isValidImage(urlCheck, defauldUrl) {
+export async function isValidImage(urlCheck, defaultUrl) {
 	try {
 		const response = await axios.get(urlCheck)
 		if (response.headers["content-type"].match(/^image/g)[0].length) {
 			return urlCheck
 		}
-		return defauldUrl
+		return defaultUrl
 	} catch (erro) {
-		console.log(erro)
-		return defauldUrl
+		return defaultUrl
 	}
 }

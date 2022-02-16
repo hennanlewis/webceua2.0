@@ -1,5 +1,5 @@
 import { inMemoryPersistence, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
-import { addDoc, collection, doc, getDoc, getDocs, query, runTransaction, setDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, getDoc, getDocs, query, runTransaction, setDoc, where } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { auth, db } from '../../services/firebase'
@@ -36,23 +36,48 @@ export default function AuthProvider({ children }) {
 		}
 	}
 
-	const getProjects = async () => {
-		const { uid } = auth.currentUser
+	const updateUserDBInfo = async (values) => {
 		try {
-			const data = await getDocs(query(collection(db, "usuarios", uid, "projetos")))
+			const { uid } = auth.currentUser
+			const userDocRef = doc(db, "usuarios", uid)
+			return await runTransaction(db, async (transaction) => {
+				const userDoc = await transaction.get(userDocRef)
+				if (!userDoc.exists()) {
+					return { res: false, erro: "Usuário não existe" }
+				}
+
+				transaction.update(userDocRef, values)
+				setUserInfo({ ...userInfo, ...values })
+				return { res: true, data: "Valores atualizados com sucesso" }
+			})
+
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
+	const getProjects = async () => {
+		try {
+			const { uid } = auth.currentUser
+			const data = await getDocs(query(collection(db, "projetos"), where("uid", "==", uid)))
+
+			const dataArray = []
 			data.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
-				console.log(doc.data())
+				dataArray = [ ...dataArray, {...doc.data(), id: doc.id} ]
 			})
+			return { res: true, data: dataArray }
 		} catch (erro) {
 			return { res: false, erro }
 		}
 	}
 
 	const getProject = async () => {
-		const { uid } = auth.currentUser
 		try {
-			const data = await getDoc(doc(db, "usuarios", uid, "projetos"))
+			const { uid } = auth.currentUser
+			const data = await getDocs(query(collection(db, "projetos")))
+
 			if (data.exists()) {
 				return { res: true, data: data.data() }
 			}
@@ -65,30 +90,17 @@ export default function AuthProvider({ children }) {
 	const setProject = async (values) => {
 		try {
 			const { uid } = auth.currentUser
-			await setDoc(doc(collection(db, "usuarios", uid, "projetos")), values)
+			const noEmptyValues = Object.fromEntries(Object
+				.entries(values)
+				.filter(([_, value]) => value != ""))
+			await setDoc(doc(collection(db, "projetos")),
+				{
+					uid,
+					projeto: noEmptyValues,
+					status: "Salvo"
+				})
 			return { res: true }
 		} catch (erro) {
-			return { res: false, erro }
-		}
-	}
-
-	const updateUserDBInfo = async (values) => {
-
-		try {
-			const { uid } = auth.currentUser
-			const userDocRef = doc(db, "usuarios", uid)
-			await runTransaction(db, async (transaction) => {
-				const userDoc = await transaction.get(userDocRef)
-				if (!userDoc.exists()) {
-					return { res: false, erro: "Usuário não existe" }
-				}
-
-				transaction.update(userDocRef, values)
-				return { res: true, data: "Valores atualizados com sucesso" }
-			})
-
-		} catch (erro) {
-			console.error(erro)
 			return { res: false, erro }
 		}
 	}
