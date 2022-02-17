@@ -57,6 +57,23 @@ export default function AuthProvider({ children }) {
 		}
 	}
 
+	const getProjectsCoord = async () => {
+		try {
+			const { uid } = auth.currentUser
+			const data = await getDocs(query(collection(db, "projetos"), where("status", "!=", "Salvo")))
+
+			const dataArray = []
+			data.forEach((doc) => {
+				// doc.data() is never undefined for query doc snapshots
+				dataArray = [ ...dataArray, {...doc.data(), id: doc.id} ]
+			})
+			return { res: true, data: dataArray }
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
 	const getProjects = async () => {
 		try {
 			const { uid } = auth.currentUser
@@ -69,20 +86,29 @@ export default function AuthProvider({ children }) {
 			})
 			return { res: true, data: dataArray }
 		} catch (erro) {
+			console.error(erro)
 			return { res: false, erro }
 		}
 	}
 
-	const getProject = async () => {
+	const updateProject = async (values) => {
 		try {
-			const { uid } = auth.currentUser
-			const data = await getDocs(query(collection(db, "projetos")))
+			const noEmptyValues = Object.fromEntries(Object
+				.entries(values.projeto)
+				.filter(([_, value]) => value != ""))
+			const userDocRef = doc(db, "projetos", values.id)
+			return await runTransaction(db, async (transaction) => {
+				const userDoc = await transaction.get(userDocRef)
+				if (!userDoc.exists()) {
+					return { res: false, erro: "Projeto não existe" }
+				}
 
-			if (data.exists()) {
-				return { res: true, data: data.data() }
-			}
-			return { res: false, data: "Sem projeto" }
+				transaction.update(userDocRef, { projeto: noEmptyValues })
+				return { res: true, data: "Valores atualizados com sucesso" }
+			})
+
 		} catch (erro) {
+			console.error(erro)
 			return { res: false, erro }
 		}
 	}
@@ -101,11 +127,12 @@ export default function AuthProvider({ children }) {
 				})
 			return { res: true }
 		} catch (erro) {
+			console.error(erro)
 			return { res: false, erro }
 		}
 	}
 
-	const cadastro = (values) => {
+	const signUp = (values) => {
 		return addDoc(collection(db, "cadastros"), values)
 	}
 
@@ -135,7 +162,7 @@ export default function AuthProvider({ children }) {
 		return auth.signOut()
 	}
 
-	const signUp = (email, password) => {
+	const createSignUp = (email, password) => {
 		return auth.createUserWithEmailAndPassword(email, password)
 	}
 
@@ -144,6 +171,7 @@ export default function AuthProvider({ children }) {
 			const data = await sendPasswordResetEmail(auth, email)
 			return { res: true, data }
 		} catch (erro) {
+			console.error(erro)
 			return { res: false, erro }
 		}
 	}
@@ -162,16 +190,17 @@ export default function AuthProvider({ children }) {
 	const value = {
 		currentUser,
 		userInfo,
-		cadastro,
+		signUp,
 		login,
 		getUserDBInfo,
 		setUserDBInfo,
+		getProjectsCoord,
 		getProjects,
-		getProject,
+		updateProject,
 		setProject,
 		updateUserDBInfo,
 		signOut,
-		signUp,
+		createSignUp,
 		resetPassword
 	}
 
@@ -189,32 +218,34 @@ export function useAuth() {
 	const {
 		currentUser,
 		userInfo,
-		login,
-		signOut,
 		signUp,
+		login,
 		getUserDBInfo,
 		setUserDBInfo,
+		getProjectsCoord,
 		getProjects,
-		getProject,
+		updateProject,
 		setProject,
 		updateUserDBInfo,
-		resetPassword,
-		cadastro
+		signOut,
+		createSignUp,
+		resetPassword
 	} = context
 
 	return {
 		currentUser,
 		userInfo,
-		login,
-		signOut,
 		signUp,
+		login,
 		getUserDBInfo,
 		setUserDBInfo,
+		getProjectsCoord,
 		getProjects,
-		getProject,
+		updateProject,
 		setProject,
 		updateUserDBInfo,
-		resetPassword,
-		cadastro
+		signOut,
+		createSignUp,
+		resetPassword
 	}
 }

@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../src/contexts/AuthContext'
 
 export default function Home() {
-	const { currentUser, cadastro } = useAuth()
+	const { currentUser, signUp } = useAuth()
 
 	const [errorMessage, setErrorMessage] = useState('')
 
@@ -50,7 +50,7 @@ export default function Home() {
 								}
 								else setErrorMessage('')
 
-								cadastro(values)
+								signUp(values)
 
 								setTimeout(() => {
 									setSubmitting(false)

@@ -1,5 +1,4 @@
 import Link from "next/link"
-
 import userMenuValues from '../utils/userMenuValues'
 
 export function UserMenu(props) {

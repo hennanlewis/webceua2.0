@@ -1,5 +1,5 @@
 import Head from "next/head"
-import Router from "next/router"
+import Router, { useRouter } from "next/router"
 import { Form, Formik } from "formik"
 import { useEffect, useState } from "react"
 import { BsPeopleFill } from "react-icons/bs"
@@ -25,10 +25,10 @@ import { NewProjectAttachments } from "../src/components/NewProjectAttachments"
 import initialProjectValues from '../src/utils/initialProjectValues'
 import nProgress from "nprogress"
 
-export default function NewProject() {
-	const { currentUser, userInfo, setProject } = useAuth()
+export default function EditProject() {
+	const { currentUser, updateProject, getProjects } = useAuth()
+	const [projetos, setProjetos] = useState()
 	const [formPosition, setFormPosition] = useState(0)
-	const [loaded, setLoaded] = useState(false)
 
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
@@ -61,25 +61,37 @@ export default function NewProject() {
 		if (!currentUser) {
 			Router.push("/signout")
 		}
-		if(userInfo.atuador === "coord") {
-			Router.push("/dashboard")
-		}
-		setLoaded(true)
 	}, [currentUser])
+
+	useEffect(() => {
+		getProjects()
+			.then((response) => {
+				if (response.data.length) {
+					setProjetos(response.data)
+				}
+			})
+	}, [getProjects])
 
 	const handleOpenNavMenu = (key) => {
 		setOpenMenu({ ...openMenu, [key]: !openMenu[key] })
 	}
 
-	const handleSetProject = async (values) => {
-		const x = await setProject(values)
-		console.log(x)
-	}
+	const router = useRouter()
+	const {
+		query: { id },
+	} = router
 
-	return ( loaded &&
+	const handleUpdateProject = async (values) => {
+		const projectTest = projetos.filter(item => item.id === id)
+		if (projectTest.length && projectTest[0].status === "Salvo") {
+			const response = await updateProject({ projeto: values, id })
+			console.log(response)
+		}
+	}
+	return (currentUser &&
 		<>
 			<Head>
-				<title>Novo Projeto</title>
+				<title>Editar Projeto</title>
 			</Head>
 
 			<div className="min-h-[100vh] w-[100vw] relative flex flex-col">
@@ -87,7 +99,7 @@ export default function NewProject() {
 				<UserMenu openMenuState={openMenu} />
 
 				<div className="grow flex flex-col md:flex-row">
-					<NavMenu openMenuState={openMenu} currentURL="/new-project" />
+					<NavMenu openMenuState={openMenu} currentURL="/edit-project" />
 
 					<Main center>
 						<div className="flex flex-col items-center gap-10">
@@ -114,19 +126,13 @@ export default function NewProject() {
 								enableReinitialize
 								initialValues={{
 									...initialProjectValues,
-									DadosResponsavelNome: userInfo.nome || "",
-									DadosResponsavelInstituicao: userInfo.instituicao || "",
-									DadosResponsavelDepartamento: userInfo.departartamento || "",
-									DadosResponsavelLattes: userInfo.lattes || "",
-									DadosResponsavelVinculo: userInfo.vinculo || "",
-									DadosResponsavelTelefone: userInfo.telefone || "",
-									DadosResponsavelEmail: userInfo.ResponsavelEmail || "",
+									...projetos?.filter(item => item.id === id)[0].projeto
 								}}
 								onSubmit={async values => {
 									nProgress.start()
-										await handleSetProject(values)
-										nProgress.done()
-										Router.push("/dashboard")
+									await handleUpdateProject(values)
+									nProgress.done()
+									Router.push("/dashboard")
 								}}
 							>
 								{({ values }) => (
@@ -148,7 +154,7 @@ export default function NewProject() {
 												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 												type="submit"
 											>
-												Salvar projeto
+												Editar projeto
 											</button>
 										</span>
 									</Form>

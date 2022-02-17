@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useAuth } from "../contexts/AuthContext"
 
 export function ProjectsTable(props) {
@@ -18,26 +19,35 @@ export function ProjectsTable(props) {
 					</tr>
 				</thead>
 				<tbody className="bg-gray-50 ">
-					{projetos.filter(item => item.status === "Salvo").map(item =>
-						<tr className="border-b-[1px] hover:bg-gray-200" key={item.id}>
-							<td className="px-6 py-4 whitespace-nowrap">
-								<div className="flex items-center">
-									<div className="text-sm font-medium text-gray-900">{item.projeto.DadosProjetoTitulo || "Projeto sem título"}</div>
-								</div>
-							</td>
-							<td className="px-6 py-4 whitespace-nowrap">
-								<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{item.status}</span>
-							</td>
-							<td className="px-6 py-4 whitespace-nowrap">
-								<div className="flex items-center">
+					{projetos
+						.sort((a, b) => a.projeto.DadosProjetoTitulo > b.projeto.DadosProjetoTitulo)
+						.map(item =>
+							<tr className="border-b-[1px] hover:bg-gray-200" key={item.id}>
+								<td className="px-6 py-4 whitespace-nowrap">
+									<div className="flex items-center">
+										<div className="text-sm font-medium text-gray-900">{item.projeto.DadosProjetoTitulo || "Projeto sem título"}</div>
+									</div>
+								</td>
+								<td className="px-6 py-4 whitespace-nowrap">
+									<span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{item.status}</span>
+								</td>
+								<td className="px-6 py-4 whitespace-nowrap">
+									<div className="flex items-center">
 										<img className="w-8 h-8 rounded-full" src={userInfo.foto} />
-								</div>
-							</td>
-							<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-								<a href="#" className="text-indigo-600 hover:text-indigo-900">Editar</a>
-							</td>
-						</tr>
-					)}
+									</div>
+								</td>
+								<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+									{item.status === "Salvo" &&
+										<Link href={{
+											pathname: "/edit-project",
+											query: { id: item.id },
+										}}>
+											<a className="text-indigo-600 hover:text-indigo-900">Editar</a>
+										</Link>
+									}
+								</td>
+							</tr>
+						)}
 				</tbody>
 			</table>
 		</div>

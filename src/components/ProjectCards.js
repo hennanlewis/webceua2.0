@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { useAuth } from "../contexts/AuthContext"
 
 export function ProjectCards(props) {
@@ -8,9 +9,8 @@ export function ProjectCards(props) {
 		<div className="hidden xs:flex xs:flex-col grow gap-4 max-h-[1000rem]">
 			<div className="grid grid-cols-2 gap-4">
 				{projetos
-					.filter(item => item.status === "Salvo")
 					.map(item => (
-						<div className="bg-white rounded-2xl shadow-md border-[3px] border-[#005090]" key={item.id}>
+						<div className="overflow-hidden bg-white rounded-2xl shadow-md border-[3px] border-[#005090]" key={item.id}>
 							<div className="flex flex-col px-6 py-4 whitespace-nowrap">
 								<span className="text-lg font-medium text-center text-gray-900">{item.projeto.DadosProjetoTitulo || "Projeto sem título"}</span>
 							</div>
@@ -29,12 +29,17 @@ export function ProjectCards(props) {
 
 							{item.status === "Salvo" &&
 								<div className="flex p-2 text-sm font-medium">
-									<a href="#" className="grow p-2 bg-[#005090] text-center font-medium text-white hover:text-gray-200 rounded-md">Editar</a>
+									<Link href={{
+										pathname: "/edit-project",
+										query: { id: item.id },
+									}}>
+										<a className="grow p-2 bg-[#005090] text-center font-medium text-white hover:text-gray-200 rounded-md">Editar</a>
+									</Link>
 								</div>
 							}
 						</div>
 					)
-				)}
+					)}
 			</div>
 		</div>
 	)
