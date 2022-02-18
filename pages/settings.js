@@ -6,6 +6,7 @@ import { FormSettings } from "../src/components/FormSettings"
 import { Header } from "../src/components/Header"
 import { Main } from "../src/components/Main"
 import { NavMenu } from "../src/components/NavMenu"
+import { NavMenuCoord } from "../src/components/NavMenuCoord"
 import { UserMenu } from "../src/components/UserMenu"
 import { useAuth } from "../src/contexts/AuthContext"
 
@@ -33,11 +34,20 @@ export default function Settings() {
 			</Head>
 
 			<div className="min-h-[100vh] w-[100vw] relative flex flex-col">
-				<Header currentPage="Meus dados" currentUser={currentUser} openNavMenuFunction={handleOpenNavMenu} openMenuState={openMenu} />
+				<Header
+					currentPage="Meus dados"
+					currentUser={currentUser}
+					openNavMenuFunction={handleOpenNavMenu}
+					openMenuState={openMenu}
+				/>
 				<UserMenu openMenuState={openMenu} />
 
 				<div className="grow flex flex-col md:flex-row">
-					<NavMenu openMenuState={openMenu} currentURL="/settings" />
+					{userInfo.atuador === "coord" ?
+						<NavMenuCoord openMenuState={openMenu} currentURL="/settings" />
+						:
+						<NavMenu openMenuState={openMenu} currentURL="/settings" />
+					}
 
 					<Main center>
 						<FormSettings userInfo={userInfo} />

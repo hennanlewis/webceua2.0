@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { useAuth } from "../contexts/AuthContext"
 
-export function ProjectCards(props) {
+export function ProjectCardsCoord(props) {
 	const { projetos } = props
 
 	return (
@@ -20,17 +20,17 @@ export function ProjectCards(props) {
 							</div>
 
 							<div className="flex gap-1 px-6 py-4 whitespace-nowrap">
-								<span className="text-sm">Pesquisador:</span>
-								<span className="text-sm font-medium text-gray-900">{item.projeto.DadosResponsavelNome}</span>
+								<span className="text-sm">Pesquisadores:</span>
+								<div className="text-sm font-medium text-gray-900">{item.projeto.DadosResponsavelNome}</div>
 							</div>
 
-							{item.status === "Salvo" &&
+							{
 								<div className="flex p-2 text-sm font-medium">
 									<Link href={{
-										pathname: "/edit-project",
+										pathname: "/check-project",
 										query: { id: item.id },
 									}}>
-										<a className="grow p-2 bg-[#005090] text-center font-medium text-white hover:text-gray-200 rounded-md">Editar</a>
+										<a className="grow p-2 bg-[#005090] text-center font-medium text-white hover:text-gray-200 rounded-md">Analisar</a>
 									</Link>
 								</div>
 							}

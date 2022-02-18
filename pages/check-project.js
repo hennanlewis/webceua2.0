@@ -11,22 +11,23 @@ import { ImAttachment } from "react-icons/im"
 import { Header } from "../src/components/Header"
 import { Main } from "../src/components/Main"
 import { NavMenu } from "../src/components/NavMenu"
+import { NavMenuCoord } from "../src/components/NavMenuCoord"
 import { useAuth } from "../src/contexts/AuthContext"
 import { UserMenu } from "../src/components/UserMenu"
-import { NewProjectMainData } from "../src/components/NewProjectMainData"
-import { NewProjectColaborators } from "../src/components/NewProjectColaborators"
-import { NewProjectAnimalModel } from "../src/components/NewProjectAnimalModel"
-import { NewProjectAnimalExperiment } from "../src/components/NewProjectAnimalExperiment"
-import { NewProjectAnimals } from "../src/components/NewProjectAnimals"
-import { NewProjectDrugs } from "../src/components/NewProjectDrugs"
-import { NewProjectAnimalPostoperative } from "../src/components/NewProjectAnimalPostoperative"
-import { NewProjectAttachments } from "../src/components/NewProjectAttachments"
+import { ModifyProjectMainData } from "../src/components/ModifyProjectMainData"
+import { ModifyProjectColaborators } from "../src/components/ModifyProjectColaborators"
+import { ModifyProjectAnimalModel } from "../src/components/ModifyProjectAnimalModel"
+import { ModifyProjectAnimalExperiment } from "../src/components/ModifyProjectAnimalExperiment"
+import { ModifyProjectAnimals } from "../src/components/ModifyProjectAnimals"
+import { ModifyProjectDrugs } from "../src/components/ModifyProjectDrugs"
+import { ModifyProjectAnimalPostoperative } from "../src/components/ModifyProjectAnimalPostoperative"
+import { ModifyProjectAttachments } from "../src/components/ModifyProjectAttachments"
 
 import initialProjectValues from '../src/utils/initialProjectValues'
 import nProgress from "nprogress"
 
 export default function EditProject() {
-	const { currentUser, updateProject, getProjects, userInfo } = useAuth()
+	const { currentUser, updateProject, getProjectsCoord, userInfo } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 	const [loaded, setLoaded] = useState(false)
 	const [projetos, setProjetos] = useState()
@@ -62,20 +63,20 @@ export default function EditProject() {
 		if (!currentUser) {
 			Router.push("/signout")
 		}
-		if(userInfo.atuador !== "pesquisador") {
+		if(userInfo.atuador !== "coord") {
 			Router.push("/dashboard")
 		}
 		setLoaded(true)
 	}, [currentUser])
 
 	useEffect(() => {
-		getProjects()
+		getProjectsCoord()
 			.then((response) => {
 				if (response.data.length) {
 					setProjetos(response.data)
 				}
 			})
-	}, [getProjects])
+	}, [getProjectsCoord])
 
 	const handleOpenNavMenu = (key) => {
 		setOpenMenu({ ...openMenu, [key]: !openMenu[key] })
@@ -87,11 +88,11 @@ export default function EditProject() {
 	} = router
 
 	const handleUpdateProject = async (values) => {
-		const projectTest = projetos.filter(item => item.id === id)
-		if (projectTest.length && projectTest[0].status === "Salvo") {
-			const response = await updateProject({ projeto: values, id })
-			console.log(response)
-		}
+		// const projectTest = projetos.filter(item => item.id === id)
+		// if (projectTest.length && projectTest[0].status !== "Salvo") {
+		// 	const response = await updateProject({ modificacaoCoord: values, id })
+		// 	console.log(response)
+		// }
 	}
 
 	return (loaded &&
@@ -105,7 +106,11 @@ export default function EditProject() {
 				<UserMenu openMenuState={openMenu} />
 
 				<div className="grow flex flex-col md:flex-row">
-					<NavMenu openMenuState={openMenu} currentURL="/edit-project" />
+					{userInfo.atuador === "coord" ?
+						<NavMenuCoord openMenuState={openMenu} currentURL="/check-projects" />
+						:
+						<NavMenu openMenuState={openMenu} currentURL="/check-projects" />
+					}
 
 					<Main center>
 						<div className="flex flex-col items-center gap-10">
@@ -138,7 +143,6 @@ export default function EditProject() {
 									nProgress.start()
 									await handleUpdateProject(values)
 									nProgress.done()
-									Router.push("/dashboard")
 								}}
 							>
 								{({ values }) => (
@@ -146,21 +150,45 @@ export default function EditProject() {
 										className="max-w-[90vw] w-[40rem] bg-indigo-700/80 p-2 rounded-2xl max-h-[1000rem]"
 									>
 										<div className="bg-[#005090]/90 p-2 rounded-t-xl">
-											<NewProjectMainData position={formPosition} />
-											<NewProjectColaborators position={formPosition} />
-											<NewProjectAnimalModel position={formPosition} />
-											<NewProjectAnimals position={formPosition} />
-											<NewProjectAnimalExperiment position={formPosition} />
-											<NewProjectDrugs position={formPosition} />
-											<NewProjectAnimalPostoperative position={formPosition} />
-											<NewProjectAttachments position={formPosition} />
+											<ModifyProjectMainData
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
+											<ModifyProjectColaborators
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
+											<ModifyProjectAnimalModel
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
+											<ModifyProjectAnimals
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
+											<ModifyProjectAnimalExperiment
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
+											<ModifyProjectDrugs
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
+											<ModifyProjectAnimalPostoperative
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
+											<ModifyProjectAttachments
+												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												position={formPosition}
+											/>
 										</div>
 										<span className="relative flex justify-end gap-2 bg-[#005090]/90 p-2 bg-[#005090] rounded-b-xl">
 											<button
 												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 												type="submit"
 											>
-												Editar projeto
+												Inserir sugestões de edição
 											</button>
 										</span>
 									</Form>

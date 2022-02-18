@@ -1,8 +1,7 @@
 import { Field, FieldArray, useFormikContext } from "formik"
 import Link from "next/link"
-import { useState } from "react"
 
-export function NewProjectAttachments(props) {
+export function ModifyProjectAttachments(props) {
 	const { position } = props
 	const { values } = useFormikContext()
 
@@ -43,6 +42,15 @@ export function NewProjectAttachments(props) {
 							</>
 						)}
 					</FieldArray>
+
+					<label>
+						Sugestão de edição em <b>Anexos</b>
+						<Field
+							as="textarea"
+							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							name="edicaoAnexos"
+						/>
+					</label>
 				</div>
 			</div>
 		</div>

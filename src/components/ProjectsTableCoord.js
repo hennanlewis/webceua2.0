@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { useAuth } from "../contexts/AuthContext"
 
-export function ProjectsTable(props) {
+export function ProjectsTableCoord(props) {
 	const { projetos } = props
 
 	return (
@@ -34,12 +34,12 @@ export function ProjectsTable(props) {
 									<div className="flex items-center">{item.projeto.DadosResponsavelNome}</div>
 								</td>
 								<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-									{item.status === "Salvo" &&
+									{
 										<Link href={{
-											pathname: "/edit-project",
+											pathname: "/check-project",
 											query: { id: item.id },
 										}}>
-											<a className="text-indigo-600 hover:text-indigo-900">Editar</a>
+											<a className="text-indigo-600 hover:text-indigo-900">Analisar</a>
 										</Link>
 									}
 								</td>
