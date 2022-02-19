@@ -1,9 +1,9 @@
 import { Field, useFormikContext } from "formik"
 import Link from "next/link"
 import { useEffect } from "react"
-import { ConditionalInput } from "./ConditionalInput"
+import { ConditionalInput } from "../ConditionalInput"
 
-export function ModifyProjectAnimalModel(props) {
+export function NewProjectAnimalModel(props) {
 	const { position } = props
 
 	useEffect
@@ -60,15 +60,6 @@ export function ModifyProjectAnimalModel(props) {
 								className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								id="ModeloAnimalJustificativa"
 								name="ModeloAnimalJustificativa"
-							/>
-						</label>
-
-						<label>
-							Sugestão de edição em <b>Modelo Animal</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoModeloAnimal"
 							/>
 						</label>
 					</fieldset>
@@ -184,15 +175,6 @@ export function ModifyProjectAnimalModel(props) {
 								/>
 							</label>
 						</ConditionalInput>
-
-						<label>
-							Sugestão de edição em <b>Biotério</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoBioterio"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -205,15 +187,6 @@ export function ModifyProjectAnimalModel(props) {
 							id="ModeloAnimalMetodosCaptura"
 							name="ModeloAnimalMetodosCaptura"
 						/>
-
-						<label>
-							Sugestão de edição em <b>Métodos de Captura</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoMetodosCaptura"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -226,15 +199,6 @@ export function ModifyProjectAnimalModel(props) {
 							id="ModeloAnimalPlanejamentoEstatistico"
 							name="ModeloAnimalPlanejamentoEstatistico"
 						/>
-
-						<label>
-							Sugestão de edição em <b>Planejamento Estatístico/Delineamento Experimental</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoPlanejamentoExperimental"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -322,15 +286,6 @@ export function ModifyProjectAnimalModel(props) {
 								/>
 							</label>
 						</ConditionalInput>
-
-						<label>
-							Sugestão de edição em <b>Grau de Invasividade</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoGrauInvasividade"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -366,7 +321,7 @@ export function ModifyProjectAnimalModel(props) {
 							</label>
 
 							<div className="flex flex-col">
-								<span className="">Ambiente de alojamento</span>
+								<span className="">Ambiente de Alojamento</span>
 								<label
 									htmlFor="ModeloAnimalAlojamentoGaiola"
 									className="flex gap-1"
@@ -447,15 +402,6 @@ export function ModifyProjectAnimalModel(props) {
 								/>
 							</label>
 						</div>
-
-						<label>
-							Sugestão de edição em <b>Alojamento</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoAlojamento"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -506,15 +452,6 @@ export function ModifyProjectAnimalModel(props) {
 							title="Exaustão do ar"
 							name="ModeloAnimalCondicoesExaustao"
 						/>
-
-						<label>
-							Sugestão de edição em <b>Condições de Alojamento e Alimentação dos Animais</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoCondicoesAlojamentoAlimentacao"
-							/>
-						</label>
 					</fieldset>
 				</div>
 			</div>

@@ -1,9 +1,9 @@
 import { Field, useFormikContext } from "formik"
 import Link from "next/link"
 import { useState } from "react"
-import { ConditionalInput } from "./ConditionalInput"
+import { ConditionalInput } from "../ConditionalInput"
 
-export function ModifyProjectAnimalExperiment(props) {
+export function NewProjectAnimalExperiment(props) {
 	const { values, handleChange, position } = props
 	const [hiddenOptions, setHiddenOptions] = useState(true)
 
@@ -70,15 +70,6 @@ export function ModifyProjectAnimalExperiment(props) {
 								</label>
 							</span>
 						</ConditionalInput>
-
-						<label>
-							Sugestão de edição em <b>Procedimentos Experimentais</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoProcedimentosExperimentais"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -159,14 +150,6 @@ export function ModifyProjectAnimalExperiment(props) {
 							</label>
 						</ConditionalInput>
 
-						<label>
-							Sugestão de edição em <b>Estresse</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoEstresse"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -203,20 +186,11 @@ export function ModifyProjectAnimalExperiment(props) {
 								<span>Tempo</span>
 							</label>
 						</ConditionalInput>
-
-						<label>
-							Sugestão de edição em <b>Imobilização</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoImobilizacao"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
-							Condições alimentares
+							Condições Alimentares
 						</span>
 						<ConditionalInput
 							title="Jejum"
@@ -279,15 +253,6 @@ export function ModifyProjectAnimalExperiment(props) {
 								<span>Justificativa</span>
 							</label>
 						</ConditionalInput>
-
-						<label>
-							Sugestão de edição em <b>Consições Alimentares</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoCondicoesAlimentares"
-							/>
-						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -356,15 +321,6 @@ export function ModifyProjectAnimalExperiment(props) {
 								<span>Qual?</span>
 							</label>
 						</ConditionalInput>
-
-						<label>
-							Sugestão de edição em <b>Cirurgia</b>
-							<Field
-								as="textarea"
-								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoCirurgia"
-							/>
-						</label>
 					</fieldset>
 				</div>
 			</div>

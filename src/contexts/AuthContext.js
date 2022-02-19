@@ -59,8 +59,7 @@ export default function AuthProvider({ children }) {
 
 	const getProjectsCoord = async () => {
 		try {
-			const { uid } = auth.currentUser
-			const data = await getDocs(query(collection(db, "projetos"), where("status", "!=", "Salvo")))
+			const data = await getDocs(query(collection(db, "projetos"), where("status", "in", ["Submetido", "Coordenação", "Em aprovação"])))
 
 			const dataArray = []
 			data.forEach((doc) => {
@@ -68,6 +67,29 @@ export default function AuthProvider({ children }) {
 				dataArray = [ ...dataArray, {...doc.data(), id: doc.id} ]
 			})
 			return { res: true, data: dataArray }
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
+	const updateProjectCoord = async (values) => {
+		try {
+			const noEmptyValues = Object.fromEntries(Object
+				.entries(values.coord)
+				.filter(([_, value]) => value != ""))
+			const userDocRef = doc(db, "projetos", values.id)
+
+			return await runTransaction(db, async (transaction) => {
+				const userDoc = await transaction.get(userDocRef)
+				if (!userDoc.exists()) {
+					return { res: false, erro: "Projeto não existe" }
+				}
+
+				transaction.update(userDocRef, { status: values.status, coord: noEmptyValues })
+				return { res: true, data: "Valores atualizados com sucesso" }
+			})
+
 		} catch (erro) {
 			console.error(erro)
 			return { res: false, erro }
@@ -99,11 +121,12 @@ export default function AuthProvider({ children }) {
 			const userDocRef = doc(db, "projetos", values.id)
 			return await runTransaction(db, async (transaction) => {
 				const userDoc = await transaction.get(userDocRef)
+				console.log(transaction)
 				if (!userDoc.exists()) {
 					return { res: false, erro: "Projeto não existe" }
 				}
 
-				transaction.update(userDocRef, { projeto: noEmptyValues })
+				transaction.update(userDocRef, { status: values.status, projeto: noEmptyValues })
 				return { res: true, data: "Valores atualizados com sucesso" }
 			})
 
@@ -195,6 +218,7 @@ export default function AuthProvider({ children }) {
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
+		updateProjectCoord,
 		getProjects,
 		updateProject,
 		setProject,
@@ -223,6 +247,7 @@ export function useAuth() {
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
+		updateProjectCoord,
 		getProjects,
 		updateProject,
 		setProject,
@@ -240,6 +265,7 @@ export function useAuth() {
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
+		updateProjectCoord,
 		getProjects,
 		updateProject,
 		setProject,

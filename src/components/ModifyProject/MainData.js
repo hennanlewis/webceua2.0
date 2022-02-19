@@ -1,10 +1,10 @@
 import { Field, useFormikContext } from "formik"
 import Link from "next/link"
 
-import { ConditionalInput } from "./ConditionalInput"
+import { ConditionalInput } from "../ConditionalInput"
 
-export function NewProjectMainData(props) {
-	const { position } = props
+export function ModifyProjectMainData(props) {
+	const { position, projeto } = props
 	const { errors } = useFormikContext()
 
 	return (
@@ -42,6 +42,7 @@ export function NewProjectMainData(props) {
 									type="date"
 									id="dadosPrazoInicio"
 									name="DadosPrazoInicio"
+									readOnly
 								/>
 							</label>
 
@@ -55,9 +56,19 @@ export function NewProjectMainData(props) {
 									type="date"
 									id="dadosPrazoTermino"
 									name="DadosPrazoTermino"
+									readOnly
 								/>
 							</label>
 						</div>
+
+						<label>
+							Sugestão de edição em <b>Prazo</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoPrazo"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -74,6 +85,7 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosProjetoTitulo"
 								name="DadosProjetoTitulo"
+								readOnly
 								placeholder="O modelo animal deve estar descrito no título"
 							/>
 						</label>
@@ -88,6 +100,7 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosProjetoTituloEN"
 								name="DadosProjetoTituloEN"
+								readOnly
 								placeholder="O modelo animal deve estar descrito no título"
 							/>
 						</label>
@@ -102,6 +115,16 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosProjetoArea"
 								name="DadosProjetoArea"
+								readOnly
+							/>
+						</label>
+
+						<label>
+							Sugestão de edição em <b>Título do Projeto</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoTitulo"
 							/>
 						</label>
 					</fieldset>
@@ -120,6 +143,7 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosResponsavelNome"
 								name="DadosResponsavelNome"
+								readOnly
 								placeholder="Digite seu nome completo"
 							/>
 						</label>
@@ -134,6 +158,7 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosResponsavelInstituicao"
 								name="DadosResponsavelInstituicao"
+								readOnly
 							/>
 						</label>
 
@@ -147,6 +172,7 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosResponsavelDepartamento"
 								name="DadosResponsavelDepartamento"
+								readOnly
 							/>
 						</label>
 
@@ -160,12 +186,14 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosResponsavelLattes"
 								name="DadosResponsavelLattes"
+								readOnly
 							/>
 						</label>
 
 						<ConditionalInput
 							title="Experiência prévia"
 							name="DadosResponsavelExperiencia"
+							readOnly
 						>
 							<label
 								className="flex flex-col"
@@ -177,6 +205,7 @@ export function NewProjectMainData(props) {
 									type="text"
 									id="dadosResponsavelTempoExperiencia"
 									name="DadosResponsavelTempoExperiencia"
+									readOnly
 								/>
 							</label>
 						</ConditionalInput>
@@ -184,6 +213,7 @@ export function NewProjectMainData(props) {
 						<ConditionalInput
 							title="Treinamento"
 							name="DadosResponsavelTreinamento"
+							readOnly
 						>
 							<label
 								className="flex flex-col"
@@ -195,6 +225,7 @@ export function NewProjectMainData(props) {
 									type="text"
 									id="dadosResponsavelTempoTreinamento"
 									name="DadosResponsavelTempoTreinamento"
+									readOnly
 								/>
 							</label>
 						</ConditionalInput>
@@ -207,6 +238,7 @@ export function NewProjectMainData(props) {
 										type="radio" value="docente"
 										id="dadosResponsavelVinculoDocente"
 										name="DadosResponsavelVinculo"
+										readOnly
 									/>
 									<span className="translate-y-[-2px]">
 										Docente/Pesquisador</span>
@@ -217,6 +249,7 @@ export function NewProjectMainData(props) {
 									type="radio" value="técnico"
 									id="dadosResponsavelVinculoTecnico"
 									name="Dadosvinculo"
+									readOnly
 								/>
 								<span className="translate-y-[-2px]">
 									Técnico Nível Superior</span>
@@ -226,6 +259,7 @@ export function NewProjectMainData(props) {
 									type="radio" value="jovem_pes"
 									id="dadosResponsavelVinculoJovem"
 									name="Dadosvinculo"
+									readOnly
 								/>
 								<span className="translate-y-[-2px]">
 									Jovem Pes./Pes. Visitante</span>
@@ -242,6 +276,7 @@ export function NewProjectMainData(props) {
 								type="tel"
 								id="dadosResponsavelTelefone"
 								name="DadosResponsavelTelefone"
+								readOnly
 							/>
 						</label>
 
@@ -255,6 +290,7 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosResponsavelLocal"
 								name="DadosResponsavelLocal"
+								readOnly
 							/>
 						</label>
 
@@ -268,6 +304,7 @@ export function NewProjectMainData(props) {
 								type="email"
 								id="dadosResponsavelEmail"
 								name="DadosResponsavelEmail"
+								readOnly
 							/>
 						</label>
 
@@ -281,6 +318,16 @@ export function NewProjectMainData(props) {
 								type="text"
 								id="dadosResponsavelLocalexperimentos"
 								name="DadosResponsavelLocalexperimentos"
+								readOnly
+							/>
+						</label>
+
+						<label>
+							Sugestão de edição em <b>Responsável</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoResponsavel"
 							/>
 						</label>
 					</fieldset>
@@ -295,7 +342,17 @@ export function NewProjectMainData(props) {
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosResumo"
 							name="DadosResumo"
+							readOnly
 						/>
+
+						<label>
+							Sugestão de edição em <b>Resumo</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoResumo"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -308,7 +365,17 @@ export function NewProjectMainData(props) {
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosObjetivos"
 							name="DadosObjetivos"
+							readOnly
 						/>
+
+						<label>
+							Sugestão de edição em <b>Objetivos</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoObjetivos"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -321,7 +388,17 @@ export function NewProjectMainData(props) {
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosJustificativa"
 							name="DadosJustificativa"
+							readOnly
 						/>
+
+						<label>
+							Sugestão de edição em <b>Justificativa</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoJustificativa"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -334,7 +411,17 @@ export function NewProjectMainData(props) {
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="dadosRelevancia"
 							name="DadosRelevancia"
+							readOnly
 						/>
+
+						<label>
+							Sugestão de edição em <b>Relevância</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoRelevancia"
+							/>
+						</label>
 					</fieldset>
 				</div>
 			</div>

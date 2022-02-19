@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { useAuth } from "../contexts/AuthContext"
 
 export function ProjectsTable(props) {
 	const { projetos } = props
@@ -39,7 +38,7 @@ export function ProjectsTable(props) {
 											pathname: "/edit-project",
 											query: { id: item.id },
 										}}>
-											<a className="text-indigo-600 hover:text-indigo-900">Editar</a>
+											<a className="px-4 py-2 bg-[#005090] text-center font-medium text-white  hover:brightness-125 rounded-md">Editar</a>
 										</Link>
 									}
 								</td>

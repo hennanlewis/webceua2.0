@@ -7,6 +7,7 @@ import { TiDocumentText } from "react-icons/ti"
 import { FaIdCard, FaNotesMedical } from "react-icons/fa"
 import { GiSeatedMouse, GiLoveInjection } from "react-icons/gi"
 import { ImAttachment } from "react-icons/im"
+import nProgress from "nprogress"
 
 import { Header } from "../src/components/Header"
 import { Main } from "../src/components/Main"
@@ -14,23 +15,22 @@ import { NavMenu } from "../src/components/NavMenu"
 import { NavMenuCoord } from "../src/components/NavMenuCoord"
 import { useAuth } from "../src/contexts/AuthContext"
 import { UserMenu } from "../src/components/UserMenu"
-import { ModifyProjectMainData } from "../src/components/ModifyProjectMainData"
-import { ModifyProjectColaborators } from "../src/components/ModifyProjectColaborators"
-import { ModifyProjectAnimalModel } from "../src/components/ModifyProjectAnimalModel"
-import { ModifyProjectAnimalExperiment } from "../src/components/ModifyProjectAnimalExperiment"
-import { ModifyProjectAnimals } from "../src/components/ModifyProjectAnimals"
-import { ModifyProjectDrugs } from "../src/components/ModifyProjectDrugs"
-import { ModifyProjectAnimalPostoperative } from "../src/components/ModifyProjectAnimalPostoperative"
-import { ModifyProjectAttachments } from "../src/components/ModifyProjectAttachments"
+import { ModifyProjectMainData } from "../src/components/ModifyProject/MainData"
+import { ModifyProjectColaborators } from "../src/components/ModifyProject/Colaborators"
+import { ModifyProjectAnimalModel } from "../src/components/ModifyProject/AnimalModel"
+import { ModifyProjectAnimalExperiment } from "../src/components/ModifyProject/AnimalExperiment"
+import { ModifyProjectAnimals } from "../src/components/ModifyProject/Animals"
+import { ModifyProjectDrugs } from "../src/components/ModifyProject/Drugs"
+import { ModifyProjectAnimalPostoperative } from "../src/components/ModifyProject/AnimalPostoperative"
+import { ModifyProjectAttachments } from "../src/components/ModifyProject/Attachments"
 
 import initialProjectValues from '../src/utils/initialProjectValues'
-import nProgress from "nprogress"
 
 export default function EditProject() {
-	const { currentUser, updateProject, getProjectsCoord, userInfo } = useAuth()
+	const { currentUser, updateProjectCoord, getProjectsCoord, userInfo } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 	const [loaded, setLoaded] = useState(false)
-	const [projetos, setProjetos] = useState()
+	const [projeto, setProjeto] = useState()
 
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
@@ -63,7 +63,7 @@ export default function EditProject() {
 		if (!currentUser) {
 			Router.push("/signout")
 		}
-		if(userInfo.atuador !== "coord") {
+		if (userInfo.atuador !== "coord") {
 			Router.push("/dashboard")
 		}
 		setLoaded(true)
@@ -72,8 +72,9 @@ export default function EditProject() {
 	useEffect(() => {
 		getProjectsCoord()
 			.then((response) => {
-				if (response.data.length) {
-					setProjetos(response.data)
+				const data = response.data
+				if (data?.length > 0) {
+					setProjeto(data.filter(item => item.id === id)[0])
 				}
 			})
 	}, [getProjectsCoord])
@@ -88,11 +89,111 @@ export default function EditProject() {
 	} = router
 
 	const handleUpdateProject = async (values) => {
-		// const projectTest = projetos.filter(item => item.id === id)
-		// if (projectTest.length && projectTest[0].status !== "Salvo") {
-		// 	const response = await updateProject({ modificacaoCoord: values, id })
-		// 	console.log(response)
-		// }
+		nProgress.start()
+		const response = await updateProjectCoord({
+			status: projeto.status,
+			coord: {
+				edicaoPrazo: values.edicaoPrazo || "",
+				edicaoTitulo: values.edicaoTitulo || "",
+				edicaoResponsavel: values.edicaoResponsavel || "",
+				edicaoResumo: values.edicaoResumo || "",
+				edicaoObjetivos: values.edicaoObjetivos || "",
+				edicaoJustificativa: values.edicaoJustificativa || "",
+				edicaoRelevancia: values.edicaoRelevancia || "",
+				edicaoModeloAnimal: values.edicaoModeloAnimal || "",
+				edicaoBioterio: values.edicaoBioterio || "",
+				edicaoMetodosCaptura: values.edicaoMetodosCaptura || "",
+				edicaoPlanejamentoExperimental: values.edicaoPlanejamentoExperimental || "",
+				edicaoGrauInvasividade: values.edicaoGrauInvasividade || "",
+				edicaoAlojamento: values.edicaoAlojamento || "",
+				edicaoCondicoesAlojamentoAlimentacao: values.edicaoCondicoesAlojamentoAlimentacao || "",
+				edicaoObservacaoRecuperacao: values.edicaoObservacaoRecuperacao || "",
+				edicaoUsoAnalgesia: values.edicaoUsoAnalgesia || "",
+				edicaoOutosCuidados: values.edicaoOutosCuidados || "",
+				edicaoPontoFinal: values.edicaoPontoFinal || "",
+				edicaoExposicaoo: values.edicaoExposicaoo || "",
+				edicaoExtracaoMateria: values.edicaoExtracaoMateria || "",
+				edicaoEutanasia: values.edicaoEutanasia || "",
+				edicaoDestinoPosExperimento: values.edicaoDestinoPosExperimento || "",
+				edicaoFormaDescarte: values.edicaoFormaDescarte || "",
+				edicaoResumoProcedimento: values.edicaoResumoProcedimento || "",
+				edicaoReferencias: values.edicaoReferencias || "",
+				edicaoAnimais: values.edicaoAnimais || "",
+				edicaoAnexos: values.edicaoAnexos || "",
+				edicaoFarmacos: values.edicaoFarmacos || "",
+				edicaoPrazo: values.edicaoPrazo || "",
+				edicaoTitulo: values.edicaoTitulo || "",
+				edicaoResponsavel: values.edicaoResponsavel || "",
+				edicaoResumo: values.edicaoResumo || "",
+				edicaoObjetivos: values.edicaoObjetivos || "",
+				edicaoJustificativa: values.edicaoJustificativa || "",
+				edicaoRelevancia: values.edicaoRelevancia || ""
+			}, id
+		})
+		console.log(response)
+		nProgress.done()
+	}
+
+	const handle2Researcher = async (values) => {
+		nProgress.start()
+		if (projeto.status === "Submetido" || projeto.status === "Corrigido") {
+			const response = await updateProject({
+				status: "No parecerista",
+				coord: {
+					edicaoPrazo: values.edicaoPrazo || "",
+					edicaoTitulo: values.edicaoTitulo || "",
+					edicaoResponsavel: values.edicaoResponsavel || "",
+					edicaoResumo: values.edicaoResumo || "",
+					edicaoObjetivos: values.edicaoObjetivos || "",
+					edicaoJustificativa: values.edicaoJustificativa || "",
+					edicaoRelevancia: values.edicaoRelevancia || "",
+					edicaoModeloAnimal: values.edicaoModeloAnimal || "",
+					edicaoBioterio: values.edicaoBioterio || "",
+					edicaoMetodosCaptura: values.edicaoMetodosCaptura || "",
+					edicaoPlanejamentoExperimental: values.edicaoPlanejamentoExperimental || "",
+					edicaoGrauInvasividade: values.edicaoGrauInvasividade || "",
+					edicaoAlojamento: values.edicaoAlojamento || "",
+					edicaoCondicoesAlojamentoAlimentacao: values.edicaoCondicoesAlojamentoAlimentacao || "",
+					edicaoObservacaoRecuperacao: values.edicaoObservacaoRecuperacao || "",
+					edicaoUsoAnalgesia: values.edicaoUsoAnalgesia || "",
+					edicaoOutosCuidados: values.edicaoOutosCuidados || "",
+					edicaoPontoFinal: values.edicaoPontoFinal || "",
+					edicaoExposicaoo: values.edicaoExposicaoo || "",
+					edicaoExtracaoMateria: values.edicaoExtracaoMateria || "",
+					edicaoEutanasia: values.edicaoEutanasia || "",
+					edicaoDestinoPosExperimento: values.edicaoDestinoPosExperimento || "",
+					edicaoFormaDescarte: values.edicaoFormaDescarte || "",
+					edicaoResumoProcedimento: values.edicaoResumoProcedimento || "",
+					edicaoReferencias: values.edicaoReferencias || "",
+					edicaoAnimais: values.edicaoAnimais || "",
+					edicaoAnexos: values.edicaoAnexos || "",
+					edicaoFarmacos: values.edicaoFarmacos || "",
+					edicaoPrazo: values.edicaoPrazo || "",
+					edicaoTitulo: values.edicaoTitulo || "",
+					edicaoResponsavel: values.edicaoResponsavel || "",
+					edicaoResumo: values.edicaoResumo || "",
+					edicaoObjetivos: values.edicaoObjetivos || "",
+					edicaoJustificativa: values.edicaoJustificativa || "",
+					edicaoRelevancia: values.edicaoRelevancia || ""
+				}, id
+				, id
+			})
+			setProjeto({ ...projeto, status: "No parecerista" })
+			console.log(response)
+		}
+		nProgress.done()
+		Router.push("/dashboard")
+	}
+
+	const handle2Reviewer = async (values) => {
+		nProgress.start()
+		if (projeto.status === "Submetido" || projeto.status === "Corrigido") {
+			const response = await updateProject({ status: "No parecerista", projeto: values, id })
+			setProjeto({ ...projeto, status: "No parecerista" })
+			console.log(response)
+		}
+		nProgress.done()
+		Router.push("/dashboard")
 	}
 
 	return (loaded &&
@@ -137,12 +238,10 @@ export default function EditProject() {
 								enableReinitialize
 								initialValues={{
 									...initialProjectValues,
-									...projetos?.filter(item => item.id === id)[0].projeto
+									...projeto?.projeto
 								}}
 								onSubmit={async values => {
-									nProgress.start()
-									await handleUpdateProject(values)
-									nProgress.done()
+
 								}}
 							>
 								{({ values }) => (
@@ -151,45 +250,76 @@ export default function EditProject() {
 									>
 										<div className="bg-[#005090]/90 p-2 rounded-t-xl">
 											<ModifyProjectMainData
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 											<ModifyProjectColaborators
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 											<ModifyProjectAnimalModel
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 											<ModifyProjectAnimals
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 											<ModifyProjectAnimalExperiment
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 											<ModifyProjectDrugs
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 											<ModifyProjectAnimalPostoperative
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 											<ModifyProjectAttachments
-												projeto={{...projetos?.filter(item => item.id === id)[0].projeto}}
+												projeto={projeto}
 												position={formPosition}
 											/>
 										</div>
 										<span className="relative flex justify-end gap-2 bg-[#005090]/90 p-2 bg-[#005090] rounded-b-xl">
-											<button
-												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
-												type="submit"
-											>
-												Inserir sugestões de edição
-											</button>
+											{projeto && (projeto.status === "Submetido" || projeto.status === "Corrigido") &&
+												<>
+													<button
+														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+														type="button"
+														onClick={() => handleUpdateProject(values)}
+													>
+														Salvar sugestões
+													</button>
+													<button
+														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+														type="button"
+														onClick={() => handle2Researcher(values)}
+													>
+														Retornar ao pesquisador
+													</button>
+													<button
+														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+														type="button"
+														onClick={() => handle2Reviewer(values)}
+													>
+														Enviar ao parecerista
+													</button>
+												</>
+											}
+
+											{projeto && projeto.status === "Em aprovação" &&
+												<>
+													<button
+														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+														type="button"
+														onClick={handle}
+													>
+														Aprovar pesquisa
+													</button>
+												</>
+											}
 										</span>
 									</Form>
 								)}

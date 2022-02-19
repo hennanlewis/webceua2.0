@@ -1,8 +1,8 @@
 import { Field } from "formik"
 import Link from "next/link"
-import { ConditionalInput } from "./ConditionalInput"
+import { ConditionalInput } from "../ConditionalInput"
 
-export function NewProjectAnimalPostoperative(props) {
+export function ModifyProjectAnimalPostoperative(props) {
 	const { position } = props
 
 	return (
@@ -44,11 +44,20 @@ export function NewProjectAnimalPostoperative(props) {
 								<span>Período de observação (em horas)</span>
 							</label>
 						</ConditionalInput>
+
+						<label>
+							Sugestão de edição em <b>Observação da Recuperação</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoObservacaoRecuperacao"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
-							Uso de analgesia
+							Uso de Analgesia
 						</span>
 						<ConditionalInput
 							name="PosOperatorioAnalgesia"
@@ -131,6 +140,15 @@ export function NewProjectAnimalPostoperative(props) {
 							/>
 							<span>Justificar o não uso de analgesia no pós-operatório, quando for o caso</span>
 						</label>
+
+						<label>
+							Sugestão de edição em <b>Uso de Analgesia</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoUsoAnalgesia"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -154,6 +172,15 @@ export function NewProjectAnimalPostoperative(props) {
 								<span>Descrição</span>
 							</label>
 						</ConditionalInput>
+
+						<label>
+							Sugestão de edição em <b>Outros Cuidados Pós-Operatório</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoOutosCuidados"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -169,6 +196,15 @@ export function NewProjectAnimalPostoperative(props) {
 								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 								id="posOperatorioReferencias"
 								name="PosOperatorioReferencias"
+							/>
+						</label>
+
+						<label>
+							Sugestão de edição em <b>Ponto Final Humanitário</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoPontoFinal"
 							/>
 						</label>
 					</fieldset>
@@ -233,6 +269,15 @@ export function NewProjectAnimalPostoperative(props) {
 								<span>Frequência</span>
 							</label>
 						</ConditionalInput>
+
+						<label>
+							Sugestão de edição em <b>Exposição/Inoculação/Administração</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoExposicaoo"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -295,11 +340,19 @@ export function NewProjectAnimalPostoperative(props) {
 								<span>Método de coleta</span>
 							</label>
 						</ConditionalInput>
+
+						<label>
+							Sugestão de edição em <b>Extração de Materiais Biológicos</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoExtracaoMateria"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
-						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold
-					">
+						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
 							Eutanásia
 						</span>
 						<label
@@ -379,28 +432,57 @@ export function NewProjectAnimalPostoperative(props) {
 							/>
 							<span>Infraestrutura necessária</span>
 						</label>
+
+						<label>
+							Sugestão de edição em <b>Eutanásia</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoEutanasia"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
-							Destino dos Animais Após o Experimento</span>
+							Destino dos Animais Após o Experimento
+						</span>
 						<Field
 							as="textarea"
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="posOperatorioDestino"
 							name="PosOperatorioDestino"
 						/>
+
+						<label>
+							Sugestão de edição em <b>Destino dos Animais Após o Experimento</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoDestinoPosExperimento"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
 						<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
-							Forma de Descarte da Carcaça</span>
+							Forma de Descarte da Carcaça
+						</span>
 						<Field
 							as="textarea"
 							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
 							id="posOperatorioDescarte"
 							name="PosOperatorioDescarte"
 						/>
+
+						<label>
+							Sugestão de edição em <b>Forma de Descarte da Carcaça</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoFormaDescarte"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -412,6 +494,15 @@ export function NewProjectAnimalPostoperative(props) {
 							id="posOperatorioResumo"
 							name="PosOperatorioResumo"
 						/>
+
+						<label>
+							Sugestão de edição em <b>Resumo do Procedimento</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoResumoProcedimento"
+							/>
+						</label>
 					</fieldset>
 
 					<fieldset className="flex flex-col gap-2">
@@ -424,6 +515,15 @@ export function NewProjectAnimalPostoperative(props) {
 							id="posOperatorioReferencias"
 							name="PosOperatorioReferencias"
 						/>
+
+						<label>
+							Sugestão de edição em <b>Referências Bibliográficas</b>
+							<Field
+								as="textarea"
+								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+								name="edicaoReferencias"
+							/>
+						</label>
 					</fieldset>
 				</div>
 			</div>

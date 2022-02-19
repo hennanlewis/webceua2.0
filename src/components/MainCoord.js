@@ -11,8 +11,9 @@ export function MainCoord() {
 	useEffect(() => {
 		getProjectsCoord()
 			.then((response) => {
-				if (response.data.length) {
-					setProjetos(response.data)
+				const data = response.data
+				if (data?.length > 0) {
+					setProjetos(data)
 				}
 			})
 	}, [getProjectsCoord])

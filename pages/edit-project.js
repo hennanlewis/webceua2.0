@@ -13,14 +13,14 @@ import { Main } from "../src/components/Main"
 import { NavMenu } from "../src/components/NavMenu"
 import { useAuth } from "../src/contexts/AuthContext"
 import { UserMenu } from "../src/components/UserMenu"
-import { NewProjectMainData } from "../src/components/NewProjectMainData"
-import { NewProjectColaborators } from "../src/components/NewProjectColaborators"
-import { NewProjectAnimalModel } from "../src/components/NewProjectAnimalModel"
-import { NewProjectAnimalExperiment } from "../src/components/NewProjectAnimalExperiment"
-import { NewProjectAnimals } from "../src/components/NewProjectAnimals"
-import { NewProjectDrugs } from "../src/components/NewProjectDrugs"
-import { NewProjectAnimalPostoperative } from "../src/components/NewProjectAnimalPostoperative"
-import { NewProjectAttachments } from "../src/components/NewProjectAttachments"
+import { NewProjectMainData } from "../src/components/FormProject/MainData"
+import { NewProjectColaborators } from "../src/components/FormProject/Colaborators"
+import { NewProjectAnimalModel } from "../src/components/FormProject/AnimalModel"
+import { NewProjectAnimalExperiment } from "../src/components/FormProject/AnimalExperiment"
+import { NewProjectAnimals } from "../src/components/FormProject/Animals"
+import { NewProjectDrugs } from "../src/components/FormProject/Drugs"
+import { NewProjectAnimalPostoperative } from "../src/components/FormProject/AnimalPostoperative"
+import { NewProjectAttachments } from "../src/components/FormProject/Attachments"
 
 import initialProjectValues from '../src/utils/initialProjectValues'
 import nProgress from "nprogress"
@@ -29,7 +29,7 @@ export default function EditProject() {
 	const { currentUser, updateProject, getProjects, userInfo } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 	const [loaded, setLoaded] = useState(false)
-	const [projetos, setProjetos] = useState()
+	const [projeto, setProjeto] = useState()
 
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
@@ -62,7 +62,7 @@ export default function EditProject() {
 		if (!currentUser) {
 			Router.push("/signout")
 		}
-		if(userInfo.atuador !== "pesquisador") {
+		if (userInfo.atuador !== "pesquisador" || projeto?.status === "Submetido") {
 			Router.push("/dashboard")
 		}
 		setLoaded(true)
@@ -71,8 +71,9 @@ export default function EditProject() {
 	useEffect(() => {
 		getProjects()
 			.then((response) => {
-				if (response.data.length) {
-					setProjetos(response.data)
+				const data = response.data
+				if (data?.length > 0) {
+					setProjeto(data.filter(item => item.id === id)[0])
 				}
 			})
 	}, [getProjects])
@@ -87,11 +88,22 @@ export default function EditProject() {
 	} = router
 
 	const handleUpdateProject = async (values) => {
-		const projectTest = projetos.filter(item => item.id === id)
-		if (projectTest.length && projectTest[0].status === "Salvo") {
-			const response = await updateProject({ projeto: values, id })
+		nProgress.start()
+		const response = await updateProject({ status: "Salvo", projeto: values, id })
+		console.log(response)
+		nProgress.done()
+		Router.push("/dashboard")
+	}
+
+	const handleSubmitProject = async (values) => {
+		nProgress.start()
+		if (projeto.status === "Salvo") {
+			const response = await updateProject({ status: "Submetido", projeto: values, id })
+			setProjeto({ ...projeto, status: "Submetido"})
 			console.log(response)
 		}
+		nProgress.done()
+		Router.push("/dashboard")
 	}
 
 	return (loaded &&
@@ -132,13 +144,10 @@ export default function EditProject() {
 								enableReinitialize
 								initialValues={{
 									...initialProjectValues,
-									...projetos?.filter(item => item.id === id)[0].projeto
+									...projeto?.projeto
 								}}
-								onSubmit={async values => {
-									nProgress.start()
-									await handleUpdateProject(values)
-									nProgress.done()
-									Router.push("/dashboard")
+								onSubmit={values => {
+									handleSubmitProject(values)
 								}}
 							>
 								{({ values }) => (
@@ -158,9 +167,16 @@ export default function EditProject() {
 										<span className="relative flex justify-end gap-2 bg-[#005090]/90 p-2 bg-[#005090] rounded-b-xl">
 											<button
 												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+												type="button"
+												onClick={() => handleUpdateProject(values)}
+											>
+												Alterar dados
+											</button>
+											<button
+												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 												type="submit"
 											>
-												Editar projeto
+												Submeter projeto
 											</button>
 										</span>
 									</Form>

@@ -49,11 +49,8 @@ export default function Dashboard() {
 						<NavMenu openMenuState={openMenu} currentURL="/dashboard" />
 					}
 
-					{userInfo.atuador === "coord" ?
-						<MainCoord />
-						:
-						<MainRechearcher />
-					}
+					{ userInfo.atuador === "coord" && <MainCoord /> }
+					{ userInfo.atuador === "pesquisador" && <MainRechearcher /> }
 
 				</div >
 			</div >
