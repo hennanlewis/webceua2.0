@@ -93,41 +93,56 @@ export default function EditProject() {
 		const response = await updateProjectCoord({
 			status: projeto.status,
 			coord: {
-				edicaoPrazo: values.edicaoPrazo || "",
-				edicaoTitulo: values.edicaoTitulo || "",
-				edicaoResponsavel: values.edicaoResponsavel || "",
-				edicaoResumo: values.edicaoResumo || "",
-				edicaoObjetivos: values.edicaoObjetivos || "",
-				edicaoJustificativa: values.edicaoJustificativa || "",
-				edicaoRelevancia: values.edicaoRelevancia || "",
-				edicaoModeloAnimal: values.edicaoModeloAnimal || "",
-				edicaoBioterio: values.edicaoBioterio || "",
-				edicaoMetodosCaptura: values.edicaoMetodosCaptura || "",
-				edicaoPlanejamentoExperimental: values.edicaoPlanejamentoExperimental || "",
-				edicaoGrauInvasividade: values.edicaoGrauInvasividade || "",
-				edicaoAlojamento: values.edicaoAlojamento || "",
-				edicaoCondicoesAlojamentoAlimentacao: values.edicaoCondicoesAlojamentoAlimentacao || "",
-				edicaoObservacaoRecuperacao: values.edicaoObservacaoRecuperacao || "",
-				edicaoUsoAnalgesia: values.edicaoUsoAnalgesia || "",
-				edicaoOutosCuidados: values.edicaoOutosCuidados || "",
-				edicaoPontoFinal: values.edicaoPontoFinal || "",
-				edicaoExposicaoo: values.edicaoExposicaoo || "",
-				edicaoExtracaoMateria: values.edicaoExtracaoMateria || "",
-				edicaoEutanasia: values.edicaoEutanasia || "",
-				edicaoDestinoPosExperimento: values.edicaoDestinoPosExperimento || "",
-				edicaoFormaDescarte: values.edicaoFormaDescarte || "",
-				edicaoResumoProcedimento: values.edicaoResumoProcedimento || "",
-				edicaoReferencias: values.edicaoReferencias || "",
-				edicaoAnimais: values.edicaoAnimais || "",
-				edicaoAnexos: values.edicaoAnexos || "",
-				edicaoFarmacos: values.edicaoFarmacos || "",
-				edicaoPrazo: values.edicaoPrazo || "",
-				edicaoTitulo: values.edicaoTitulo || "",
-				edicaoResponsavel: values.edicaoResponsavel || "",
-				edicaoResumo: values.edicaoResumo || "",
-				edicaoObjetivos: values.edicaoObjetivos || "",
-				edicaoJustificativa: values.edicaoJustificativa || "",
-				edicaoRelevancia: values.edicaoRelevancia || ""
+				aba1: {
+					edicaoPrazo: values.edicaoPrazo || "",
+					edicaoTitulo: values.edicaoTitulo || "",
+					edicaoResponsavel: values.edicaoResponsavel || "",
+					edicaoResumo: values.edicaoResumo || "",
+					edicaoObjetivos: values.edicaoObjetivos || "",
+					edicaoJustificativa: values.edicaoJustificativa || "",
+					edicaoRelevancia: values.edicaoRelevancia || ""
+				},
+				aba2 : {
+					edicaoColaboradores: values.edicaoColaboradores || ""
+				},
+				aba3: {
+					edicaoModeloAnimal: values.edicaoModeloAnimal || "",
+					edicaoBioterio: values.edicaoBioterio || "",
+					edicaoMetodosCaptura: values.edicaoMetodosCaptura || "",
+					edicaoPlanejamentoExperimental: values.edicaoPlanejamentoExperimental || "",
+					edicaoGrauInvasividade: values.edicaoGrauInvasividade || "",
+					edicaoAlojamento: values.edicaoAlojamento || "",
+					edicaoCondicoesAlojamentoAlimentacao: values.edicaoCondicoesAlojamentoAlimentacao || ""
+				},
+				aba4: {
+					edicaoAnimais: values.edicaoAnimais || ""
+				},
+				aba5: {
+					edicaoProcedimentosExperimentais: values.edicaoProcedimentosExperimentais,
+					edicaoEstresse: values.edicaoEstresse,
+					edicaoImobilizacao: values.edicaoImobilizacao,
+					edicaoCondicoesAlimentares: values.edicaoCondicoesAlimentares,
+					edicaoCirurgia: values.edicaoCirurgia,
+				},
+				aba6: {
+					edicaoFarmacos: values.edicaoFarmacos || ""
+				},
+				aba7: {
+					edicaoObservacaoRecuperacao: values.edicaoObservacaoRecuperacao || "",
+					edicaoUsoAnalgesia: values.edicaoUsoAnalgesia || "",
+					edicaoOutrosCuidados: values.edicaoOutrosCuidados || "",
+					edicaoPontoFinal: values.edicaoPontoFinal || "",
+					edicaoExposicaoo: values.edicaoExposicaoo || "",
+					edicaoExtracaoMateria: values.edicaoExtracaoMateria || "",
+					edicaoEutanasia: values.edicaoEutanasia || "",
+					edicaoDestinoPosExperimento: values.edicaoDestinoPosExperimento || "",
+					edicaoFormaDescarte: values.edicaoFormaDescarte || "",
+					edicaoResumoProcedimento: values.edicaoResumoProcedimento || "",
+					edicaoReferencias: values.edicaoReferencias || ""
+				},
+				aba8: {
+					edicaoAnexos: values.edicaoAnexos || ""
+				},
 			}, id
 		})
 		console.log(response)
@@ -137,48 +152,63 @@ export default function EditProject() {
 	const handle2Researcher = async (values) => {
 		nProgress.start()
 		if (projeto.status === "Submetido" || projeto.status === "Corrigido") {
-			const response = await updateProject({
-				status: "No parecerista",
+			const response = await updateProjectCoord({
+				status: "Em correção",
 				coord: {
-					edicaoPrazo: values.edicaoPrazo || "",
-					edicaoTitulo: values.edicaoTitulo || "",
-					edicaoResponsavel: values.edicaoResponsavel || "",
-					edicaoResumo: values.edicaoResumo || "",
-					edicaoObjetivos: values.edicaoObjetivos || "",
-					edicaoJustificativa: values.edicaoJustificativa || "",
-					edicaoRelevancia: values.edicaoRelevancia || "",
-					edicaoModeloAnimal: values.edicaoModeloAnimal || "",
-					edicaoBioterio: values.edicaoBioterio || "",
-					edicaoMetodosCaptura: values.edicaoMetodosCaptura || "",
-					edicaoPlanejamentoExperimental: values.edicaoPlanejamentoExperimental || "",
-					edicaoGrauInvasividade: values.edicaoGrauInvasividade || "",
-					edicaoAlojamento: values.edicaoAlojamento || "",
-					edicaoCondicoesAlojamentoAlimentacao: values.edicaoCondicoesAlojamentoAlimentacao || "",
-					edicaoObservacaoRecuperacao: values.edicaoObservacaoRecuperacao || "",
-					edicaoUsoAnalgesia: values.edicaoUsoAnalgesia || "",
-					edicaoOutosCuidados: values.edicaoOutosCuidados || "",
-					edicaoPontoFinal: values.edicaoPontoFinal || "",
-					edicaoExposicaoo: values.edicaoExposicaoo || "",
-					edicaoExtracaoMateria: values.edicaoExtracaoMateria || "",
-					edicaoEutanasia: values.edicaoEutanasia || "",
-					edicaoDestinoPosExperimento: values.edicaoDestinoPosExperimento || "",
-					edicaoFormaDescarte: values.edicaoFormaDescarte || "",
-					edicaoResumoProcedimento: values.edicaoResumoProcedimento || "",
-					edicaoReferencias: values.edicaoReferencias || "",
-					edicaoAnimais: values.edicaoAnimais || "",
-					edicaoAnexos: values.edicaoAnexos || "",
-					edicaoFarmacos: values.edicaoFarmacos || "",
-					edicaoPrazo: values.edicaoPrazo || "",
-					edicaoTitulo: values.edicaoTitulo || "",
-					edicaoResponsavel: values.edicaoResponsavel || "",
-					edicaoResumo: values.edicaoResumo || "",
-					edicaoObjetivos: values.edicaoObjetivos || "",
-					edicaoJustificativa: values.edicaoJustificativa || "",
-					edicaoRelevancia: values.edicaoRelevancia || ""
-				}, id
-				, id
+					aba1: {
+						edicaoPrazo: values.edicaoPrazo || "",
+						edicaoTitulo: values.edicaoTitulo || "",
+						edicaoResponsavel: values.edicaoResponsavel || "",
+						edicaoResumo: values.edicaoResumo || "",
+						edicaoObjetivos: values.edicaoObjetivos || "",
+						edicaoJustificativa: values.edicaoJustificativa || "",
+						edicaoRelevancia: values.edicaoRelevancia || ""
+					},
+					aba2 : {
+						edicaoColaboradores: values.edicaoColaboradores || ""
+					},
+					aba3: {
+						edicaoModeloAnimal: values.edicaoModeloAnimal || "",
+						edicaoBioterio: values.edicaoBioterio || "",
+						edicaoMetodosCaptura: values.edicaoMetodosCaptura || "",
+						edicaoPlanejamentoExperimental: values.edicaoPlanejamentoExperimental || "",
+						edicaoGrauInvasividade: values.edicaoGrauInvasividade || "",
+						edicaoAlojamento: values.edicaoAlojamento || "",
+						edicaoCondicoesAlojamentoAlimentacao: values.edicaoCondicoesAlojamentoAlimentacao || ""
+					},
+					aba4: {
+						edicaoAnimais: values.edicaoAnimais || ""
+					},
+					aba5: {
+						edicaoProcedimentosExperimentais: values.edicaoProcedimentosExperimentais || "",
+						edicaoEstresse: values.edicaoEstresse || "",
+						edicaoImobilizacao: values.edicaoImobilizacao || "",
+						edicaoCondicoesAlimentares: values.edicaoCondicoesAlimentares || "",
+						edicaoCirurgia: values.edicaoCirurgia || "",
+					},
+					aba6: {
+						edicaoFarmacos: values.edicaoFarmacos || ""
+					},
+					aba7: {
+						edicaoObservacaoRecuperacao: values.edicaoObservacaoRecuperacao || "",
+						edicaoUsoAnalgesia: values.edicaoUsoAnalgesia || "",
+						edicaoOutrosCuidados: values.edicaoOutrosCuidados || "",
+						edicaoPontoFinal: values.edicaoPontoFinal || "",
+						edicaoExposicaoo: values.edicaoExposicaoo || "",
+						edicaoExtracaoMateria: values.edicaoExtracaoMateria || "",
+						edicaoEutanasia: values.edicaoEutanasia || "",
+						edicaoDestinoPosExperimento: values.edicaoDestinoPosExperimento || "",
+						edicaoFormaDescarte: values.edicaoFormaDescarte || "",
+						edicaoResumoProcedimento: values.edicaoResumoProcedimento || "",
+						edicaoReferencias: values.edicaoReferencias || ""
+					},
+					aba8: {
+						edicaoAnexos: values.edicaoAnexos || ""
+					},
+				},
+				id
 			})
-			setProjeto({ ...projeto, status: "No parecerista" })
+			setProjeto({ ...projeto, status: "Em correção" })
 			console.log(response)
 		}
 		nProgress.done()
@@ -203,7 +233,7 @@ export default function EditProject() {
 			</Head>
 
 			<div className="min-h-[100vh] w-[100vw] relative flex flex-col">
-				<Header currentPage="Novo Projeto" currentUser={currentUser} openNavMenuFunction={handleOpenNavMenu} openMenuState={openMenu} />
+				<Header currentPage="Revisar Projeto" currentUser={currentUser} openNavMenuFunction={handleOpenNavMenu} openMenuState={openMenu} />
 				<UserMenu openMenuState={openMenu} />
 
 				<div className="grow flex flex-col md:flex-row">

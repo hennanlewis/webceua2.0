@@ -32,13 +32,6 @@ export function ModifyProjectAttachments(props) {
 									values.anexos.map((_, index) =>
 										<PosicaoVetorAnexos key={index} remove={remove} position={index} />)}
 
-								<button
-									type="button"
-									className="mt-1 bg-[#005090] text-gray-300 hover:bg-[#005090]/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
-									onClick={() => push({ anexo: "" })}
-								>
-									Adicionar Anexo
-								</button>
 							</>
 						)}
 					</FieldArray>
@@ -74,13 +67,6 @@ function PosicaoVetorAnexos(props) {
 				/>
 				<span>Procurar arquivo</span>
 			</label>
-			<button
-				type="button"
-				className="mt-1 bg-gray-400/75 hover:bg-gray-400 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
-				onClick={() => remove(position)}
-			>
-				Remover anexo
-			</button>
 		</fieldset>
 
 	)

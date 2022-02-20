@@ -39,23 +39,6 @@ export function ModifyProjectAnimals(props) {
 									values.animais?.map((_, index) =>
 										<PosicaoVetorAnimais key={index} remove={remove} position={index} />
 									)}
-
-								<button
-									className="mt-1 bg-[#005090] text-gray-300 hover:bg-[#005090]/90 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_10px_#0008] sm:text-sm border-gray-900 rounded-md"
-									type="button"
-									onClick={() => push({
-										animal: "",
-										outro: "",
-										linhagem: "",
-										idade: "",
-										peso: "",
-										quantidadeFemea: 0,
-										quantidadeMacho: 0,
-										subtotal: 0,
-									})}
-								>
-									Adicionar animal
-								</button>
 							</>
 						)}
 					</FieldArray>
@@ -213,14 +196,6 @@ function PosicaoVetorAnimais(props) {
 				/>
 				<span>Subtotal (M+F)</span>
 			</label>
-
-			<button
-				className="mt-1 bg-gray-400/75 hover:bg-gray-400 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
-				type="button"
-				onClick={() => remove(position)}
-			>
-				Remover animal
-			</button>
 		</fieldset>
 	)
 }

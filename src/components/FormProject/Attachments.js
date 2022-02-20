@@ -3,8 +3,28 @@ import Link from "next/link"
 import { useState } from "react"
 
 export function NewProjectAttachments(props) {
-	const { position } = props
 	const { values } = useFormikContext()
+	const { coord, position } = props
+
+	const showAllCorrections = () => {
+		return (
+			<div className="flex flex-col text-white gap-4">
+				{coord !== undefined ?? <h1 className="mt-4 -mb-4 text-white text-center font-bold">Edição sugerida</h1>}
+				{showCorrectionItem("Anexos", coord?.edicaoAnexos)}
+			</div>
+		)
+	}
+
+	const showCorrectionItem = (attributeName, value) => {
+		if (value) {
+			return (
+				<div className="flex flex-col text-sm text-white text-justify lg:text-right">
+					<span>Edição sugerida em <b>{attributeName}</b>:</span>
+					<span>{value}</span>
+				</div>
+			)
+		}
+	}
 
 	return (
 		<div className={position === 7 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
@@ -23,6 +43,7 @@ export function NewProjectAttachments(props) {
 							</a>
 						</Link>
 					</div>
+					{showAllCorrections()}
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 

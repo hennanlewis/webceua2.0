@@ -1,45 +1,73 @@
-import { useFormikContext } from "formik"
+import { Field, FieldArray, useFormikContext } from "formik"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useAuth } from "../../contexts/AuthContext"
 
 export function ModifyProjectColaborators(props) {
-	const { values, handleChange, position } = props
+	const { values } = useFormikContext()
+	const { coord, position } = props
 
-	const [vetorDeColaboradores, setVetorDeColaboradores] = useState([])
-	const adicionaColaborador = (event) => {
-		event.preventDefault()
-		setVetorDeColaboradores(oldValue => [...oldValue, 0])
+	const showAllCorrections = () => {
+		return (
+			<div className="flex flex-col text-white gap-4">
+				{coord !== undefined ?? <h1 className="mt-4 -mb-4 text-white text-center font-bold">Edição sugerida</h1>}
+				{showCorrectionItem("Colaboradores", coord?.edicaoColaboradores)}
+			</div>
+		)
 	}
-	const hiddenShowClass = position === 1 ?
-		'max-h-[1000rem] opacity-100 duration-500'
-		:
-		'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-500'
+
+	const showCorrectionItem = (attributeName, value) => {
+		if (value) {
+			return (
+				<div className="flex flex-col text-sm text-white text-justify lg:text-right">
+					<span>Edição sugerida em <b>{attributeName}</b>:</span>
+					<span>{value}</span>
+				</div>
+			)
+		}
+	}
 
 	return (
-		<div className={position === 0 ? 'flex' : 'hidden'}>
-			<div className={hiddenShowClass}>
-				<div className="relative grid grid-cols-8 bg-[#005090]/90 p-2 rounded-t-xl">
-					<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
-						<h2 className="text-white text-right font-bold xs:text-center">Colaboradores</h2>
-						<div className="text-sm text-white text-justify lg:text-right">
-							Preencha os campos caso seja necessário a adição de algum colaborador.
-						</div>
-						<div className="mt-6 text-right">
-							<Link href="/dashboard">
-								<a
-									className="flex flex-col items-end text-white hover:text-gray-200 font-bold underline"
-								>
-									Página inicial
-								</a>
-							</Link>
-						</div>
+		<div className={position === 1 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
+			<div className="relative grid grid-cols-8 bg-[#005090]/90 p-2 rounded-t-xl">
+				<div className="col-span-3 xs:col-span-8 p-2 pb-4 md:text-justify lg:px-4">
+					<h2 className="text-white text-right font-bold xs:text-center">Colaboradores</h2>
+					<div className="text-sm text-white text-justify lg:text-right">
+						Preencha os campos caso seja necessário a adição de algum colaborador.
 					</div>
-					<div>
-
-						{vetorDeColaboradores.map((_, index) => <PosicaoVetorColaboradores key={index} position={index} />)}
-
-						<button onClick={(event) => adicionaColaborador(event)}>Adicionar colaborador</button>
+					<div className="mt-6 text-right">
+						<Link href="/dashboard">
+							<a
+								className="flex flex-col items-end text-white hover:text-gray-200 font-bold underline"
+							>
+								Página inicial
+							</a>
+						</Link>
 					</div>
+					{showAllCorrections()}
+				</div>
+				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
+
+					<FieldArray name="colaboradores">
+						{({ insert, remove, push }) => (
+							<>
+								{values.colaboradores?.length > 0 &&
+									values.colaboradores.map((_, index) =>
+										<PosicaoVetorColaboradores key={index} remove={remove} position={index} />
+									)
+								}
+							</>
+						)}
+					</FieldArray>
+
+					<label>
+						Sugestão de edição em <b>Colaboradores</b>
+						<Field
+							as="textarea"
+							className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+							name="edicaoColaboradores"
+						/>
+					</label>
 				</div>
 			</div>
 		</div>
@@ -47,69 +75,142 @@ export function ModifyProjectColaborators(props) {
 }
 
 function PosicaoVetorColaboradores(props) {
-
-	const [researchs, setResearchs] = useState([])
-	const [deleteOption, setDeleteOption] = useState(false)
-
-	useEffect(() => {
-		(async () => {
-			handleResearchs()
-				.then(response => setResearchs(response || []))
-				.catch(error => console.log(error))
-		})()
-	}, [])
-
-	const formik = useFormik({
-		initialValues: { id_colaborador: 0 },
-	})
-
-	const removeColaborador = (event) => {
-		setDeleteOption(true)
-	}
-
-	if (deleteOption === true)
-		return null
+	const { position } = props
+	const { values } = useFormikContext()
 
 	return (
-		<fieldset>
-			<legend>Colaboradores</legend>
+		<fieldset className="flex flex-col gap-2">
+			<span className="flex flex-col p-2 py-1 -mb-1 -mx-2 rounded-lg bg-[#005090]/90 text-md text-white font-semibold">
+				Colaboradores
+			</span>
 
-			<select name='id_colaborador' label='Colaborador'>
-				<option>Selecione...</option>
-				{researchs?.map(research => <option key={research.id} value={research.id}>{research.nome}</option>)}
-			</select>
-
-			<label htmlFor="temp">
-				<input type="text" name={`colaboradoresInstituicao${props.position}`} />
-				<span>Intituição</span>
+			<label
+				className="flex flex-col-reverse"
+				htmlFor="list"
+			>
+				<Field
+					as="select"
+					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-900 rounded-md"
+					id="colaboradores"
+					name={`colaboradores.${position}.email`}
+					readOnly
+				>
+					<option value={values.colaboradores[`${position}`].email}>{values.colaboradores[`${position}`].email}</option>
+				</Field>
 			</label>
 
-			<label htmlFor="temp">
-				<input type="text" name={`colaboradoresNivelAcademico${props.position}`} />
-				<span>Nível Acadêmico</span>
+			<label
+				className="flex flex-col"
+				htmlFor="Nome"
+			>
+				<span className="flex flex-col">Nome</span>
+				<Field
+					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+					type="text"
+					id="Nome"
+					name={`colaboradores.${position}.nome`}
+					readOnly
+					readOnly
+				/>
 			</label>
 
-			<label htmlFor="temp">
-				<input type="text" name={`colaboradoresExperiencia${props.position}`} />
-				<span>Experiência prévia (anos)</span>
+			<label
+				className="flex flex-col max-w-[15rem]"
+				htmlFor="Telefone"
+			>
+				<span className="flex flex-col">Telefone</span>
+				<Field
+					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+					type="tel"
+					id="Telefone"
+					name={`colaboradores.${position}.telefone`}
+					readOnly
+					readOnly
+				/>
 			</label>
 
-			<label htmlFor="temp">
-				<input type="text" name={`colaboradoresTreinamento${props.position}`} />
-				<span>Treinamento (especificar)</span>
+			<label
+				className="flex flex-col"
+				htmlFor="Instituicao"
+			>
+				<span className="flex flex-col">Instituição/Unidade</span>
+				<Field
+					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+					type="text"
+					id="Instituicao"
+					name={`colaboradores.${position}.instituicao`}
+					readOnly
+					readOnly
+				/>
 			</label>
 
-			<label htmlFor="temp">
-				<input type="text" name={`colaboradoresTelefone${props.position}`} />
-				<span>Telefone</span>
+			<label
+				className="flex flex-col"
+				htmlFor="Departamento"
+			>
+				<span className="flex flex-col">Departamento/Disciplina</span>
+				<Field
+					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+					type="text"
+					id="Departamento"
+					name={`colaboradores.${position}.departamento`}
+					readOnly
+					readOnly
+				/>
 			</label>
 
-			<label htmlFor="temp">
-				<input type="text" name={`colaboradoresEmail${props.position}`} />
-				<span>E-mail</span>
+			<label
+				className="flex flex-col"
+				htmlFor="Lattes"
+			>
+				<span className="flex flex-col">Link do currículo lattes</span>
+				<Field
+					className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
+					type="text"
+					id="Lattes"
+					name={`colaboradores.${position}.lattes`}
+					readOnly
+					readOnly
+				/>
 			</label>
 
-			<button onClick={(event) => removeColaborador(event)}>Remover colaborador</button>
+			<span className="flex flex-col">
+				<span className="">Vínculo com a instituição</span>
+				<label htmlFor="VinculoDocente" className="flex gap-1">
+					<Field
+						type="radio" value="docente"
+						id="VinculoDocente"
+						name={`colaboradores.${position}.vinculo`}
+						readOnly
+						readOnly
+					/>
+					<span className="translate-y-[-2px]">
+						Docente/Pesquisador</span>
+				</label>
+				<label htmlFor="VinculoTecnico" className="flex gap-1">
+					<Field
+						type="radio" value="técnico"
+						id="VinculoTecnico"
+						name={`colaboradores.${position}.vinculo`}
+						readOnly
+						readOnly
+					/>
+					<span className="translate-y-[-2px]">
+						Técnico Nível Superior</span>
+				</label>
+				<label htmlFor="VinculoJovem" className="flex gap-1">
+					<Field
+						type="radio" value="jovem_pes"
+						id="VinculoJovem"
+						name={`colaboradores.${position}.vinculo`}
+						readOnly
+						readOnly
+					/>
+					<span className="translate-y-[-2px]">
+						Jovem Pes./Pes. Visitante</span>
+				</label>
+			</span>
 		</fieldset>
+
 	)
 }

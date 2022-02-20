@@ -3,7 +3,37 @@ import Link from "next/link"
 import { ConditionalInput } from "../ConditionalInput"
 
 export function NewProjectAnimalPostoperative(props) {
-	const { position } = props
+	const { coord, position } = props
+
+	const showAllCorrections = () => {
+		return (
+			<div className="flex flex-col text-white gap-4">
+				{coord !== undefined ?? <h1 className="mt-4 -mb-4 text-white text-center font-bold">Edição sugerida</h1>}
+				{showCorrectionItem("Observação da Recuperação", coord?.edicaoObservacaoRecuperacao)}
+				{showCorrectionItem("Uso de Analgesia", coord?.edicaoUsoAnalgesia)}
+				{showCorrectionItem("Outros Cuidados Pós-Operatório", coord?.edicaoOutrosCuidados)}
+				{showCorrectionItem("Ponto Final Humanitário", coord?.edicaoPontoFinal)}
+				{showCorrectionItem("Exposição/Inoculação/Administração", coord?.edicaoExposicaoo)}
+				{showCorrectionItem("Extração de Materiais Biológicos", coord?.edicaoExtracaoMateria)}
+				{showCorrectionItem("Eutanásia", coord?.edicaoEutanasia)}
+				{showCorrectionItem("Destino dos Animais Após o Experimento", coord?.edicaoDestinoPosExperimento)}
+				{showCorrectionItem("Forma de Descarte da Carcaça", coord?.edicaoFormaDescarte)}
+				{showCorrectionItem("Resumo do Procedimento", coord?.edicaoResumoProcedimento)}
+				{showCorrectionItem("Referências Bibliográficas", coord?.edicaoReferencias)}
+			</div>
+		)
+	}
+
+	const showCorrectionItem = (attributeName, value) => {
+		if (value) {
+			return (
+				<div className="flex flex-col text-sm text-white text-justify lg:text-right">
+					<span>Edição sugerida em <b>{attributeName}</b>:</span>
+					<span>{value}</span>
+				</div>
+			)
+		}
+	}
 
 	return (
 		<div className={position === 6 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
@@ -22,6 +52,7 @@ export function NewProjectAnimalPostoperative(props) {
 							</a>
 						</Link>
 					</div>
+					{showAllCorrections()}
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 					<fieldset className="flex flex-col gap-2">

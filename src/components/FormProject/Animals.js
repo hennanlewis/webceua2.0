@@ -3,8 +3,28 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 
 export function NewProjectAnimals(props) {
-	const { position } = props
 	const { values, setFieldValue } = useFormikContext()
+	const { coord, position } = props
+
+	const showAllCorrections = () => {
+		return (
+			<div className="flex flex-col text-white gap-4">
+				{coord !== undefined ?? <h1 className="mt-4 -mb-4 text-white text-center font-bold">Edição sugerida</h1>}
+				{showCorrectionItem("Animais", coord?.edicaoAnimais)}
+			</div>
+		)
+	}
+
+	const showCorrectionItem = (attributeName, value) => {
+		if (value) {
+			return (
+				<div className="flex flex-col text-sm text-white text-justify lg:text-right">
+					<span>Edição sugerida em <b>{attributeName}</b>:</span>
+					<span>{value}</span>
+				</div>
+			)
+		}
+	}
 
 	useEffect(() => {
 		const soma = values.animais?.reduce((sum, item) => {
@@ -30,6 +50,7 @@ export function NewProjectAnimals(props) {
 							</a>
 						</Link>
 					</div>
+					{showAllCorrections()}
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 					<FieldArray name="animais">

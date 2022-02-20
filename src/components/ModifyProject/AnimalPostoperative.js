@@ -178,7 +178,7 @@ export function ModifyProjectAnimalPostoperative(props) {
 							<Field
 								as="textarea"
 								className="flex flex-col mt-1 focus:ring-indigo-500 focus:border-indigo-500 w-full pl-2 py-2 shadow-[0_1px_5px_#0006] sm:text-sm border-gray-300 rounded-md"
-								name="edicaoOutosCuidados"
+								name="edicaoOutrosCuidados"
 							/>
 						</label>
 					</fieldset>

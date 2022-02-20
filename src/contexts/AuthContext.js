@@ -11,6 +11,23 @@ export default function AuthProvider({ children }) {
 	const [userInfo, setUserInfo] = useState({})
 	const [loading, setLoading] = useState(true)
 
+	
+	const getUsersDBInfo = async () => {
+		try {
+			const data = await getDocs(query(collection(db, "usuarios"), where("atuador", "==", "pesquisador")))
+
+			const dataArray = []
+			data.forEach((doc) => {
+				// doc.data() is never undefined for query doc snapshots
+				dataArray = [...dataArray, { ...doc.data(), id: doc.id }]
+			})
+			return { res: true, data: dataArray }
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
 	const getUserDBInfo = async () => {
 		const user = auth.currentUser
 		try {
@@ -59,12 +76,12 @@ export default function AuthProvider({ children }) {
 
 	const getProjectsCoord = async () => {
 		try {
-			const data = await getDocs(query(collection(db, "projetos"), where("status", "in", ["Submetido", "Coordenação", "Em aprovação"])))
+			const data = await getDocs(query(collection(db, "projetos"), where("status", "in", ["Submetido", "Corrigido", "Em aprovação"])))
 
 			const dataArray = []
 			data.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
-				dataArray = [ ...dataArray, {...doc.data(), id: doc.id} ]
+				dataArray = [...dataArray, { ...doc.data(), id: doc.id }]
 			})
 			return { res: true, data: dataArray }
 		} catch (erro) {
@@ -75,9 +92,31 @@ export default function AuthProvider({ children }) {
 
 	const updateProjectCoord = async (values) => {
 		try {
-			const noEmptyValues = Object.fromEntries(Object
-				.entries(values.coord)
+			const aba1 = Object.fromEntries(Object
+				.entries(values.coord.aba1)
 				.filter(([_, value]) => value != ""))
+			const aba2 = Object.fromEntries(Object
+				.entries(values.coord.aba2)
+				.filter(([_, value]) => value != ""))
+			const aba3 = Object.fromEntries(Object
+				.entries(values.coord.aba3)
+				.filter(([_, value]) => value != ""))
+			const aba4 = Object.fromEntries(Object
+				.entries(values.coord.aba4)
+				.filter(([_, value]) => value != ""))
+			const aba5 = Object.fromEntries(Object
+				.entries(values.coord.aba5)
+				.filter(([_, value]) => value != ""))
+			const aba6 = Object.fromEntries(Object
+				.entries(values.coord.aba6)
+				.filter(([_, value]) => value != ""))
+			const aba7 = Object.fromEntries(Object
+				.entries(values.coord.aba7)
+				.filter(([_, value]) => value != ""))
+			const aba8 = Object.fromEntries(Object
+				.entries(values.coord.aba8)
+				.filter(([_, value]) => value != ""))
+
 			const userDocRef = doc(db, "projetos", values.id)
 
 			return await runTransaction(db, async (transaction) => {
@@ -86,7 +125,19 @@ export default function AuthProvider({ children }) {
 					return { res: false, erro: "Projeto não existe" }
 				}
 
-				transaction.update(userDocRef, { status: values.status, coord: noEmptyValues })
+				transaction.update(userDocRef, {
+					status: values.status,
+					coord: {
+						aba1,
+						aba2,
+						aba3,
+						aba4,
+						aba5,
+						aba6,
+						aba7,
+						aba8
+					}
+				})
 				return { res: true, data: "Valores atualizados com sucesso" }
 			})
 
@@ -104,7 +155,7 @@ export default function AuthProvider({ children }) {
 			const dataArray = []
 			data.forEach((doc) => {
 				// doc.data() is never undefined for query doc snapshots
-				dataArray = [ ...dataArray, {...doc.data(), id: doc.id} ]
+				dataArray = [...dataArray, { ...doc.data(), id: doc.id }]
 			})
 			return { res: true, data: dataArray }
 		} catch (erro) {
@@ -121,11 +172,9 @@ export default function AuthProvider({ children }) {
 			const userDocRef = doc(db, "projetos", values.id)
 			return await runTransaction(db, async (transaction) => {
 				const userDoc = await transaction.get(userDocRef)
-				console.log(transaction)
 				if (!userDoc.exists()) {
 					return { res: false, erro: "Projeto não existe" }
 				}
-
 				transaction.update(userDocRef, { status: values.status, projeto: noEmptyValues })
 				return { res: true, data: "Valores atualizados com sucesso" }
 			})
@@ -215,6 +264,7 @@ export default function AuthProvider({ children }) {
 		userInfo,
 		signUp,
 		login,
+		getUsersDBInfo,
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
@@ -244,6 +294,7 @@ export function useAuth() {
 		userInfo,
 		signUp,
 		login,
+		getUsersDBInfo,
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
@@ -262,6 +313,7 @@ export function useAuth() {
 		userInfo,
 		signUp,
 		login,
+		getUsersDBInfo,
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,

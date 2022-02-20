@@ -33,7 +33,7 @@ export function ProjectsTable(props) {
 									<div className="flex items-center">{item.projeto.DadosResponsavelNome}</div>
 								</td>
 								<td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-									{item.status === "Salvo" &&
+									{(item.status === "Salvo" || item.status === "Em correção") &&
 										<Link href={{
 											pathname: "/edit-project",
 											query: { id: item.id },

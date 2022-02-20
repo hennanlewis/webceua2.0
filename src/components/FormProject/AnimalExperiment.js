@@ -4,8 +4,32 @@ import { useState } from "react"
 import { ConditionalInput } from "../ConditionalInput"
 
 export function NewProjectAnimalExperiment(props) {
-	const { values, handleChange, position } = props
 	const [hiddenOptions, setHiddenOptions] = useState(true)
+	const { coord, position } = props
+
+	const showAllCorrections = () => {
+		return (
+			<div className="flex flex-col text-white gap-4">
+				{coord !== undefined ?? <h1 className="mt-4 -mb-4 text-white text-center font-bold">Edição sugerida</h1>}
+				{showCorrectionItem("Procedimentos Experimentais", coord?.edicaoProcedimentosExperimentais)}
+				{showCorrectionItem("Estresse", coord?.edicaoEstresse)}
+				{showCorrectionItem("Imobilização", coord?.edicaoImobilizacao)}
+				{showCorrectionItem("Consições Alimentares", coord?.edicaoCondicoesAlimentares)}
+				{showCorrectionItem("Cirurgia", coord?.edicaoCirurgia)}
+			</div>
+		)
+	}
+
+	const showCorrectionItem = (attributeName, value) => {
+		if (value) {
+			return (
+				<div className="flex flex-col text-sm text-white text-justify lg:text-right">
+					<span>Edição sugerida em <b>{attributeName}</b>:</span>
+					<span>{value}</span>
+				</div>
+			)
+		}
+	}
 
 	const checkedFunction = (event) => {
 		event.target.checked ?
@@ -32,6 +56,7 @@ export function NewProjectAnimalExperiment(props) {
 							</a>
 						</Link>
 					</div>
+					{showAllCorrections()}
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 					<fieldset className="flex flex-col gap-2">

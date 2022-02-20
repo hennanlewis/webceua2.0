@@ -102,6 +102,12 @@ export default function EditProject() {
 			setProjeto({ ...projeto, status: "Submetido"})
 			console.log(response)
 		}
+		
+		if (projeto.status === "Em correção") {
+			const response = await updateProject({ status: "Corrigido", projeto: values, id })
+			setProjeto({ ...projeto, status: "Corrigido"})
+			console.log(response)
+		}
 		nProgress.done()
 		Router.push("/dashboard")
 	}
@@ -113,7 +119,7 @@ export default function EditProject() {
 			</Head>
 
 			<div className="min-h-[100vh] w-[100vw] relative flex flex-col">
-				<Header currentPage="Novo Projeto" currentUser={currentUser} openNavMenuFunction={handleOpenNavMenu} openMenuState={openMenu} />
+				<Header currentPage="Editar Projeto" currentUser={currentUser} openNavMenuFunction={handleOpenNavMenu} openMenuState={openMenu} />
 				<UserMenu openMenuState={openMenu} />
 
 				<div className="grow flex flex-col md:flex-row">
@@ -155,14 +161,14 @@ export default function EditProject() {
 										className="max-w-[90vw] w-[40rem] bg-indigo-700/80 p-2 rounded-2xl max-h-[1000rem]"
 									>
 										<div className="bg-[#005090]/90 p-2 rounded-t-xl">
-											<NewProjectMainData position={formPosition} />
-											<NewProjectColaborators position={formPosition} />
-											<NewProjectAnimalModel position={formPosition} />
-											<NewProjectAnimals position={formPosition} />
-											<NewProjectAnimalExperiment position={formPosition} />
-											<NewProjectDrugs position={formPosition} />
-											<NewProjectAnimalPostoperative position={formPosition} />
-											<NewProjectAttachments position={formPosition} />
+											<NewProjectMainData coord={projeto?.coord?.aba1} position={formPosition} />
+											<NewProjectColaborators coord={projeto?.coord?.aba2} position={formPosition} />
+											<NewProjectAnimalModel coord={projeto?.coord?.aba3} position={formPosition} />
+											<NewProjectAnimals coord={projeto?.coord?.aba4} position={formPosition} />
+											<NewProjectAnimalExperiment coord={projeto?.coord?.aba5} position={formPosition} />
+											<NewProjectDrugs coord={projeto?.coord?.aba6} position={formPosition} />
+											<NewProjectAnimalPostoperative coord={projeto?.coord?.aba7} position={formPosition} />
+											<NewProjectAttachments coord={projeto?.coord?.aba8} position={formPosition} />
 										</div>
 										<span className="relative flex justify-end gap-2 bg-[#005090]/90 p-2 bg-[#005090] rounded-b-xl">
 											<button
@@ -176,7 +182,8 @@ export default function EditProject() {
 												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 												type="submit"
 											>
-												Submeter projeto
+												{ projeto?.status === "Salvo" && "Submeter projeto" }
+												{ projeto?.status === "Em correção" && "Corrigir projeto" }
 											</button>
 										</span>
 									</Form>

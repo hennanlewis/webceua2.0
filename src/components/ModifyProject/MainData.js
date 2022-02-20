@@ -248,7 +248,7 @@ export function ModifyProjectMainData(props) {
 								<Field
 									type="radio" value="técnico"
 									id="dadosResponsavelVinculoTecnico"
-									name="Dadosvinculo"
+									name="DadosVinculo"
 									readOnly
 								/>
 								<span className="translate-y-[-2px]">
@@ -258,7 +258,7 @@ export function ModifyProjectMainData(props) {
 								<Field
 									type="radio" value="jovem_pes"
 									id="dadosResponsavelVinculoJovem"
-									name="Dadosvinculo"
+									name="DadosVinculo"
 									readOnly
 								/>
 								<span className="translate-y-[-2px]">

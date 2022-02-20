@@ -4,8 +4,34 @@ import Link from "next/link"
 import { ConditionalInput } from "../ConditionalInput"
 
 export function NewProjectMainData(props) {
-	const { position } = props
-	const { errors } = useFormikContext()
+	const { coord, position } = props
+	const { values } = useFormikContext()
+
+	const showAllCorrections = () => {
+		return (
+			<div className="flex flex-col text-white gap-4">
+				{coord !== undefined ?? <h1 className="mt-4 -mb-4 text-white text-center font-bold">Edição sugerida</h1>}
+				{showCorrectionItem("Prazo", coord?.edicaoPrazo)}
+				{showCorrectionItem("Título do Projeto", coord?.edicaoTitulo)}
+				{showCorrectionItem("Responsável", coord?.edicaoResponsavel)}
+				{showCorrectionItem("Resumo do Projeto", coord?.edicaoResumo)}
+				{showCorrectionItem("Objetivos", coord?.edicaoObjetivos)}
+				{showCorrectionItem("Justificativa", coord?.edicaoJustificativa)}
+				{showCorrectionItem("Relevância", coord?.edicaoRelevancia)}
+			</div>
+		)
+	}
+
+	const showCorrectionItem = (attributeName, value) => {
+		if (value) {
+			return (
+				<div className="flex flex-col text-sm text-white text-justify lg:text-right">
+					<span>Edição sugerida em <b>{attributeName}</b>:</span>
+					<span>{value}</span>
+				</div>
+			)
+		}
+	}
 
 	return (
 		<div className={position === 0 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
@@ -25,6 +51,8 @@ export function NewProjectMainData(props) {
 							</a>
 						</Link>
 					</div>
+
+					{showAllCorrections()}
 				</div>
 				<div className="col-span-5 xs:col-span-8 flex flex-col gap-10 bg-indigo-50 rounded-lg p-4">
 					<fieldset className="flex flex-col gap-2">
@@ -216,7 +244,7 @@ export function NewProjectMainData(props) {
 								<Field
 									type="radio" value="técnico"
 									id="dadosResponsavelVinculoTecnico"
-									name="Dadosvinculo"
+									name="DadosVinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Técnico Nível Superior</span>
@@ -225,7 +253,7 @@ export function NewProjectMainData(props) {
 								<Field
 									type="radio" value="jovem_pes"
 									id="dadosResponsavelVinculoJovem"
-									name="Dadosvinculo"
+									name="DadosVinculo"
 								/>
 								<span className="translate-y-[-2px]">
 									Jovem Pes./Pes. Visitante</span>
