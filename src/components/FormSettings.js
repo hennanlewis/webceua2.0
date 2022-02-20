@@ -38,7 +38,7 @@ export function FormSettings(props) {
 
 	useEffect(() => {
 		handleValidImage(foto)
-	}, [])
+	}, [handleValidImage])
 
 	return (
 		<Formik

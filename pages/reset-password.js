@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 import { Formik } from 'formik'
 
 import { useAuth } from '../src/contexts/AuthContext'
@@ -8,13 +8,12 @@ import { useEffect, useState } from 'react'
 
 export default function ResetPassword() {
 	const [messageResponse, setMessageResponse] = useState('')
-	const router = useRouter()
 
 	const { currentUser, resetPassword } = useAuth()
 
 	useEffect(() => {
 		if (currentUser) {
-			router.push("/dashboard")
+			Router.push("/dashboard")
 		}
 	}, [currentUser])
 

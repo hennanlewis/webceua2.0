@@ -1,7 +1,5 @@
 import { Field, FieldArray, useFormikContext } from "formik"
 import Link from "next/link"
-import { useEffect, useState } from "react"
-import { useAuth } from "../../contexts/AuthContext"
 
 export function ModifyProjectColaborators(props) {
 	const { values } = useFormikContext()
@@ -53,7 +51,7 @@ export function ModifyProjectColaborators(props) {
 							<>
 								{values.colaboradores?.length > 0 &&
 									values.colaboradores.map((_, index) =>
-										<PosicaoVetorColaboradores key={index} remove={remove} position={index} />
+										<PosicaoVetorColaboradores key={index} position={index} />
 									)
 								}
 							</>
@@ -110,7 +108,6 @@ function PosicaoVetorColaboradores(props) {
 					id="Nome"
 					name={`colaboradores.${position}.nome`}
 					readOnly
-					readOnly
 				/>
 			</label>
 
@@ -124,7 +121,6 @@ function PosicaoVetorColaboradores(props) {
 					type="tel"
 					id="Telefone"
 					name={`colaboradores.${position}.telefone`}
-					readOnly
 					readOnly
 				/>
 			</label>
@@ -140,7 +136,6 @@ function PosicaoVetorColaboradores(props) {
 					id="Instituicao"
 					name={`colaboradores.${position}.instituicao`}
 					readOnly
-					readOnly
 				/>
 			</label>
 
@@ -154,7 +149,6 @@ function PosicaoVetorColaboradores(props) {
 					type="text"
 					id="Departamento"
 					name={`colaboradores.${position}.departamento`}
-					readOnly
 					readOnly
 				/>
 			</label>
@@ -170,7 +164,6 @@ function PosicaoVetorColaboradores(props) {
 					id="Lattes"
 					name={`colaboradores.${position}.lattes`}
 					readOnly
-					readOnly
 				/>
 			</label>
 
@@ -182,7 +175,6 @@ function PosicaoVetorColaboradores(props) {
 						id="VinculoDocente"
 						name={`colaboradores.${position}.vinculo`}
 						readOnly
-						readOnly
 					/>
 					<span className="translate-y-[-2px]">
 						Docente/Pesquisador</span>
@@ -193,7 +185,6 @@ function PosicaoVetorColaboradores(props) {
 						id="VinculoTecnico"
 						name={`colaboradores.${position}.vinculo`}
 						readOnly
-						readOnly
 					/>
 					<span className="translate-y-[-2px]">
 						Técnico Nível Superior</span>
@@ -203,7 +194,6 @@ function PosicaoVetorColaboradores(props) {
 						type="radio" value="jovem_pes"
 						id="VinculoJovem"
 						name={`colaboradores.${position}.vinculo`}
-						readOnly
 						readOnly
 					/>
 					<span className="translate-y-[-2px]">

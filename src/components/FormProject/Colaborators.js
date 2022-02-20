@@ -98,7 +98,7 @@ function PosicaoVetorColaboradores(props) {
 					setDados(data)
 				}
 			})
-	}, [])
+	}, [getUsersDBInfo])
 
 	useEffect(() => {
 		const opcaoSelecionada = dados.filter(item => item.email === values.colaboradores[`${position}`].email)[0]
