@@ -42,11 +42,12 @@ export default function Settings() {
 				/>
 				<UserMenu openMenuState={openMenu} />
 
-				<div className="grow flex flex-col md:flex-row">
-					{userInfo.atuador === "coord" ?
-						<NavMenuCoord openMenuState={openMenu} currentURL="/settings" />
-						:
-						<NavMenu openMenuState={openMenu} currentURL="/settings" />
+				<div className="grow flex flex-col justify-center md:flex-row">
+					{(userInfo.atuador === "parecerista" || userInfo.atuador === "coord") &&
+						<NavMenuCoord openMenuState={openMenu} currentURL="/dashboard" />
+					}
+					{userInfo.atuador === "pesquisador" &&
+						<NavMenu openMenuState={openMenu} currentURL="/dashboard" />
 					}
 
 					<Main center>

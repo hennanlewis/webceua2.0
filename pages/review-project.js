@@ -28,7 +28,7 @@ import { ModifyProjectAttachments } from "../src/components/ModifyProject/Attach
 import initialProjectValues from '../src/utils/initialProjectValues'
 
 export default function EditProject() {
-	const { currentUser, updateProjectCoord, getProjectsCoord, setProjectReviewer, userInfo } = useAuth()
+	const { currentUser, updateProjectReviewer, getProjectsCoord, setProjectReviewer, userInfo } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 	const [loaded, setLoaded] = useState(false)
 	const [projeto, setProjeto] = useState()
@@ -65,7 +65,7 @@ export default function EditProject() {
 		if (!currentUser) {
 			Router.push("/signout")
 		}
-		if (userInfo.atuador !== "coord") {
+		if (userInfo.atuador !== "parecerista") {
 			Router.push("/dashboard")
 		}
 		setLoaded(true)
@@ -92,7 +92,7 @@ export default function EditProject() {
 
 	const handleUpdateProject = async (values) => {
 		nProgress.start()
-		const response = await updateProjectCoord({
+		const response = await updateProjectReviewer({
 			status: projeto.status,
 			correcao: {
 				aba1: {
@@ -153,8 +153,8 @@ export default function EditProject() {
 
 	const handle2Researcher = async (values) => {
 		nProgress.start()
-		if (projeto.status === "Submetido" || projeto.status === "Corrigido") {
-			const response = await updateProjectCoord({
+		if (projeto.status === "No parecerista") {
+			const response = await updateProjectReviewer({
 				status: "Em correção",
 				correcao: {
 					aba1: {
@@ -217,11 +217,22 @@ export default function EditProject() {
 		Router.push("/dashboard")
 	}
 
-	const handle2Reviewer = async (values) => {
+	const handleAccept = async (values) => {
 		nProgress.start()
-		if (projeto.status === "Submetido" || projeto.status === "Corrigido") {
-			const response = await setProjectReviewer({ id, pareceristaID: values.parecerista, status: "No parecerista", projeto: values })
+		if (projeto.status === "No parecerista") {
+			const response = await setProjectReviewer({ id, status: "Em aprovação", projeto: values })
 			setProjeto({ ...projeto, status: "No parecerista" })
+			console.log(response)
+		}
+		nProgress.done()
+		Router.push("/dashboard")
+	}
+
+	const handleRefuse = async (values) => {
+		nProgress.start()
+		if (projeto.status === "No parecerista") {
+			const response = await setProjectReviewer({ id, status: "Recusado", projeto: values })
+			setProjeto({ ...projeto, status: "Recusado" })
 			console.log(response)
 		}
 		nProgress.done()
@@ -231,7 +242,7 @@ export default function EditProject() {
 	return (loaded &&
 		<>
 			<Head>
-				<title>Revisar Dados</title>
+				<title>Revisar Projeto</title>
 			</Head>
 
 			<div className="min-h-[100vh] w-[100vw] relative flex flex-col">
@@ -313,15 +324,6 @@ export default function EditProject() {
 												projeto={projeto}
 												position={formPosition}
 											/>
-											{showReviwers ?
-												<div className="overflow-hidden max-h-[1000rem] opacity-100 duration-700">
-													<ModifyReviewer />
-												</div>
-												:
-												<div className="overflow-hidden max-h-[0rem] opacity-0 duration-700">
-													<ModifyReviewer />
-												</div>
-											}
 										</div>
 										<span className="relative flex justify-end gap-2 bg-[#005090]/90 p-2 bg-[#005090] rounded-b-xl">
 											{projeto && (projeto.status === "Submetido" || projeto.status === "Corrigido") &&
@@ -346,17 +348,7 @@ export default function EditProject() {
 															type="button"
 															onClick={() => setShowReviwers(!showReviwers)}
 														>
-															Selecionar parecerista
-														</button>
-													}
-
-													{showReviwers &&
-														<button
-															className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
-															type="button"
-															onClick={() => handle2Reviewer(values)}
-														>
-															Enviar a parecerista
+															Aprovar projeto
 														</button>
 													}
 												</>

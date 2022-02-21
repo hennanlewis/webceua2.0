@@ -82,13 +82,13 @@ export function NewProjectColaborators(props) {
 
 function PosicaoVetorColaboradores(props) {
 	const { position, remove } = props
-	const { currentUser, getUsersDBInfo } = useAuth()
+	const { getResearchers } = useAuth()
 	const [opcoes, setOpcoes] = useState()
 	const [dados, setDados] = useState([])
 	const { values, setFieldValue } = useFormikContext()
 
 	useEffect(() => {
-		getUsersDBInfo()
+		getResearchers()
 			.then((response) => {
 				const data = response.data
 				if (data?.length > 0) {
@@ -98,7 +98,7 @@ function PosicaoVetorColaboradores(props) {
 					setDados(data)
 				}
 			})
-	}, [getUsersDBInfo])
+	}, [getResearchers])
 
 	useEffect(() => {
 		const opcaoSelecionada = dados.filter(item => item.email === values.colaboradores[`${position}`].email)[0]

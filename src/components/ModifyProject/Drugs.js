@@ -1,6 +1,5 @@
-import { Field, FieldArray, useFormikContext } from "formik"
 import Link from "next/link"
-import { useState } from "react"
+import { Field, FieldArray, useFormikContext } from "formik"
 
 export function ModifyProjectDrugs(props) {
 	const { position } = props

@@ -1,5 +1,5 @@
 import { inMemoryPersistence, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
-import { addDoc, collection, doc, getDoc, getDocs, query, runTransaction, setDoc, where } from 'firebase/firestore'
+import { addDoc, collection, deleteField, doc, getDoc, getDocs, query, runTransaction, setDoc, where } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { auth, db } from '../../services/firebase'
@@ -12,9 +12,25 @@ export default function AuthProvider({ children }) {
 	const [loading, setLoading] = useState(true)
 
 	
-	const getUsersDBInfo = async () => {
+	const getResearchers = async () => {
 		try {
 			const data = await getDocs(query(collection(db, "usuarios"), where("atuador", "==", "pesquisador")))
+
+			const dataArray = []
+			data.forEach((doc) => {
+				// doc.data() is never undefined for query doc snapshots
+				dataArray = [...dataArray, { ...doc.data(), id: doc.id }]
+			})
+			return { res: true, data: dataArray }
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
+	const getReviewers = async () => {
+		try {
+			const data = await getDocs(query(collection(db, "usuarios"), where("atuador", "==", "parecerista")))
 
 			const dataArray = []
 			data.forEach((doc) => {
@@ -127,7 +143,104 @@ export default function AuthProvider({ children }) {
 
 				transaction.update(userDocRef, {
 					status: values.status,
-					coord: {
+					correcao: {
+						aba1,
+						aba2,
+						aba3,
+						aba4,
+						aba5,
+						aba6,
+						aba7,
+						aba8
+					}
+				})
+				return { res: true, data: "Valores atualizados com sucesso" }
+			})
+
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
+	const getProjectsReviewer = async () => {
+		try {
+			const data = await getDocs(query(collection(db, "projetos"), where("status", "==", "No parecerista")))
+
+			const dataArray = []
+			data.forEach((doc) => {
+				// doc.data() is never undefined for query doc snapshots
+				dataArray = [...dataArray, { ...doc.data(), id: doc.id }]
+			})
+			return { res: true, data: dataArray }
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
+	const setProjectReviewer = async (values) => {
+		try {
+			const userDocRef = doc(db, "projetos", values.id)
+
+			return await runTransaction(db, async (transaction) => {
+				const userDoc = await transaction.get(userDocRef)
+				if (!userDoc.exists()) {
+					return { res: false, erro: "Projeto não existe" }
+				}
+
+				transaction.update(userDocRef, {
+					status: values.status,
+					pareceristaID: values.pareceristaID,
+					coord: deleteField(),
+				})
+				return { res: true, data: "Valores atualizados com sucesso" }
+			})
+
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
+	const updateProjectReviewer = async (values) => {
+		try {
+			const aba1 = Object.fromEntries(Object
+				.entries(values.coord.aba1)
+				.filter(([_, value]) => value != ""))
+			const aba2 = Object.fromEntries(Object
+				.entries(values.coord.aba2)
+				.filter(([_, value]) => value != ""))
+			const aba3 = Object.fromEntries(Object
+				.entries(values.coord.aba3)
+				.filter(([_, value]) => value != ""))
+			const aba4 = Object.fromEntries(Object
+				.entries(values.coord.aba4)
+				.filter(([_, value]) => value != ""))
+			const aba5 = Object.fromEntries(Object
+				.entries(values.coord.aba5)
+				.filter(([_, value]) => value != ""))
+			const aba6 = Object.fromEntries(Object
+				.entries(values.coord.aba6)
+				.filter(([_, value]) => value != ""))
+			const aba7 = Object.fromEntries(Object
+				.entries(values.coord.aba7)
+				.filter(([_, value]) => value != ""))
+			const aba8 = Object.fromEntries(Object
+				.entries(values.coord.aba8)
+				.filter(([_, value]) => value != ""))
+
+			const userDocRef = doc(db, "projetos", values.id)
+
+			return await runTransaction(db, async (transaction) => {
+				const userDoc = await transaction.get(userDocRef)
+				if (!userDoc.exists()) {
+					return { res: false, erro: "Projeto não existe" }
+				}
+
+				transaction.update(userDocRef, {
+					status: values.status,
+					parecerista: {
 						aba1,
 						aba2,
 						aba3,
@@ -264,11 +377,15 @@ export default function AuthProvider({ children }) {
 		userInfo,
 		signUp,
 		login,
-		getUsersDBInfo,
+		getResearchers,
+		getReviewers,
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
 		updateProjectCoord,
+		getProjectsReviewer,
+		setProjectReviewer,
+		updateProjectReviewer,
 		getProjects,
 		updateProject,
 		setProject,
@@ -294,11 +411,15 @@ export function useAuth() {
 		userInfo,
 		signUp,
 		login,
-		getUsersDBInfo,
+		getResearchers,
+		getReviewers,
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
 		updateProjectCoord,
+		getProjectsReviewer,
+		setProjectReviewer,
+		updateProjectReviewer,
 		getProjects,
 		updateProject,
 		setProject,
@@ -313,11 +434,15 @@ export function useAuth() {
 		userInfo,
 		signUp,
 		login,
-		getUsersDBInfo,
+		getResearchers,
+		getReviewers,
 		getUserDBInfo,
 		setUserDBInfo,
 		getProjectsCoord,
 		updateProjectCoord,
+		getProjectsReviewer,
+		setProjectReviewer,
+		updateProjectReviewer,
 		getProjects,
 		updateProject,
 		setProject,

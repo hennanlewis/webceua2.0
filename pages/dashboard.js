@@ -9,9 +9,10 @@ import { UserMenu } from "../src/components/UserMenu"
 import { useAuth } from "../src/contexts/AuthContext"
 import { MainRechearcher } from "../src/components/MainRechearcher"
 import { MainCoord } from "../src/components/MainCoord"
+import { MainReviewer } from "../src/components/MainReviewer"
 
 export default function Dashboard() {
-	const { currentUser, userInfo, getProjects } = useAuth()
+	const { currentUser, userInfo } = useAuth()
 	const [openMenu, setOpenMenu] = useState(
 		{ navMenu: false },
 		{ userMenu: false }
@@ -43,14 +44,16 @@ export default function Dashboard() {
 				<UserMenu openMenuState={openMenu} />
 
 				<div className="grow flex flex-col justify-center md:flex-row">
-					{userInfo.atuador === "coord" ?
+					{(userInfo.atuador === "parecerista" || userInfo.atuador === "coord") &&
 						<NavMenuCoord openMenuState={openMenu} currentURL="/dashboard" />
-						:
+					}
+					{userInfo.atuador === "pesquisador" &&
 						<NavMenu openMenuState={openMenu} currentURL="/dashboard" />
 					}
 
-					{ userInfo.atuador === "coord" && <MainCoord /> }
-					{ userInfo.atuador === "pesquisador" && <MainRechearcher /> }
+					{userInfo.atuador === "coord" && <MainCoord />}
+					{userInfo.atuador === "pesquisador" && <MainRechearcher />}
+					{userInfo.atuador === "parecerista" && <MainReviewer />}
 
 				</div >
 			</div >
