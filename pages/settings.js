@@ -44,10 +44,10 @@ export default function Settings() {
 
 				<div className="grow flex flex-col justify-center md:flex-row">
 					{(userInfo.atuador === "parecerista" || userInfo.atuador === "coord") &&
-						<NavMenuCoord openMenuState={openMenu} currentURL="/dashboard" />
+						<NavMenuCoord openMenuState={openMenu} currentURL="/settings" />
 					}
 					{userInfo.atuador === "pesquisador" &&
-						<NavMenu openMenuState={openMenu} currentURL="/dashboard" />
+						<NavMenu openMenuState={openMenu} currentURL="/settings" />
 					}
 
 					<Main center>

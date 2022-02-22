@@ -21,14 +21,13 @@ import { ModifyProjectAnimalModel } from "../src/components/ModifyProject/Animal
 import { ModifyProjectAnimalExperiment } from "../src/components/ModifyProject/AnimalExperiment"
 import { ModifyProjectAnimals } from "../src/components/ModifyProject/Animals"
 import { ModifyProjectDrugs } from "../src/components/ModifyProject/Drugs"
-import { ModifyReviewer } from "../src/components/ModifyProject/Reviewer"
 import { ModifyProjectAnimalPostoperative } from "../src/components/ModifyProject/AnimalPostoperative"
 import { ModifyProjectAttachments } from "../src/components/ModifyProject/Attachments"
 
 import initialProjectValues from '../src/utils/initialProjectValues'
 
 export default function EditProject() {
-	const { currentUser, updateProjectReviewer, getProjectsCoord, setProjectReviewer, userInfo } = useAuth()
+	const { currentUser, updateProjectReviewer, getProjectsReviewer, userInfo } = useAuth()
 	const [formPosition, setFormPosition] = useState(0)
 	const [loaded, setLoaded] = useState(false)
 	const [projeto, setProjeto] = useState()
@@ -72,14 +71,14 @@ export default function EditProject() {
 	}, [currentUser])
 
 	useEffect(() => {
-		getProjectsCoord()
+		getProjectsReviewer()
 			.then((response) => {
 				const data = response.data
 				if (data?.length > 0) {
 					setProjeto(data.filter(item => item.id === id)[0])
 				}
 			})
-	}, [getProjectsCoord])
+	}, [getProjectsReviewer])
 
 	const handleOpenNavMenu = (key) => {
 		setOpenMenu({ ...openMenu, [key]: !openMenu[key] })
@@ -151,88 +150,47 @@ export default function EditProject() {
 		nProgress.done()
 	}
 
-	const handle2Researcher = async (values) => {
+	const handleRefuseProject = async () => {
 		nProgress.start()
 		if (projeto.status === "No parecerista") {
 			const response = await updateProjectReviewer({
-				status: "Em correção",
-				correcao: {
-					aba1: {
-						edicaoPrazo: values.edicaoPrazo || "",
-						edicaoTitulo: values.edicaoTitulo || "",
-						edicaoResponsavel: values.edicaoResponsavel || "",
-						edicaoResumo: values.edicaoResumo || "",
-						edicaoObjetivos: values.edicaoObjetivos || "",
-						edicaoJustificativa: values.edicaoJustificativa || "",
-						edicaoRelevancia: values.edicaoRelevancia || ""
-					},
-					aba2: {
-						edicaoColaboradores: values.edicaoColaboradores || ""
-					},
-					aba3: {
-						edicaoModeloAnimal: values.edicaoModeloAnimal || "",
-						edicaoBioterio: values.edicaoBioterio || "",
-						edicaoMetodosCaptura: values.edicaoMetodosCaptura || "",
-						edicaoPlanejamentoExperimental: values.edicaoPlanejamentoExperimental || "",
-						edicaoGrauInvasividade: values.edicaoGrauInvasividade || "",
-						edicaoAlojamento: values.edicaoAlojamento || "",
-						edicaoCondicoesAlojamentoAlimentacao: values.edicaoCondicoesAlojamentoAlimentacao || ""
-					},
-					aba4: {
-						edicaoAnimais: values.edicaoAnimais || ""
-					},
-					aba5: {
-						edicaoProcedimentosExperimentais: values.edicaoProcedimentosExperimentais || "",
-						edicaoEstresse: values.edicaoEstresse || "",
-						edicaoImobilizacao: values.edicaoImobilizacao || "",
-						edicaoCondicoesAlimentares: values.edicaoCondicoesAlimentares || "",
-						edicaoCirurgia: values.edicaoCirurgia || "",
-					},
-					aba6: {
-						edicaoFarmacos: values.edicaoFarmacos || ""
-					},
-					aba7: {
-						edicaoObservacaoRecuperacao: values.edicaoObservacaoRecuperacao || "",
-						edicaoUsoAnalgesia: values.edicaoUsoAnalgesia || "",
-						edicaoOutrosCuidados: values.edicaoOutrosCuidados || "",
-						edicaoPontoFinal: values.edicaoPontoFinal || "",
-						edicaoExposicaoo: values.edicaoExposicaoo || "",
-						edicaoExtracaoMateria: values.edicaoExtracaoMateria || "",
-						edicaoEutanasia: values.edicaoEutanasia || "",
-						edicaoDestinoPosExperimento: values.edicaoDestinoPosExperimento || "",
-						edicaoFormaDescarte: values.edicaoFormaDescarte || "",
-						edicaoResumoProcedimento: values.edicaoResumoProcedimento || "",
-						edicaoReferencias: values.edicaoReferencias || ""
-					},
-					aba8: {
-						edicaoAnexos: values.edicaoAnexos || ""
-					},
-				},
 				id,
+				correcao: {
+					aba1: {},
+					aba2: {},
+					aba3: {},
+					aba4: {},
+					aba5: {},
+					aba6: {},
+					aba7: {},
+					aba8: {}
+				},
+				status: "Recusado" })
+			setProjeto({ ...projeto, correcao: {}, status: "Recusado" })
+			console.log(response)
+		}
+		nProgress.done()
+		Router.push("/dashboard")
+	}
+
+	const handleAcceptProject = async () => {
+		nProgress.start()
+		if (projeto.status === "No parecerista") {
+			const response = await updateProjectReviewer({
+				id,
+				correcao: {
+					aba1: {},
+					aba2: {},
+					aba3: {},
+					aba4: {},
+					aba5: {},
+					aba6: {},
+					aba7: {},
+					aba8: {}
+				},
+				status: "Em aprovação"
 			})
-			setProjeto({ ...projeto, status: "Em correção" })
-			console.log(response)
-		}
-		nProgress.done()
-		Router.push("/dashboard")
-	}
-
-	const handleAccept = async (values) => {
-		nProgress.start()
-		if (projeto.status === "No parecerista") {
-			const response = await setProjectReviewer({ id, status: "Em aprovação", projeto: values })
-			setProjeto({ ...projeto, status: "No parecerista" })
-			console.log(response)
-		}
-		nProgress.done()
-		Router.push("/dashboard")
-	}
-
-	const handleRefuse = async (values) => {
-		nProgress.start()
-		if (projeto.status === "No parecerista") {
-			const response = await setProjectReviewer({ id, status: "Recusado", projeto: values })
-			setProjeto({ ...projeto, status: "Recusado" })
+			setProjeto({ ...projeto, status: "Em aprovação" })
 			console.log(response)
 		}
 		nProgress.done()
@@ -251,10 +209,10 @@ export default function EditProject() {
 
 				<div className="grow flex flex-col justify-center md:flex-row">
 					{(userInfo.atuador === "parecerista" || userInfo.atuador === "coord") &&
-						<NavMenuCoord openMenuState={openMenu} currentURL="/dashboard" />
+						<NavMenuCoord openMenuState={openMenu} currentURL="/review-project" />
 					}
 					{userInfo.atuador === "pesquisador" &&
-						<NavMenu openMenuState={openMenu} currentURL="/dashboard" />
+						<NavMenu openMenuState={openMenu} currentURL="/review-project" />
 					}
 
 					<Main center>
@@ -326,45 +284,27 @@ export default function EditProject() {
 											/>
 										</div>
 										<span className="relative flex justify-end gap-2 bg-[#005090]/90 p-2 bg-[#005090] rounded-b-xl">
-											{projeto && (projeto.status === "Submetido" || projeto.status === "Corrigido") &&
-												<>
-													<button
-														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
-														type="button"
-														onClick={() => handleUpdateProject(values)}
-													>
-														Salvar sugestões
-													</button>
-													<button
-														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
-														type="button"
-														onClick={() => handle2Researcher(values)}
-													>
-														Retornar ao pesquisador
-													</button>
-													{!showReviwers &&
-														<button
-															className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
-															type="button"
-															onClick={() => setShowReviwers(!showReviwers)}
-														>
-															Aprovar projeto
-														</button>
-													}
-												</>
-											}
-
-											{projeto && projeto.status === "Em aprovação" &&
-												<>
-													<button
-														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
-														type="button"
-														onClick={handle}
-													>
-														Aprovar pesquisa
-													</button>
-												</>
-											}
+											<button
+												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+												type="button"
+												onClick={() => handleUpdateProject(values)}
+											>
+												Salvar sugestões
+											</button>
+											<button
+												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+												type="button"
+												onClick={() => handleRefuseProject(!showReviwers)}
+											>
+												Recusar projeto
+											</button>
+											<button
+												className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
+												type="button"
+												onClick={() => handleAcceptProject(!showReviwers)}
+											>
+												Aprovar projeto
+											</button>
 										</span>
 									</Form>
 								)}

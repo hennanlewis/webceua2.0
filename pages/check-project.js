@@ -228,6 +228,17 @@ export default function EditProject() {
 		Router.push("/dashboard")
 	}
 
+	const handleAcceptProject = async () => {
+		nProgress.start()
+		if (projeto.status === "Em aprovação") {
+			const response = await setProjectReviewer({ id, status: "Aprovado" })
+			setProjeto({ ...projeto, status: "Aprovado" })
+			console.log(response)
+		}
+		nProgress.done()
+		Router.push("/dashboard")
+	}
+
 	return (loaded &&
 		<>
 			<Head>
@@ -240,10 +251,10 @@ export default function EditProject() {
 
 				<div className="grow flex flex-col justify-center md:flex-row">
 					{(userInfo.atuador === "parecerista" || userInfo.atuador === "coord") &&
-						<NavMenuCoord openMenuState={openMenu} currentURL="/dashboard" />
+						<NavMenuCoord openMenuState={openMenu} currentURL="/check-project" />
 					}
 					{userInfo.atuador === "pesquisador" &&
-						<NavMenu openMenuState={openMenu} currentURL="/dashboard" />
+						<NavMenu openMenuState={openMenu} currentURL="/check-project" />
 					}
 
 					<Main center>
@@ -367,7 +378,7 @@ export default function EditProject() {
 													<button
 														className="block mb-4 px-4 py-2 text-sm text-gray-700 bg-white rounded-md hover:bg-gray-300 hover:text-[#005090]"
 														type="button"
-														onClick={handle}
+														onClick={handleAcceptProject}
 													>
 														Aprovar pesquisa
 													</button>

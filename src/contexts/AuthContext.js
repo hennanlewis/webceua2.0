@@ -11,7 +11,7 @@ export default function AuthProvider({ children }) {
 	const [userInfo, setUserInfo] = useState({})
 	const [loading, setLoading] = useState(true)
 
-	
+
 	const getResearchers = async () => {
 		try {
 			const data = await getDocs(query(collection(db, "usuarios"), where("atuador", "==", "pesquisador")))
@@ -109,28 +109,28 @@ export default function AuthProvider({ children }) {
 	const updateProjectCoord = async (values) => {
 		try {
 			const aba1 = Object.fromEntries(Object
-				.entries(values.coord.aba1)
+				.entries(values.correcao.aba1)
 				.filter(([_, value]) => value != ""))
 			const aba2 = Object.fromEntries(Object
-				.entries(values.coord.aba2)
+				.entries(values.correcao.aba2)
 				.filter(([_, value]) => value != ""))
 			const aba3 = Object.fromEntries(Object
-				.entries(values.coord.aba3)
+				.entries(values.correcao.aba3)
 				.filter(([_, value]) => value != ""))
 			const aba4 = Object.fromEntries(Object
-				.entries(values.coord.aba4)
+				.entries(values.correcao.aba4)
 				.filter(([_, value]) => value != ""))
 			const aba5 = Object.fromEntries(Object
-				.entries(values.coord.aba5)
+				.entries(values.correcao.aba5)
 				.filter(([_, value]) => value != ""))
 			const aba6 = Object.fromEntries(Object
-				.entries(values.coord.aba6)
+				.entries(values.correcao.aba6)
 				.filter(([_, value]) => value != ""))
 			const aba7 = Object.fromEntries(Object
-				.entries(values.coord.aba7)
+				.entries(values.correcao.aba7)
 				.filter(([_, value]) => value != ""))
 			const aba8 = Object.fromEntries(Object
-				.entries(values.coord.aba8)
+				.entries(values.correcao.aba8)
 				.filter(([_, value]) => value != ""))
 
 			const userDocRef = doc(db, "projetos", values.id)
@@ -165,7 +165,10 @@ export default function AuthProvider({ children }) {
 
 	const getProjectsReviewer = async () => {
 		try {
-			const data = await getDocs(query(collection(db, "projetos"), where("status", "==", "No parecerista")))
+			const { uid } = auth.currentUser
+			const data = await getDocs(query(collection(db, "projetos"),
+				where("status", "==", "No parecerista"),
+				where("pareceristaID", "==", uid)))
 
 			const dataArray = []
 			data.forEach((doc) => {
@@ -179,55 +182,31 @@ export default function AuthProvider({ children }) {
 		}
 	}
 
-	const setProjectReviewer = async (values) => {
-		try {
-			const userDocRef = doc(db, "projetos", values.id)
-
-			return await runTransaction(db, async (transaction) => {
-				const userDoc = await transaction.get(userDocRef)
-				if (!userDoc.exists()) {
-					return { res: false, erro: "Projeto não existe" }
-				}
-
-				transaction.update(userDocRef, {
-					status: values.status,
-					pareceristaID: values.pareceristaID,
-					coord: deleteField(),
-				})
-				return { res: true, data: "Valores atualizados com sucesso" }
-			})
-
-		} catch (erro) {
-			console.error(erro)
-			return { res: false, erro }
-		}
-	}
-
 	const updateProjectReviewer = async (values) => {
 		try {
 			const aba1 = Object.fromEntries(Object
-				.entries(values.coord.aba1)
+				.entries(values.correcao.aba1)
 				.filter(([_, value]) => value != ""))
 			const aba2 = Object.fromEntries(Object
-				.entries(values.coord.aba2)
+				.entries(values.correcao.aba2)
 				.filter(([_, value]) => value != ""))
 			const aba3 = Object.fromEntries(Object
-				.entries(values.coord.aba3)
+				.entries(values.correcao.aba3)
 				.filter(([_, value]) => value != ""))
 			const aba4 = Object.fromEntries(Object
-				.entries(values.coord.aba4)
+				.entries(values.correcao.aba4)
 				.filter(([_, value]) => value != ""))
 			const aba5 = Object.fromEntries(Object
-				.entries(values.coord.aba5)
+				.entries(values.correcao.aba5)
 				.filter(([_, value]) => value != ""))
 			const aba6 = Object.fromEntries(Object
-				.entries(values.coord.aba6)
+				.entries(values.correcao.aba6)
 				.filter(([_, value]) => value != ""))
 			const aba7 = Object.fromEntries(Object
-				.entries(values.coord.aba7)
+				.entries(values.correcao.aba7)
 				.filter(([_, value]) => value != ""))
 			const aba8 = Object.fromEntries(Object
-				.entries(values.coord.aba8)
+				.entries(values.correcao.aba8)
 				.filter(([_, value]) => value != ""))
 
 			const userDocRef = doc(db, "projetos", values.id)
@@ -240,7 +219,7 @@ export default function AuthProvider({ children }) {
 
 				transaction.update(userDocRef, {
 					status: values.status,
-					parecerista: {
+					correcao: {
 						aba1,
 						aba2,
 						aba3,
@@ -384,7 +363,6 @@ export default function AuthProvider({ children }) {
 		getProjectsCoord,
 		updateProjectCoord,
 		getProjectsReviewer,
-		setProjectReviewer,
 		updateProjectReviewer,
 		getProjects,
 		updateProject,
@@ -418,7 +396,6 @@ export function useAuth() {
 		getProjectsCoord,
 		updateProjectCoord,
 		getProjectsReviewer,
-		setProjectReviewer,
 		updateProjectReviewer,
 		getProjects,
 		updateProject,
@@ -441,7 +418,6 @@ export function useAuth() {
 		getProjectsCoord,
 		updateProjectCoord,
 		getProjectsReviewer,
-		setProjectReviewer,
 		updateProjectReviewer,
 		getProjects,
 		updateProject,

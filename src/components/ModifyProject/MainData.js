@@ -4,8 +4,7 @@ import Link from "next/link"
 import { ConditionalInput } from "../ConditionalInput"
 
 export function ModifyProjectMainData(props) {
-	const { position, projeto } = props
-	const { errors } = useFormikContext()
+	const { position } = props
 
 	return (
 		<div className={position === 0 ? 'max-h-[1000rem] opacity-100 duration-500' : 'max-h-[0] opacity-0 pointer-events-none overflow-hidden duration-200'}>
