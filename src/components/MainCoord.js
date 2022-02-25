@@ -3,20 +3,42 @@ import { useAuth } from '../contexts/AuthContext'
 import { Main } from "./Main"
 import { ProjectCardsCoord } from './ProjectCardsCoord'
 import { ProjectsTableCoord } from './ProjectsTableCoord'
+import { SignUpCards } from './SignUpCards'
+import { SignUpTable } from './SignUpTable'
 
 export function MainCoord() {
-	const { getProjectsCoord } = useAuth()
+	const { getProjectsCoord, getRegisters } = useAuth()
 	const [projetos, setProjetos] = useState()
+	const [registros, setRegistros] = useState({})
 
 	useEffect(() => {
 		getProjectsCoord()
-			.then((response) => {
-				const data = response.data
-				if (data?.length > 0) {
-					setProjetos(data)
-				}
-			})
+		.then((response) => {
+			const data = response.data
+			if (data?.length > 0) {
+				setProjetos(data)
+			}
+		})
 	}, [getProjectsCoord])
+	
+	useEffect(() => {
+		getRegisters()
+		 .then(response => {
+			 setRegistros(response.data)
+		 })
+	}, [])
+
+	const handleAddResearcher = (index) => {
+		Alert.alert("pesquisao", index)
+	}
+
+	const handleAddReviewer = (index) => {
+		Alert.alert("parecerista", index)
+	}
+
+	const handleRemove = (index) => {
+		Alert.alert("remove", index)
+	}
 
 	return (
 		<Main>
@@ -31,6 +53,8 @@ export function MainCoord() {
 			}
 			{projetos &&
 				<div className="flex flex-col grow gap-2">
+					{/* <SignUpTable registros={registros} />
+					<SignUpCards registros={registros} /> */}
 					<ProjectsTableCoord projetos={projetos} />
 					<ProjectCardsCoord projetos={projetos} />
 				</div>

@@ -45,6 +45,7 @@ export default function Home() {
 								return errors
 							}}
 							onSubmit={async (values, { setSubmitting, resetForm }) => {
+								nProgress.start()
 								if (!values.name || !values.email || !values.cpf || !values.password || !values.confirmPassword) {
 									setErrorMessage('Todos os campos são obrigatórios')
 								}
@@ -54,6 +55,7 @@ export default function Home() {
 
 								setTimeout(() => {
 									setSubmitting(false)
+									nProgress.done()
 								}, 400)
 
 							}}

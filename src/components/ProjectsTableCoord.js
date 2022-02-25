@@ -4,13 +4,16 @@ export function ProjectsTableCoord(props) {
 	const { projetos } = props
 
 	return (
-		<div className="overflow-hidden flex flex-col xs:hidden lg:flex-row grow bg-[#005090] rounded-2xl gap-4 border-[3px] border-[#005090] max-h-[1000rem] shadow-md">
+		<div className="overflow-hidden flex flex-col mt-10 xs:hidden grow bg-[#005090] rounded-2xl gap-4 border-[3px] border-[#005090] max-h-[1000rem] shadow-md">
+			<div className="px-4 pt-2 bg-[#005090] text-center font-bold text-white uppercase rounded-md">
+				Projetos
+			</div>
 			<table className="w-full">
 				<thead>
 					<tr className="bg-[#005090]">
-						<th scope="col" className="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Título</th>
-						<th scope="col" className="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Status</th>
-						<th scope="col" className="px-6 py-3 text-left text-xs font-bold text-white uppercase tracking-wider">Pesquisador</th>
+						<th scope="col" className="px-6 pb-3 text-left text-xs font-bold text-white uppercase tracking-wider">Título</th>
+						<th scope="col" className="px-6 pb-3 text-left text-xs font-bold text-white uppercase tracking-wider">Status</th>
+						<th scope="col" className="px-6 pb-3 text-left text-xs font-bold text-white uppercase tracking-wider">Pesquisador</th>
 						<th scope="col" className="relative px-6 py-3">
 							<span className="sr-only">Edit</span>
 						</th>

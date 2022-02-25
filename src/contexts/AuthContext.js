@@ -1,4 +1,4 @@
-import { inMemoryPersistence, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, inMemoryPersistence, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from 'firebase/auth'
 import { addDoc, collection, deleteField, doc, getDoc, getDocs, query, runTransaction, setDoc, where } from 'firebase/firestore'
 import { createContext, useContext, useEffect, useState } from 'react'
 
@@ -10,6 +10,16 @@ export default function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState({})
 	const [userInfo, setUserInfo] = useState({})
 	const [loading, setLoading] = useState(true)
+
+	const createUserDB = async (values) => {
+		try {
+			await setDoc(doc(db, "usuarios", uid), { ...userInfo, ...values })
+			setUserInfo({ ...userInfo, ...values })
+			return { res: true }
+		} catch (erro) {
+			return { res: false, erro }
+		}
+	}
 
 
 	const getResearchers = async () => {
@@ -296,8 +306,28 @@ export default function AuthProvider({ children }) {
 		}
 	}
 
+	const getRegisters = async () => {
+		try {
+			const data = await getDocs(query(collection(db, "cadastros")))
+
+			const dataArray = []
+			data.forEach((doc) => {
+				// doc.data() is never undefined for query doc snapshots
+				dataArray = [...dataArray, { ...doc.data(), id: doc.id }]
+			})
+			return { res: true, data: dataArray }
+		} catch (erro) {
+			console.error(erro)
+			return { res: false, erro }
+		}
+	}
+
 	const signUp = (values) => {
 		return addDoc(collection(db, "cadastros"), values)
+	}
+
+	const createSignUp = (email, password) => {
+		return createUserWithEmailAndPassword(auth, email, password)
 	}
 
 	const login = async (email, password, remember) => {
@@ -326,10 +356,6 @@ export default function AuthProvider({ children }) {
 		return auth.signOut()
 	}
 
-	const createSignUp = (email, password) => {
-		return auth.createUserWithEmailAndPassword(email, password)
-	}
-
 	const resetPassword = async (email) => {
 		try {
 			const data = await sendPasswordResetEmail(auth, email)
@@ -355,6 +381,8 @@ export default function AuthProvider({ children }) {
 		currentUser,
 		userInfo,
 		signUp,
+		getRegisters,
+		createSignUp,
 		login,
 		getResearchers,
 		getReviewers,
@@ -369,7 +397,6 @@ export default function AuthProvider({ children }) {
 		setProject,
 		updateUserDBInfo,
 		signOut,
-		createSignUp,
 		resetPassword
 	}
 
@@ -388,6 +415,8 @@ export function useAuth() {
 		currentUser,
 		userInfo,
 		signUp,
+		getRegisters,
+		createSignUp,
 		login,
 		getResearchers,
 		getReviewers,
@@ -402,7 +431,6 @@ export function useAuth() {
 		setProject,
 		updateUserDBInfo,
 		signOut,
-		createSignUp,
 		resetPassword
 	} = context
 
@@ -410,6 +438,8 @@ export function useAuth() {
 		currentUser,
 		userInfo,
 		signUp,
+		getRegisters,
+		createSignUp,
 		login,
 		getResearchers,
 		getReviewers,
@@ -424,7 +454,6 @@ export function useAuth() {
 		setProject,
 		updateUserDBInfo,
 		signOut,
-		createSignUp,
 		resetPassword
 	}
 }
