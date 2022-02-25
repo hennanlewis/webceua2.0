@@ -42,13 +42,6 @@ export function Header(props) {
 					<div className="hidden md:block relative">
 						<div className="flex text-3xl gap-2">
 							<button
-								className="flex w-8 h-8 items-center bg-gray-800 p-2 rounded-full text-3xl text-gray-400 hover:text-white
-									focus:outline-none focus:ring-2 focus:ring-offset focus:ring-offset-gray-800 focus:ring-white"
-							>
-								<HiOutlineBell />
-							</button>
-
-							<button
 								onClick={() => openNavMenuFunction('userMenu')}
 								className="flex w-8 h-8 rounded-full
 									focus:outline-none focus:ring-2 focus:ring-offset focus:ring-offset-gray-800 focus:ring-white"

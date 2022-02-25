@@ -6,7 +6,7 @@ export function ProjectCardsCoord(props) {
 
 	return (
 		<div className="hidden xs:flex xs:flex-col grow gap-4 max-h-[1000rem]">
-			<div className="grid grid-cols-2 gap-4">
+		<div className="xxs:flex xxs:flex-col xs:grid xs:grid-cols-2 gap-4">
 				{projetos
 					.map(item => (
 						<div className="overflow-hidden bg-white rounded-2xl shadow-md border-[3px] border-[#005090]" key={item.id}>
